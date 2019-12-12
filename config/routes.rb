@@ -1,5 +1,17 @@
 Rails.application.routes.draw do
   
+  devise_for :admins,controllers: {
+    sessions:      'admins/sessions',
+    passwords:     'admins/passwords',
+    registrations: 'admins/registrations',
+  }
+
+  devise_for :publics,controllers: {
+    sessions:      'publics/sessions',
+    passwords:     'publics/passwords',
+    registrations: 'publics/registrations',
+  }
+
 
   namespace :public do
     get 'public_users/confirm'
