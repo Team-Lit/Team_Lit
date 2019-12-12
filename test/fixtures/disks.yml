@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  product_id: 1
+  disk_numbre: MyString
+  deleted_at: 2019-12-12 04:58:45
+
+two:
+  product_id: 1
+  disk_numbre: MyString
+  deleted_at: 2019-12-12 04:58:45
