@@ -12,13 +12,6 @@
 
 ActiveRecord::Schema.define(version: 2019_12_12_051421) do
 
-  create_table "admin_users", force: :cascade do |t|
-    t.string "admin_email"
-    t.string "admin_password"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "arrivals", force: :cascade do |t|
     t.integer "product_id"
     t.integer "arrival_date"
@@ -39,14 +32,14 @@ ActiveRecord::Schema.define(version: 2019_12_12_051421) do
 
   create_table "cart_itmes", force: :cascade do |t|
     t.integer "product_id"
-    t.integer "end_user_id"
+    t.integer "public_id"
     t.integer "quantity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "deliveries", force: :cascade do |t|
-    t.integer "end_user_id"
+    t.integer "public_id"
     t.string "zip"
     t.text "address"
     t.string "address_name"
@@ -93,12 +86,12 @@ ActiveRecord::Schema.define(version: 2019_12_12_051421) do
 
   create_table "orders", force: :cascade do |t|
     t.integer "product_id"
-    t.integer "end_user_id"
+    t.integer "public_id"
     t.integer "tax_rate"
     t.integer "delivery_charge"
     t.integer "total_price"
-    t.integer "delivery_status"
-    t.integer "payment_method"
+    t.integer "delivery_status", default: 0
+    t.integer "payment_method", default: 0
     t.text "address"
     t.string "address_name"
     t.string "zip"
@@ -110,13 +103,15 @@ ActiveRecord::Schema.define(version: 2019_12_12_051421) do
 
   create_table "products", force: :cascade do |t|
     t.string "product_name"
-    t.integer "jacket_image_id"
+    t.text "jacket_image_id"
     t.integer "artist_id"
     t.integer "label_id"
     t.integer "genre_id"
     t.integer "disk_id"
-    t.integer "stock_status"
+    t.integer "stock_status", default: 0
     t.integer "pre_tax_price"
+    t.string "release_date"
+    t.integer "stock_quantity"
     t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -132,25 +127,6 @@ ActiveRecord::Schema.define(version: 2019_12_12_051421) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["song_title"], name: "index_songs_on_song_title"
-  end
-
-  create_table "users", force: :cascade do |t|
-    t.string "end_user_last_name"
-    t.string "end_user_first_name"
-    t.string "end_user_last_kana"
-    t.string "end_user_first_kana"
-    t.string "zip"
-    t.text "address"
-    t.string "end_user_phone"
-    t.string "end_user_email"
-    t.string "end_user_password"
-    t.datetime "unsubscribe"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["end_user_first_kana"], name: "index_users_on_end_user_first_kana"
-    t.index ["end_user_first_name"], name: "index_users_on_end_user_first_name"
-    t.index ["end_user_last_kana"], name: "index_users_on_end_user_last_kana"
-    t.index ["end_user_last_name"], name: "index_users_on_end_user_last_name"
   end
 
 end
