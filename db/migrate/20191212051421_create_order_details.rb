@@ -4,7 +4,7 @@ class CreateOrderDetails < ActiveRecord::Migration[5.2]
       t.integer :product_id
       t.integer :order_id
       t.integer :quantity
-      t.integer :total_price
+      t.integer :pre_tax_price
       t.datetime :deleted_at
 
       t.timestamps

@@ -4,6 +4,8 @@ class Order < ApplicationRecord
   
   belongs_to :user
 
+  enum delivery_status: {"未配送":0, "配送済み":1}
+
   validates :product_id, presence: true
   validates :end_user_id, presence: true
   validates :tax_rate, presence: true
