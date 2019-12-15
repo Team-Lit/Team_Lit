@@ -10,13 +10,24 @@ class Public::PublicDeliveriesController < ApplicationController
   end
 
   def update
+    @deliverie = Deliverie.find(params[:id])
+    if @deliverie.update(deliverie_params)
+      redirect_to public_public_deliveries_path
+      flash[:notice] = "Book was successfully updated."
+    else
+      render action: :edit
+    end
   end
 
+
   def destroy
+    @deliverie = deliverie.find(params[:id])
+  	@deliverie.destroy
+  	redirect_to public_public_deliveries_path
   end
 
   private
-    @adress = Deliveries.find(params[:id])
+    
     def deliverie_params
       params.require(:deliverie).permit(:address,:address_name,:zip)
     end

@@ -2,6 +2,7 @@ class Public::PublicOrdersController < ApplicationController
   
 
   def confirm
+    @deliverie = Deliverie.find(params[:public_id])
 
   end
 
@@ -9,6 +10,7 @@ class Public::PublicOrdersController < ApplicationController
   end
 
   def new
+    @deliverie = Deliverie.find(params[:public_id])
     @products = cart_item.products
     @total_price = 0
     @products.each do |product|
@@ -21,7 +23,6 @@ class Public::PublicOrdersController < ApplicationController
   end
 
   private
-    @address = 
 
   def 
   end
