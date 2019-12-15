@@ -5,6 +5,7 @@ class Public::PublicUsersController < ApplicationController
   end
 
   def show
+
     @user = Public.find(params[:id])
   end
 

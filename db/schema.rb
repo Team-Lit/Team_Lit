@@ -12,6 +12,8 @@
 
 ActiveRecord::Schema.define(version: 2019_12_12_090547) do
 
+
+
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -23,6 +25,7 @@ ActiveRecord::Schema.define(version: 2019_12_12_090547) do
     t.index ["email"], name: "index_admins_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
+
 
   create_table "arrivals", force: :cascade do |t|
     t.integer "product_id"
@@ -44,14 +47,14 @@ ActiveRecord::Schema.define(version: 2019_12_12_090547) do
 
   create_table "cart_itmes", force: :cascade do |t|
     t.integer "product_id"
-    t.integer "end_user_id"
+    t.integer "public_id"
     t.integer "quantity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "deliveries", force: :cascade do |t|
-    t.integer "end_user_id"
+    t.integer "public_id"
     t.string "zip"
     t.text "address"
     t.string "address_name"
@@ -90,20 +93,19 @@ ActiveRecord::Schema.define(version: 2019_12_12_090547) do
     t.integer "product_id"
     t.integer "order_id"
     t.integer "quantity"
-    t.integer "total_price"
+    t.integer "pre_tax_price"
     t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "orders", force: :cascade do |t|
-    t.integer "product_id"
-    t.integer "end_user_id"
+    t.integer "public_id"
     t.integer "tax_rate"
     t.integer "delivery_charge"
     t.integer "total_price"
-    t.integer "delivery_status"
-    t.integer "payment_method"
+    t.integer "delivery_status", default: 0
+    t.integer "payment_method", default: 0
     t.text "address"
     t.string "address_name"
     t.string "zip"
@@ -115,19 +117,23 @@ ActiveRecord::Schema.define(version: 2019_12_12_090547) do
 
   create_table "products", force: :cascade do |t|
     t.string "product_name"
-    t.integer "jacket_image_id"
+    t.text "jacket_image_id"
     t.integer "artist_id"
     t.integer "label_id"
     t.integer "genre_id"
     t.integer "disk_id"
-    t.integer "stock_status"
+    t.integer "stock_status", default: 0
     t.integer "pre_tax_price"
+    t.string "release_date"
+    t.integer "stock_quantity"
     t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["product_name"], name: "index_products_on_product_name"
     t.index ["stock_status"], name: "index_products_on_stock_status"
   end
+
+
 
   create_table "publics", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -152,6 +158,7 @@ ActiveRecord::Schema.define(version: 2019_12_12_090547) do
     t.index ["end_user_last_name"], name: "index_publics_on_end_user_last_name"
     t.index ["reset_password_token"], name: "index_publics_on_reset_password_token", unique: true
   end
+
 
   create_table "songs", force: :cascade do |t|
     t.integer "disk_id"

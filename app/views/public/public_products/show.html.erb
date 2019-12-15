@@ -1,2 +1,22 @@
 <h1>Public::PublicProducts#show</h1>
 <p>Find me in app/views/public/public_products/show.html.erb</p>
+
+<% @product.each do |product| %>
+  <%= attachment_image_tag product.jacket_image_id,:profile_image,fallback:"no_image.jpg",size:"40x40" %>
+  <h2><%= product.product_name %></h2>
+  <%= product.artist_name %>
+  <%= product.label_name %>
+  <%= product.genre_name %>
+  <%= product.pre_tax_price %>
+  <%= product.stock_status %>
+    <% product.disks.each do |disk| %>
+      <%= disk.disk_number %>
+      <% disk.songs.each do |song| %>
+        <%= song.song_title %>
+      <% end %>
+    <% end %>
+  <%# カートに入れる %>
+
+<% end %>
+
+
