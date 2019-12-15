@@ -1,3 +1,4 @@
+
 <h1>Public::PublicUsers#show</h1>
 <p>Find me in app/views/public/public_users/show.html.erb</p>
 
@@ -19,3 +20,7 @@
   <%= order.delivery_status %>
   <%= link_to public_orders_result_path(order) %>
 <% end %>
+
+<%= link_to "退会",public_registration_path, method: :delete %>
+
+
