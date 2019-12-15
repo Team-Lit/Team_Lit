@@ -12,13 +12,6 @@
 
 ActiveRecord::Schema.define(version: 2019_12_12_090547) do
 
-  create_table "admin_users", force: :cascade do |t|
-    t.string "admin_email"
-    t.string "admin_password"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -168,25 +161,6 @@ ActiveRecord::Schema.define(version: 2019_12_12_090547) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["song_title"], name: "index_songs_on_song_title"
-  end
-
-  create_table "users", force: :cascade do |t|
-    t.string "end_user_last_name"
-    t.string "end_user_first_name"
-    t.string "end_user_last_kana"
-    t.string "end_user_first_kana"
-    t.string "zip"
-    t.text "address"
-    t.string "end_user_phone"
-    t.string "end_user_email"
-    t.string "end_user_password"
-    t.datetime "unsubscribe"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["end_user_first_kana"], name: "index_users_on_end_user_first_kana"
-    t.index ["end_user_first_name"], name: "index_users_on_end_user_first_name"
-    t.index ["end_user_last_kana"], name: "index_users_on_end_user_last_kana"
-    t.index ["end_user_last_name"], name: "index_users_on_end_user_last_name"
   end
 
 end

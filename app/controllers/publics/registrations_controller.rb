@@ -24,10 +24,6 @@ class Publics::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
-  # DELETE /resource
-  # def destroy
-  #   super
-  # end
 
   # GET /resource/cancel
   # Forces the session data which is usually expired after sign
@@ -59,4 +55,15 @@ class Publics::RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
+
+  protected
+
+  def after_sign_up_path_for(resource)
+    public_public_user_path(current_public.id)
+  end
+
+  def after_sign_out_path_for(resource)
+    new_public_registration_path
+  end
+
 end

@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   }
 
 
+
+
   namespace :public do
     get 'public_users/confirm'
     get 'public_orders/confirm'
