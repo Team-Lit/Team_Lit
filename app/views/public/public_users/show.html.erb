@@ -23,10 +23,24 @@
 <h3>メールアドレス</h3>
 <%= @public.email %>
 
+
+
+
+<%# <%= @user.order.each do |order| %> 
+  <%# <%= order.crreated_at %> 
+  <%# <%= order.address %> 
+  <%# <%= order.total_price %> 
+  <%# <%= order.delivery_status %> 
+  <%# <%= link_to public_orders_result_path(order) %> 
+<%# <% end %> 
+
+
+
 <br>
 
 <%= link_to "退会",public_public_users_confirm_path %>
 <br>
 <%= link_to "アカウント編集", edit_public_public_user_path(@public) %>
+
 
 

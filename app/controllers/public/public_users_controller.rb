@@ -2,11 +2,13 @@ class Public::PublicUsersController < ApplicationController
   
 
   def confirm
-   
+
+    @public = Public.find(current_public.id)
   end
 
   def show
     @public = Public.find(params[:id])
+
   end
 
   def edit
@@ -14,11 +16,20 @@ class Public::PublicUsersController < ApplicationController
   end
 
   def update
-  	@public = Public.find(params[:id])
+
+    @public = Public.find(params[:id])
     if @public.update(public_params)
-       redirect_to public_public_user_path(@public)
+      flash[:notice] = "Book was successfully updated."
+      @deliverie.public_id = @public.id
+      @deliverie.zip = @public.zip
+      @deliverie.address = @public.address
+      @deliverie.address_name = resource.end_user_last_name + resource.end_user_first_name
+      @deliverie.update(deliverie_params)
+      redirect_to public_public_user_path(@public)
     else
-     render :edit
+      render action: :edit
+
+
     end
   end
 
@@ -33,7 +44,6 @@ class Public::PublicUsersController < ApplicationController
   private
 
    def public_params
-    params.require(:public).permit(:end_user_last_name, :end_user_first_name, :end_user_last_kana, :end_user_first_kana, :zip, :address, :end_user_phone, :email)
+    params.require(:public).permit(:end_user_last_name,:end_user_first_name,:end_user_last_kana,:end_user_first_kana, :zip, :address,:end_user_phone)
    end
-
 end

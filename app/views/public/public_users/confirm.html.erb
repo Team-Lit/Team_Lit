@@ -1,10 +1,18 @@
-<h1>退会手続き</h1>
-<br>    
-<h3> 本当に退会してもよろしいでしょうか？</h3>
-<br>
-<h4>(アカウントが削除されます)</h4>
 
+<h1>Public::PublicUsers#confirm</h1>
+<p>Find me in app/views/public/public_users/confirm.html.erb</p>
+<%= form_for( @public, url: public_registration_path, method: :delete) do |f| %>
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  </div>
 
+  <div class="field">
+    <%= f.label :password %><br />
+    <%= f.password_field :password, autocomplete: "current-password" %>
+  </div>
 
-<%= link_to "退会",public_registration_path, method: :delete %>
-
+  <div class="actions">
+    <%= f.submit "退会確定" %>
+  </div>
+<% end %>

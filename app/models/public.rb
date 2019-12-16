@@ -4,6 +4,11 @@ class Public < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
          
+  has_many :deliveries, dependent: :destroy
+  has_many :cart_item, dependent: :destroy
+
+  belongs_to :order
+
   validates :end_user_last_name, :presence=>true
 
   validates :end_user_first_name, :presence=>true

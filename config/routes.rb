@@ -16,13 +16,13 @@ Rails.application.routes.draw do
 
 
   namespace :public do
-    get 'public_users/confirm'
     get 'public_orders/confirm'
     get 'public_orders/result'
-    resources :public_users, only:[:show, :edit, :update, :confirm, :destroy]
+    get 'public_users/confirm'
+    resources :public_users, only:[:show, :edit, :update, :destroy,:confirm] 
     resources :public_products, only:[:index, :show]
     resources :public_cart_items, only:[:index, :create, :update, :destroy]
-    resources :public_deliveries, only:[:index, :edit, :update, :destroy]
+    resources :public_deliveries, only:[:index, :edit, :update, :destroy,:create]
     resources :public_orders, only:[:confirm, :result, :new, :create, :update]
   end
 
