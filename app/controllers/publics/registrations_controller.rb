@@ -59,6 +59,13 @@ class Publics::RegistrationsController < Devise::RegistrationsController
   protected
 
   def after_sign_up_path_for(resource)
+    @deliverie = Deliverie.new
+    @deliverie.public_id = resource.id
+    @deliverie.zip = @public.zip
+    @deliverie.address = @public.address
+    @deliverie.address_name = resource.end_user_last_name + resource.end_user_first_name
+    binding.pry
+    @deliverie.save
     public_public_user_path(current_public.id)
   end
 

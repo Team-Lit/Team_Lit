@@ -19,6 +19,17 @@ class Public::PublicDeliveriesController < ApplicationController
     end
   end
 
+  def create
+  	@deliveries = Deliverie.all
+  	@deliverie = Deliver.new
+  	@deliverie.public_id = current_public.id
+  	if @deliverie.save
+      redirect_to public_public_deliveries_path
+      flash[:notice] = "Book was successfully Create."
+  	else
+  	  render action: :index
+  	end 
+  end
 
   def destroy
     @deliverie = deliverie.find(params[:id])
