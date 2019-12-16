@@ -1,26 +1,32 @@
-
-<h1>Public::PublicUsers#show</h1>
-<p>Find me in app/views/public/public_users/show.html.erb</p>
-
 <h1>プロフィール</h1>
+<h3>名前(姓)</h3>
+<%= @public.end_user_last_name %>
+<br>
+<h3>名前(名)</h3>
+<%= @public.end_user_first_name %>
+<br>
+<h3>名前(カナ)</h3>
+<%= @public.end_user_last_kana %>
+<br>
+<h3>名前(カナ)</h3>
+<%= @public.end_user_first_kana %>
+<br>
+<h3>郵便番号</h3>
+<%= @public.zip %>
+<br>
+<h3>住所</h3>
+<%= @public.address %>
+<br>
+<h3>電話番号</h3>
+<%= @public.end_user_phone %>
+<br>
+<h3>メールアドレス</h3>
+<%= @public.email %>
 
-<%= @user.user_last_name %>
-<%= @user.user_first_name %>
-<%= @user.user_last_kana %>
-<%= @user.user_first_kana %>
-<%= @user.zip %>
-<%= @user.address %>
-<%= @user.uesr_phone %>
-<%= @user.user.email %>
+<br>
 
-<%= @user.order.each do |order| %>
-  <%= order.crreated_at %>
-  <%= order.address %>
-  <%= order.total_price %>
-  <%= order.delivery_status %>
-  <%= link_to public_orders_result_path(order) %>
-<% end %>
-
-<%= link_to "退会",public_registration_path, method: :delete %>
+<%= link_to "退会",public_public_users_confirm_path %>
+<br>
+<%= link_to "アカウント編集", edit_public_public_user_path(@public) %>
 
 
