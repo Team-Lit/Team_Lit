@@ -16,4 +16,5 @@ class Product < ApplicationRecord
   validates :genre, presence: true
   validates :disk, presence: true
   validates :per_tax_price, presence: true
+  acts_as_paranoid
 end

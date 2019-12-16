@@ -143,7 +143,7 @@ ActiveRecord::Schema.define(version: 2019_12_12_090547) do
     t.string "zip"
     t.text "address"
     t.string "end_user_phone"
-    t.datetime "unsubscribe"
+    t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_publics_on_email", unique: true

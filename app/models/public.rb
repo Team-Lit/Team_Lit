@@ -43,5 +43,7 @@ class Public < ApplicationRecord
   #   end
   # end
 
+  acts_as_paranoid
+
 
 end

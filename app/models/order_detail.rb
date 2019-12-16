@@ -6,4 +6,5 @@ class OrderDetail < ApplicationRecord
   validates :total_price, presence: true
   validates :order_id, presence: true
   validates :product_id, presence: true
+  acts_as_paranoid
 end

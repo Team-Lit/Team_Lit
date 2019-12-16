@@ -4,4 +4,5 @@ class Deliverie < ApplicationRecord
   validates :zip, length: { is: 8 }
   validates :address, presence: true
   validates :address_name, presence: true
+  acts_as_paranoid
 end

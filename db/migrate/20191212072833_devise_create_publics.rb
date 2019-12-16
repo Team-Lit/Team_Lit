@@ -39,7 +39,7 @@ class DeviseCreatePublics < ActiveRecord::Migration[5.2]
       t.string :zip
       t.text :address
       t.string :end_user_phone
-      t.datetime :unsubscribe
+      t.datetime :deleted_at
       t.timestamps null: false
     end
     
