@@ -5,4 +5,6 @@ class Disk < ApplicationRecord
   belongs_to :product
 
   validates :disk_number, presence: true
+
+  acts_as_paranoid
 end
