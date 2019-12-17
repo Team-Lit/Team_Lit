@@ -1,20 +1,22 @@
 <h1>Public::PublicProducts#index</h1>
 <p>Find me in app/views/public/public_products/index.html.erb</p>
 
+<%= render 'public_user/header_login', , %>
+
 <h2>新規商品</h2>
-  <% @new_products.each do |new|%> 
-    <%= new.jacket_image_id %> 
-    <%= new.product_name %> 
- <% end %> 
+  <%# <% @new_products.each do |new|%> 
+    <%# <%= new.jacket_image_id %>  
+    <%# <%= new.product_name %>  
+  <%# <% end %>  
 
 
 <h2>人気TOP3</h2>
-  <% @popular_products.each do |popular|%>
-    <%= popular.jacket_image_id %>
-    <%= popular.product_name %>
-    <%= popular.artist_name%>
-    <%= popular.pre_tax_price %>
-  <% end %>
+  <%# <% @popular_products.each do |popular|%>
+    <%# <%= popular.jacket_image_id %>
+    <%# <%= popular.product_name %> 
+    <%# <%= popular.artist_name%> 
+    <%# <%= popular.pre_tax_price %>  
+  <%# <% end %>  
 
 
 <%# 商品一覧 %>

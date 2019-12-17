@@ -19,12 +19,12 @@ class Public::PublicUsersController < ApplicationController
 
     @public = Public.find(params[:id])
     if @public.update(public_params)
-      flash[:notice] = "Book was successfully updated."
-      @deliverie.public_id = @public.id
+      @deliverie = Deliverie.where(public_id: @public.id).first
       @deliverie.zip = @public.zip
       @deliverie.address = @public.address
-      @deliverie.address_name = resource.end_user_last_name + resource.end_user_first_name
-      @deliverie.update(deliverie_params)
+      @deliverie.address_name = @public.end_user_last_name + @public.end_user_first_name
+      @deliverie.save
+      flash[:notice] = "Book was successfully updated."
       redirect_to public_public_user_path(@public)
     else
       render action: :edit
@@ -46,4 +46,6 @@ class Public::PublicUsersController < ApplicationController
    def public_params
     params.require(:public).permit(:end_user_last_name,:end_user_first_name,:end_user_last_kana,:end_user_first_kana, :zip, :address,:end_user_phone)
    end
+
+  
 end

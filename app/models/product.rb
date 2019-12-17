@@ -9,12 +9,12 @@ class Product < ApplicationRecord
   belongs_to :label
   belongs_to :genre
 
-  validates :product_name, presence: true
-  validates :jacekt_image_id, presence: true
-  validates :artist, presence: true
-  validates :label, presence: true
-  validates :genre, presence: true
-  validates :disk, presence: true
-  validates :per_tax_price, presence: true
+  # validates :product_name, presence: true
+  # validates :jacekt_image_id, presence: true
+  # validates :artist, presence: true
+  # validates :label, presence: true
+  # validates :genre, presence: true
+  # validates :disk, presence: true
+  # validates :per_tax_price, presence: true
   acts_as_paranoid
 end
