@@ -2,7 +2,7 @@
 <p>Find me in app/views/public/public_products/show.html.erb</p>
 
 <% @product.each do |product| %>
-  <%= attachment_image_tag product.jacket_image_id,:profile_image,fallback:"no_image.jpg",size:"40x40" %>
+  <%= attachment_image_tag product.jacket_image_id,:profile_image,fallback:"no_image.jpg",size:"300x300" %>
   <h2><%= product.product_name %></h2>
   <%= product.artist_name %>
   <%= product.label_name %>

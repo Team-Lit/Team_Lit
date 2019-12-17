@@ -10,8 +10,8 @@
    <%= = f.hidden_field :public_id, :value => public_id %>
 　　<h2>お支払い方法</h2>
     <%= f.label :payment_method %>
-  <%= f.radio_botton :payment_method, 0 %>代引き
-  <%= f.radio_botton :payment_method, 1 %>銀行振込
-  <%= f.radio_botton :payment_method, 2 %>クレジットカード
+  <%= f.radio_botton :payment_method, "代引き" %>
+  <%= f.radio_botton :payment_method, "銀行振込" %>
+  <%= f.radio_botton :payment_method, "クレジットカード" %>
   <%= f.submit "支払い確認",class:"btn btn-primary" %>
 <% end %>
