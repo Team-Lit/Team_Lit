@@ -1,2 +1,28 @@
-<h1>Admin::AdminArrivals#new</h1>
-<p>Find me in app/views/admin/admin_arrivals/new.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="form-box">
+        <h1 class="text-center">販売商品追加</h1>
+          <h2 class="text-center">シングル/アルバム名：<%= @product.product_name %></h2>
+          <div class="line"></div>
+          
+          <%= form_for(@arrival, url: admin_admin_product_admin_arrivals_path(@product.id)) do |f| %>
+
+          <%# 入荷日 %>
+          <h3 class="text-center">入荷日
+            <%= f.date_field :arrival_date, value: Time.now.strftime("%Y-%m-%d") %>
+          </h3>
+
+          <%# 入荷数 %>
+          <h3 class="text-center">入荷数
+            <%= f.number_field :arrival_quantity, min: "1", value: "1" %>
+          </h3>
+
+          <div class="boxes text-center">
+            <%= f.submit "商品を追加", class: "btn btn-lg btn-primary" %>
+          </div>
+          <% end %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -4,6 +4,7 @@ class Order < ApplicationRecord
   
   belongs_to :public
 
+
   enum delivery_status: {"未配送":0, "配送済み":1}
 
   # validates :product_id, presence: true
@@ -12,9 +13,12 @@ class Order < ApplicationRecord
   # validates :delivery_charge, presence: true
   # validates :total_price, presence: true
   # validates :payment_mothed, presence: true
-  # validates :zip, length: { is: 8 }
+  # validates :zip, length: { is: 7 }
   # validates :address, presence: true
   # validates :address_name, presence: true
   acts_as_paranoid
+
+
+
   
 end
