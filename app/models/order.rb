@@ -10,7 +10,7 @@ class Order < ApplicationRecord
   validates :delivery_charge, presence: true
   validates :total_price, presence: true
   validates :payment_mothed, presence: true
-  validates :zip, length: { is 7 }
+  validates :zip, length: { is: 7 }, presence: true
   validates :address, presence: true
   validates :address_name, presence: true
   

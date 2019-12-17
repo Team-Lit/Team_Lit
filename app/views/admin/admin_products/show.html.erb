@@ -1,2 +1,66 @@
-<h1>Admin::AdminProducts#show</h1>
-<p>Find me in app/views/admin/admin_products/show.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h1 class="text-center">販売商品詳細</h1>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <%= attachment_image_tag @product, :jacket_image, fallback: "no_image.jpg", size: "300x300" %>
+    </div>
+    
+    <div class="col-md-6">
+      <h2 class="text-center"><%= @product.product_name %></h2>
+      <P>アーティスト名：<%= @product.artist.artist_name %></p>
+      <p>レーベル名：<%= @product.label.label_name %></p>
+      <p>ジャンル：<%= @product.genre.genre_name %></p>
+      <p>発売日：<%= @product.release_date %></p>
+      <p>価格：<%= @product.pre_tax_price %>円</p>
+      <p>在庫数：<%= (Arrival.where(product_id: @product.id).sum(:arrival_quantity)) %>枚</p>
+      <p>ステータス：
+        <% if (Arrival.where(product_id: @product.id).sum(:arrival_quantity)) > 0 %>
+          <p>販売中</p>
+        <% else %>
+          <p>在庫切れ</p>
+        <% end %>
+      </p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <div class="submit-button">
+        <%= link_to "編集", edit_admin_admin_product_path(@product.id), class: "btn btn-lg btn-success" %>
+        <%= link_to "追加", new_admin_admin_product_admin_arrival_path(@product.id), class: "btn btn-lg btn-primary" %>
+        <%= link_to "削除", admin_admin_product_path(@product.id), method: :delete, class: "btn btn-lg btn-danger", "data-confirm" => "本当に削除しますか？" %>
+        <%= link_to "戻る", admin_admin_products_path, class: "btn btn-lg btn-default" %>
+      </div>
+    </div>
+    <div class="col-md-6">
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table">
+        <tr>
+          <th><h3>曲名</h3></th>
+          <td>
+            <div>
+              <% @disks.each do |disk| %>
+                <p><%= "#{disk.disk_numbre}枚目" %></p>
+                <% disk.songs.each do |song| %>
+                  <p>
+                    <%= "#{song.song_order}." %>
+                    <%= song.song_title %>
+                  </p>
+                <% end %> 
+              <% end %>
+            </div>
+          <td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
