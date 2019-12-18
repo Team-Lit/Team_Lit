@@ -17,7 +17,8 @@
       <p>ジャンル：<%= @product.genre.genre_name %></p>
       <p>発売日：<%= @product.release_date %></p>
       <p>価格：<%= @product.pre_tax_price %>円</p>
-      <p>在庫数：<%= (Arrival.where(product_id: @product.id).sum(:arrival_quantity)) %>枚</p>
+      <p>在庫数：<%= @stock %>枚</p>
+      <!-- (Arrival.where(product_id: @product.id).sum(:arrival_quantity)) -->
       <p>ステータス：
         <% if (Arrival.where(product_id: @product.id).sum(:arrival_quantity)) > 0 %>
           <p>販売中</p>

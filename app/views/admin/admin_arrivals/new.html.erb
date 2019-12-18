@@ -6,7 +6,7 @@
           <h2 class="text-center">シングル/アルバム名：<%= @product.product_name %></h2>
           <div class="line"></div>
           
-          <%= form_for(@arrival, url: admin_admin_product_admin_arrivals_path(@product.id)) do |f| %>
+          <%= form_with(model: @arrival, url: admin_admin_product_admin_arrivals_path(@product.id)) do |f| %>
 
           <%# 入荷日 %>
           <h3 class="text-center">入荷日

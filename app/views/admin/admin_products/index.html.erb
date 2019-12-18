@@ -3,19 +3,19 @@
     <div class="col-ld-12">
       <div class="add-box">
         <h1 class="text-center">販売商品一覧</h1>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" />
         
         <div>
           <%= link_to "新規商品追加", new_admin_admin_product_path, class: "btn btn-lg btn-default" %>
         </div>    
       </div>
 
-      <%# <div class="text-center item-search-box">
-        <%= search_form_for @q, class: 'mb-5' do |f| %>
-        <%# <%= f.search_field :product_name, class: 'form-control' %>
-        <%# <%= f.submit class: 'btn btn-outline-primary' %>
-        <%# <% end %>
-      <%# </div> %>
-    <%# </div>  %>
+      <div class="item-search-box text-center">
+        <%= form_tag(admin_admin_products_path,method: :get) do %>
+        <%= text_field_tag :search, "", placeholder: "アーティストや商品名で検索" %>
+        <%= button_tag '<i class="fa fa-search"></i>'.html_safe, type: 'submit', :name => nil %>
+        <% end %>
+      </div>
 
     <h1></h1>
     <div class="row">

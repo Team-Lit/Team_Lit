@@ -2,18 +2,21 @@ class Admin::AdminProductsController < ApplicationController
 
 
   def index
-    @products = Product.all
-    # ransac使用の検索において必要っぽい
-    # @q = Product.ransack(params[:q])
-    # @products = @q.result(distinct: true)
+    artist = Product.joins(:artist).where("artist_name LIKE ?", "%#{params[:search]}%")
+    song =  Product.joins(disks: :songs).where("song_title LIKE ?", "%#{params[:search]}%")
+    product_name = Product.where("product_name LIKE ?", "%#{params[:search]}%")
+    merged_result = artist | product_name
+    @products = (merged_result | song)
   end
 
   def show
     @product = Product.find(params[:id])
     @disks = Disk.where(product_id: @product.id)
+    @stock = @product.admin_arrivals.sum(:arrival_quantity)
   end
 
   def edit
+    @product = Product.find(params[:id])
   end
 
   def new
@@ -33,6 +36,9 @@ class Admin::AdminProductsController < ApplicationController
   end
 
   def update
+    @product = Product.find(params[:id])
+    @product.update(product_params)
+    redirect_to admin_admin_product_path(params[:id])
   end
 
   def destroy
