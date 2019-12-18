@@ -8,7 +8,7 @@ class Public::PublicOrdersController < ApplicationController
     @products.each do |product|
       @total_price += product.pre_tax_price
     end
-    @payment = @total_price + @delivery_charge　+ @tax_rate
+    @payment = @total_price + @delivery_charge + @tax_rate
   end
 
   def result
@@ -29,7 +29,7 @@ class Public::PublicOrdersController < ApplicationController
   end
 
   def create
-    @cart_item = Caer_item.all
+    @cart_item = CaerItem.where(public_id: current_public.id)
     @order.address = @deliverie.address
     @order.address_name = @deliverie.address_name
     @order.zip = @deliverie.zip

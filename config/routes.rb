@@ -19,10 +19,14 @@ Rails.application.routes.draw do
     get 'public_orders/confirm'
     get 'public_orders/result'
     get 'public_users/confirm'
-    resources :public_users, only:[:show, :edit, :update, :destroy,:confirm] 
+    resources :public_users, only:[:show, :edit, :update, :destroy,:confirm] do
+      resource :public_cart_items, only:[:show]
+      resource :public_deliveries, only:[:show,:create]
+    end
+    
     resources :public_products, only:[:index, :show]
-    resources :public_cart_items, only:[:index, :create, :update, :destroy]
-    resources :public_deliveries, only:[:index, :edit, :update, :destroy,:create]
+    resources :public_cart_items, only:[:show, :create, :update, :destroy]
+    resources :public_deliveries, only:[:edit, :update, :destroy,:create]
     resources :public_orders, only:[:confirm, :result, :new, :create, :update]
   end
 

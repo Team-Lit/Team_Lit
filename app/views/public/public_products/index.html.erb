@@ -1,7 +1,7 @@
 <h1>Public::PublicProducts#index</h1>
 <p>Find me in app/views/public/public_products/index.html.erb</p>
 
-<%= render 'public_user/header_login', , %>
+
 
 <h2>新規商品</h2>
   <%# <% @new_products.each do |new|%> 
@@ -23,15 +23,15 @@
 <table>
   <thead>
     <tbody>
-        <% @products.each do |product|%>
+        <% @products.each do |product| %>
           <tr>
             <th>
               <%= link_to public_public_product_path(product) do %>
-                <%= attachment_image_tag product.jacket_image_id,:profile_image,fallback:"no_image.jpg",size:"40x40" %>
+                <%= attachment_image_tag product.jacket_image_id,:jacket_image,fallback:"no_image.jpg",size:"40x40" %>
               <% end %>
             </th>
             <th><%= product.product_name %></th>
-            <th><%= product.artist_name %></th>
+            <th><%= product.artist.artist_name %></th>
             <th><%= product.pre_tax_price %></th>
           </tr>
          <% end %>

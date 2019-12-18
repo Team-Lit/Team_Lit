@@ -1,8 +1,9 @@
 class Public::PublicDeliveriesController < ApplicationController
   
 
-  def index
-    @deliverie = Deliverie.find_by(params[:public_id])
+  def show
+    @deliveries = Deliverie.where(public_id: current_public.id)
+    @deliverie = Deliverie.new
   end
 
   def edit
@@ -20,8 +21,8 @@ class Public::PublicDeliveriesController < ApplicationController
   end
 
   def create
-  	@deliveries = Deliverie.all
-  	@deliverie = Deliver.new
+  	@deliveries = Deliverie.where(public_id: current_public.id)
+  	@deliverie = Deliverie.new
   	@deliverie.public_id = current_public.id
   	if @deliverie.save
       redirect_to public_public_deliveries_path

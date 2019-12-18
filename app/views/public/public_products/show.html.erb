@@ -1,22 +1,24 @@
 <h1>Public::PublicProducts#show</h1>
 <p>Find me in app/views/public/public_products/show.html.erb</p>
 
-<% @product.each do |product| %>
-  <%= attachment_image_tag product.jacket_image_id,:profile_image,fallback:"no_image.jpg",size:"300x300" %>
-  <h2><%= product.product_name %></h2>
-  <%= product.artist_name %>
-  <%= product.label_name %>
-  <%= product.genre_name %>
-  <%= product.pre_tax_price %>
-  <%= product.stock_status %>
-    <% product.disks.each do |disk| %>
-      <%= disk.disk_number %>
-      <% disk.songs.each do |song| %>
-        <%= song.song_title %>
+  
+    <%= attachment_image_tag @product.jacket_image_id,:jacket_image,fallback:"no_image.jpg",size:"300x300" %>
+    <h2><%= @product.product_name %></h2>
+    <%= @product.artist.artist_name %>
+    <%= @product.label.label_name %>
+    <%= @product.genre.genre_name %>
+    <%= @product.pre_tax_price %>
+    <%= @product.stock_status %>
+      <% @product.disks.each do |disk| %>
+        <%= disk.disk_numbre %>
+        <% disk.songs.each do |song| %>
+          <%= song.song_title %>
+        <% end %>
       <% end %>
-    <% end %>
   <%# カートに入れる %>
+  <%= form_for(@cart_item, url: public_public_cart_items_path(product_id: @product.id), html: {method: "post"}) do |f| %>
+    <%= f.label :"個数" %>
+    <%= f.number_field :quantity,min:1,placeholder: "個" %>
 
-<% end %>
-
-
+    <%= f.submit "カートに入れる", class: "btn btn-lg btn-primary" %>
+  <% end %>
