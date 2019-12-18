@@ -19,17 +19,29 @@ Rails.application.routes.draw do
     get 'public_orders/confirm'
     get 'public_orders/result'
     get 'public_users/confirm'
-    resources :public_users, only:[:show, :edit, :update, :destroy,:confirm] 
+    resources :public_users, only:[:show, :edit, :update, :destroy,:confirm] do
+      resource :public_cart_items, only:[:show]
+      resource :public_deliveries, only:[:show,:create]
+    end
+    
     resources :public_products, only:[:index, :show]
-    resources :public_cart_items, only:[:index, :create, :update, :destroy]
-    resources :public_deliveries, only:[:index, :edit, :update, :destroy,:create]
+    resources :public_cart_items, only:[:show, :create, :update, :destroy]
+    resources :public_deliveries, only:[:edit, :update, :destroy,:create]
     resources :public_orders, only:[:confirm, :result, :new, :create, :update]
   end
 
   namespace :admin do
     resources :admin_users
-    resources :admin_products
-    resources :admin_arrivals, only:[:index, :new, :create]
+    resources :admin_artists, only:[:new, :create, :destroy]
+    resources :admin_genres, only:[:new, :create, :destroy]
+    resources :admin_labels, only:[:new, :create, :destroy]
+
+    resources :admin_products do
+      post 'admin/admin_products/:id' => 'admin/admin_products#show'
+      resources :admin_arrivals, only:[:new, :create]
+    end
+
+    resources :admin_arrivals, only:[:index]
     resources :admin_orders, only:[:index, :show, :update]
     resources :admin_charges, only:[:edit, :update]
   end

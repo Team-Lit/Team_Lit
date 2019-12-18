@@ -1,0 +1,14 @@
+<h1 class="text-center">ジャンル新規登録<h1>
+
+<%= form_for(@genre, url: admin_admin_genres_path) do |f| %>
+
+<h2 class="text-center">
+  <%= f.label :ジャンル名 %>
+  <%= f.text_field :genre_name %>
+</h2>
+<h2 class="text-center">
+  <%= f.submit "登録" %>
+  <%= link_to "戻る", new_admin_admin_product_path %>
+</h2>
+
+<% end %>

@@ -64,7 +64,6 @@ class Publics::RegistrationsController < Devise::RegistrationsController
     @deliverie.zip = @public.zip
     @deliverie.address = @public.address
     @deliverie.address_name = resource.end_user_last_name + resource.end_user_first_name
-    binding.pry
     @deliverie.save
     public_public_user_path(current_public.id)
   end
