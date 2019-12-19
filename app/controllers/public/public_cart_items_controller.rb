@@ -11,7 +11,6 @@ class Public::PublicCartItemsController < ApplicationController
     @cart = Product.find(params[:product_id])
     @cart_item.product_id = @cart.id
     @cart_item.public_id = current_public.id
-    binding.pry
     @cart_item.save
     redirect_to public_public_cart_items_path
   end

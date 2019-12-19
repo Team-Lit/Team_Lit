@@ -1,0 +1,17 @@
+<h1>Public::PublicOrders#new</h1>
+<p>Find me in app/views/public/public_orders/new.html.erb</p>
+
+ <h2>注文内容</h2>
+  <h3>商品の小計：</h3><%= @total_price %>
+  <h3>送料・手数料：</h3><%= 500 %>
+  <h3>ご請求額：</h3><%= @payment %>
+
+<%= form_tag(public_public_orders_confirm_path ,method: :get) do %>
+   <%= hidden_field_tag :id, @deliverie.id %>
+  <h2>お支払い方法</h2>
+    <%= label_tag :payment_method %>
+  <%= radio_button_tag :payment_method, 0 %>代引き
+  <%= radio_button_tag :payment_method, 1 %>銀行振込
+  <%= radio_button_tag :payment_method, 2 %>クレジットカード
+  <%= submit_tag "支払い確認",class:"btn btn-primary" %>
+<% end %>

@@ -1,31 +1,36 @@
-<h1>Public::PublicOrders#confirm</h1>
-<p>Find me in app/views/public/public_orders/confirm.html.erb</p>
 
 <h2>この御注文で確定しますか？<br>一度、決定しますと注文が取り消せないです。</h2>
+<%= hidden_field_tag :id, @deliverie.id %>
+  <%= @deliverie.address_name %>
+  <%= @deliverie.address %>
+  <%= @deliverie.zip %>
 
-<% @deliverie.each do |deliverie| %>
-  <%= deliverie.address_name %>
-  <%= deliverie.address %>
-  <%= deliverie.zip %>
-<% end %>
 
-<h2>お支払い方法</h2>
-<%= @order.payment_method %>
-  
+<%# <% @products.each do |product| %> 
+  <%# <%= attachment_image_tag product.jacket_image_id,:jacket_image,fallback:"no_image.jpg",size:"40x40" %>
+  <%# <%= product.product_name %>  
+  <%# <%= product.pre_tax_price %> 
+<%# <% end %> 
 
-<h2>注文内容</h2>
-<% @cart_item.products.each do |product| %>
-  <%= attachment_image_tag product.jacket_image_id,:profile_image,fallback:"no_image.jpg",size:"40x40" %>
-  <%= product.product_name %>
-  <%= product.pre_tax_price %>
-<% end %>
+  <%= attachment_image_tag @products.jacket_image_id,:jacket_image,fallback:"no_image.jpg",size:"40x40" %>
+  <%= @products.product_name %>
+  <%= @products.pre_tax_price %>
 
 <h2>料金</h2>
   <h3>商品の小計：</h3><%= @total_price %>
   <h3>送料・手数料：</h3><%= @delivery_charge %>
-  <h3>消費税：</h3><%= @tax_rate　%>
+  <h3>消費税：</h3><%= @tax_rate %>
   <h3>ご請求額：</h3><%= @payment %>
 
-<%= form_for(@order url:public_public_orders_path )%>
-  <%= f.submit "購入",class:"btn btn-primary" %>
+<%= form_for(@order, url:public_public_user_public_orders_path(current_public), method: :post ) do |f| %>
+  <h2>お支払い方法</h2>
+    <% if @order.payment_method == 0 %>
+      <%= "代引き" %>
+    <% elsif @order.payment_method == 1 %>
+      <%= "銀行振込" %>
+    <% else %>
+      <%= "クレジットカード" %>
+    <% end %>
+  <h2>注文内容</h2>
+    <%= f.submit "購入",class:"btn btn-primary" %>
 <% end %>

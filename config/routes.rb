@@ -22,12 +22,12 @@ Rails.application.routes.draw do
     resources :public_users, only:[:show, :edit, :update, :destroy,:confirm] do
       resource :public_cart_items, only:[:show]
       resource :public_deliveries, only:[:show,:create]
+      resources :public_orders, only:[:confirm, :result, :index, :create, :update]
     end
     
     resources :public_products, only:[:index, :show]
-    resources :public_cart_items, only:[:show, :create, :update, :destroy]
-    resources :public_deliveries, only:[:edit, :update, :destroy,:create]
-    resources :public_orders, only:[:confirm, :result, :new, :create, :update]
+    resources :public_cart_items, only:[:create, :update, :destroy]
+    resources :public_deliveries, only:[:edit, :update, :destroy]
   end
 
   namespace :admin do
