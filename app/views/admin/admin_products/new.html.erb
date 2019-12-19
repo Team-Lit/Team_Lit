@@ -1,0 +1,110 @@
+<div class="container item-new-box">
+  <div class="row">
+    <div class="col-lg-10 col-lg-offset-1">
+      <div class="form-box">
+        <%= form_for(@product, url:admin_admin_products_path) do |f| %>
+        
+          <div class="h1-box">
+            <h1 class="text-center">新規入荷登録</h1>
+          </div>
+
+          <%# アーティスト選択 %>
+          <div>
+            <h3 class="text-center">
+              <%= f.label :アーティスト名 %>
+              <%= f.collection_select :artist_id, Artist.all, :id, :artist_name, :prompt => "選択してください" %>
+              <%= link_to "アーティスト追加", new_admin_admin_artist_path, class: "btn btn-sm btn-default" %>
+            </h3>
+          </div>
+          
+          <%# シングル/アルバム名 %>
+          <div>
+            <h3 class="text-center">
+              <%= f.label :"シングル/アルバム名" %>
+              <%= f.text_field :product_name %>
+            </h3>
+          </div>
+
+          <%# ジャケット画像追加 %>
+          <div>
+            <h3 class="text-center">
+              <%= f.label :ジャケット画像 %>
+              <%= f.attachment_field :jacket_image, format: 'jpeg', size: "50x50", fallback: "no_image.jpg" %>
+            </h3>
+          </div>
+
+          <%# 価格 %>
+          <div>
+            <h3 class="text-center">
+              <%= f.label :"価格(税抜)" %>
+              <%= f.number_field :pre_tax_price, min:1, placeholder: "¥" %>
+            </h3>
+          </div>
+
+          <%# 発売日 %>
+          <div>
+            <h3 class="text-center">
+              <%= f.label :発売日 %>
+              <%= f.date_field :release_date, value: Time.now.strftime("%Y-%m-%d") %>
+              <%# <%= f.text_field :release_date, placeholder: "年/月/日" %>
+            </h3>
+          </div>
+
+          <%# レーベル名選択 %>
+          <div>
+            <h3 class="text-center">
+              <%= f.label :レーベル名 %>
+              <%= f.collection_select :label_id, Label.all, :id, :label_name, :prompt => "選択してください" %>
+              <%= link_to "レーベル追加", new_admin_admin_label_path, class: "btn btn-sm btn-default" %>
+            </h3>
+          </div>
+
+          <%# ジャンル選択 %>
+          <div>
+            <h3 class="text-center">
+              <%= f.label :ジャンル %>
+              <%= f.collection_select :genre_id, Genre.all, :id, :genre_name, :prompt => "選択してください" %>
+              <%= link_to "ジャンル追加", new_admin_admin_genre_path, class: "btn btn-sm btn-default" %>
+            </h3>
+          </div>
+
+          <%# ディスク/曲名 %>
+          <div>
+            <h3 class="text-center">
+              <%= f.label :"ディスク/曲名" %>
+              <%= f.fields_for :disks  do |t| %>
+                <%= render 'disk_fields', f: t %>
+              <% end %>
+              <div class="links">
+                <%= link_to_add_association "ディスクを追加", f, :disks %>
+              </div>
+            </h3>
+          </div>
+
+          <%# 在庫数 %>
+          <%# <div>
+            <h3 class="text-center">
+              <%= f.label :在庫数 %>
+              <%# <%= f.number_field :stock_quantity, min:1 枚
+            </h3>
+          </div>
+
+          <%# 在庫ステータス %>
+          <%# <div class="radio-box">
+            <h3 class="text-center">
+              <%= f.label :"販売ステータス", class: "label-1" %
+              <%= f.label :"販売中" %
+              <%= f.radio_button :stock_status, "販売中" %>
+              <%# <%= f.label :"売切" %
+              <%= f.radio_button :stock_status, "在庫切れ" %
+            </h3>
+          </div>  %>
+
+          <div class=text-center>
+            <%= f.submit "登録", class: "btn btn-lg btn-primary" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
