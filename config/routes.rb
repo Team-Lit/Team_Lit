@@ -45,7 +45,7 @@ Rails.application.routes.draw do
 
     resources :admin_arrivals, only:[:index]
     resources :admin_orders, only:[:index, :show, :update]
-    resources :admin_charges, only:[:edit, :update]
+    resource :admin_charges, only:[:edit, :update]
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
