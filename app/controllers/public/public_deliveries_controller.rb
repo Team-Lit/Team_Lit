@@ -24,7 +24,6 @@ class Public::PublicDeliveriesController < ApplicationController
   def create
   	@deliveries = Deliverie.where(public_id: current_public.id)
     @deliverie = Deliverie.new(deliverie_params)
-    binding.pry
   	@deliverie.public_id = current_public.id
   	if @deliverie.save
       redirect_to public_public_user_public_deliveries_path(current_public)

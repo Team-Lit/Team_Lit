@@ -17,17 +17,19 @@ Rails.application.routes.draw do
 
   namespace :public do
     get 'public_orders/confirm'
-    get 'public_orders/result'
     get 'public_users/confirm'
     resources :public_users, only:[:show, :edit, :update, :destroy,:confirm] do
       resource :public_cart_items, only:[:show]
       resource :public_deliveries, only:[:show,:create]
-      resources :public_orders, only:[:confirm, :result, :index, :create, :update]
+      resources :public_orders, only:[:confirm,:index, :create]
     end
     
-    resources :public_products, only:[:index, :show]
-    resources :public_cart_items, only:[:create, :update, :destroy]
+    resources :public_products, only:[:index, :show] do
+      resource :public_cart_items, only:[:create]
+    end
+    resources :public_cart_items, only:[ :update, :destroy]
     resources :public_deliveries, only:[:edit, :update, :destroy]
+    resources :public_orders, only:[:show]
   end
 
   namespace :admin do

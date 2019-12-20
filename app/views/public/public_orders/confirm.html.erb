@@ -6,24 +6,9 @@
   <%= @deliverie.zip %>
 
 
-<%# <% @products.each do |product| %> 
-  <%# <%= attachment_image_tag product.jacket_image_id,:jacket_image,fallback:"no_image.jpg",size:"40x40" %>
-  <%# <%= product.product_name %>  
-  <%# <%= product.pre_tax_price %> 
-<%# <% end %> 
 
-  <%= attachment_image_tag @products.jacket_image_id,:jacket_image,fallback:"no_image.jpg",size:"40x40" %>
-  <%= @products.product_name %>
-  <%= @products.pre_tax_price %>
 
-<h2>料金</h2>
-  <h3>商品の小計：</h3><%= @total_price %>
-  <h3>送料・手数料：</h3><%= @delivery_charge %>
-  <h3>消費税：</h3><%= @tax_rate %>
-  <h3>ご請求額：</h3><%= @payment %>
-
-<%= form_for(@order, url:public_public_user_public_orders_path(current_public), method: :post ) do |f| %>
-  <h2>お支払い方法</h2>
+<h2>お支払い方法</h2>
     <% if @order.payment_method == 0 %>
       <%= "代引き" %>
     <% elsif @order.payment_method == 1 %>
@@ -31,6 +16,32 @@
     <% else %>
       <%= "クレジットカード" %>
     <% end %>
+
+
+        <% @cart_items.each do |cart| %>
+          <tr>
+            <td>
+              <%= attachment_image_tag cart.product.jacket_image,:jacket_image,fallback:"no_image.jpg",size:"40x40" %>
+            </td>
+            <td><%= cart.product.product_name %></td>
+            <td><%= cart.product.pre_tax_price %></td>
+            <td><%= cart.quantity %></td>
+          </tr>
+		    <% end %>
+
+
+<h2>料金</h2>
+  <h3>商品の小計：</h3><%= @total_price %>
+  <h3>送料・手数料：</h3><%= @delivery_charge %>
+  <h3>消費税：</h3><%= @tax_rate %>
+  <h3>ご請求額：</h3><%= @payment %>
+
+
+
+<%= form_for(@order, url:public_public_user_public_orders_path(current_public), method: :post ) do |f| %>
+  <%= f.hidden_field :payment_method, :value => @order.payment_method %>
+  <%= hidden_field_tag :id, @deliverie.id %>
+  
   <h2>注文内容</h2>
     <%= f.submit "購入",class:"btn btn-primary" %>
 <% end %>

@@ -11,3 +11,7 @@ Admin.create!(
   password: 'qqqqqq',
 )
 
+Charge.create!(
+  charge: '500',
+  tax_rate: '1.1',
+)

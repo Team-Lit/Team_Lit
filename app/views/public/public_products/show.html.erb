@@ -16,9 +16,8 @@
         <% end %>
       <% end %>
   <%# カートに入れる %>
-  <%= form_for(@cart_item, url: public_public_cart_items_path(product_id: @product.id), html: {method: "post"}) do |f| %>
+  <%= form_for(@cart_item, url: public_public_product_public_cart_items_path(@product), html: {method: "post"}) do |f| %>
     <%= f.label :"個数" %>
     <%= f.number_field :quantity,min:1,placeholder: "個" %>
-
     <%= f.submit "カートに入れる", class: "btn btn-lg btn-primary" %>
   <% end %>
