@@ -36,15 +36,15 @@ class Public::PublicUsersController < ApplicationController
 
 
   def destroy
-    @public = Public.find(params[:id])
-    @public.destroy
+    public = Public.find(params[:id])
+    public.destroy
     redirect_to new_public_registration_path
   end
 
   private
 
    def public_params
-    params.require(:public).permit(:end_user_last_name,:end_user_first_name,:end_user_last_kana,:end_user_first_kana, :zip, :address,:end_user_phone)
+    params.require(:public).permit(:end_user_last_name,:end_user_first_name,:end_user_last_kana,:end_user_first_kana, :zip, :address,:end_user_phone, :email)
    end
 
   

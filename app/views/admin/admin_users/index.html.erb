@@ -2,27 +2,39 @@
   <div class="row">
     <div class="col-md-12">
       <h1 class="text-center">顧客情報一覧</h1>
+      <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" />
 
       <%# 検索機能設置 %>
+      <div class="user-search-box text-center">
+        <%= form_tag(admin_admin_users_path,method: :get) do %>
+          <%= text_field_tag :search, "", placeholder: "顧客名で検索" %>
+          <%= button_tag '<i class="fa fa-search"></i>'.html_safe, type: 'submit', :name => nil %>
+        <% end %>
+      </div>
 
-      <table class="table">
+      <h1></h1>
+      <table class="table table-striped">
         <tr>
           <th>名前</th>
           <th>ナマエ</th>
           <th>電話番号</th>
           <th>メールアドレス</th>
-          <th></th>
         </tr>
 
-        <tr>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
+        <% @users.each do |user| %>
+          <tr>
+            <td><%= link_to "#{user.end_user_last_name + " " + user.end_user_first_name}", admin_admin_user_path(user.id) %></td>
+            <td><%= user.end_user_last_kana %> <%= user.end_user_first_kana %></td>
+            <td><%= user.end_user_phone %></td>
+            <td><%= user.email %></td>
+          </tr>
+        <% end %>
       </table>
 
     </div>
   </div>
 </div>
+
+<h3 class="text-center">
+  <%= paginate @users %>
+</h3>

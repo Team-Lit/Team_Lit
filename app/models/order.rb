@@ -1,6 +1,7 @@
 class Order < ApplicationRecord
-  has_many :order_datails, dependent: :destroy
-  has_many :products, dependent: :destroy
+  
+  
+  has_many :order_datails
   
   belongs_to :public
 
@@ -13,12 +14,11 @@ class Order < ApplicationRecord
   # validates :delivery_charge, presence: true
   # validates :total_price, presence: true
   # validates :payment_mothed, presence: true
-  # validates :zip, length: { is: 7 }
-  # validates :address, presence: true
-  # validates :address_name, presence: true
+  validates :zip, presence: true
+  # , length: { is: 7 }
+  validates :address, presence: true
+  validates :address_name, presence: true
   acts_as_paranoid
-
-
 
   
 end

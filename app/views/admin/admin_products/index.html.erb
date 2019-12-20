@@ -6,7 +6,8 @@
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" />
         
         <div>
-          <%= link_to "新規商品追加", new_admin_admin_product_path, class: "btn btn-lg btn-default" %>
+          <%= link_to "新規商品登録", new_admin_admin_product_path, class: "btn btn-lg btn-default" %>
+          <%= link_to "販売商品追加", new_admin_admin_arrival_path, class: "btn btn-lg btn-default" %>
         </div>    
       </div>
 
@@ -20,7 +21,7 @@
     <h1></h1>
     <div class="row">
       <div class="col-lg-12">
-        <table class="table">
+        <table class="table table-striped">
           <tr>
             <th></th>
             <th>商品名</th>
@@ -37,7 +38,7 @@
             <td><%= attachment_image_tag product, :jacket_image, size: "50x50", fallback: "no_image.jpg" %></td>
             <td><%= product.product_name %></td>
             <td><%= product.artist.artist_name %></td>
-            <td><%= product.pre_tax_price %></td>
+            <td><%= product.pre_tax_price %></td> 
             <%# 計算式は購入までの流れが完了後導入 %>
             <td>
               <%= (Arrival.where(product_id: product.id).sum(:arrival_quantity)) %>枚
@@ -52,13 +53,15 @@
                 <p>在庫切れ</p>
               <% end %> 
             </td> 
-            <td><%= link_to "詳細", admin_admin_product_path(product) %></td>
+            <td><%= link_to "詳細", admin_admin_product_path(product.id) %></td>
           </tr>
           <% end %>
         </table>
       </div>
     </div>
   </div>
-
-
 </div>
+
+<h3 class="text-center">
+  <%= paginate @products %>
+</h3>

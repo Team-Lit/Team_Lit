@@ -36,10 +36,8 @@ Rails.application.routes.draw do
     resources :admin_genres, only:[:new, :create, :destroy]
     resources :admin_labels, only:[:new, :create, :destroy]
 
-    resources :admin_products do
-      post 'admin/admin_products/:id' => 'admin/admin_products#show'
-      resources :admin_arrivals, only:[:new, :create]
-    end
+    resources :admin_products
+    resources :admin_arrivals
 
     resources :admin_arrivals, only:[:index]
     resources :admin_orders, only:[:index, :show, :update]
