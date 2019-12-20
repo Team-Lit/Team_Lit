@@ -1,0 +1,19 @@
+<%= csrf_meta_tags %>
+ <%= csp_meta_tag %> 
+ <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %> 
+ <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+FrienDisk
+
+<%= link_to "店舗",edit_admin_admin_charge_path %>
+<%= link_to "顧客",admin_admin_users_path %>
+<%= link_to "商品",admin_admin_products_path %>
+<%= link_to "入荷" ,admin_admin_arrivals_path %>
+<%= link_to "受注",admin_admin_orders_path %>
+<%= link_to "お問合せ",admin_admin_orders_path %>
+<%= link_to "logout",destroy_admin_session_path, method: :delete %>
+<%= yield %>
+
+<% end %>
+
+

@@ -1,0 +1,19 @@
+<%= csrf_meta_tags %>
+ <%= csp_meta_tag %> 
+ <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %> 
+ <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+FrienDisk
+<%if public_signed_in? %>
+<%= link_to "cart",public_public_cart_item_path(current_public.id) %>
+<%= link_to "My page",public_public_user_path(current_public.id) %>
+<%= link_to "Log out",destroy_public_session_path, method: :delete %>
+
+<% else %>
+<%= link_to "TOP" ,new_public_registration_path %>
+<%= link_to "sign up",new_public_registration_path %>
+<%= link_to "Log in",new_public_session_path %>
+
+<%= yield %>
+
+<% end %>
