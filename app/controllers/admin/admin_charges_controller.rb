@@ -17,6 +17,6 @@ class Admin::AdminChargesController < ApplicationController
 
   def charge_params
     params.require(:charge).permit(:charge,:tax_rate)
-   end
+  end
 
 end

@@ -27,8 +27,6 @@ class Public::PublicUsersController < ApplicationController
       redirect_to public_public_user_path(@public)
     else
       render action: :edit
-
-
     end
   end
 
