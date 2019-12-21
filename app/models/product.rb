@@ -1,8 +1,8 @@
 class Product < ApplicationRecord
   attr_accessor :arrival
   
-  has_many :disks, dependent: :destroy
-  accepts_nested_attributes_for :disks, allow_destroy: true
+  has_many :disks, inverse_of: :product
+  accepts_nested_attributes_for :disks, reject_if: :all_blank, allow_destroy: true
 
 
   has_many :arrivals
