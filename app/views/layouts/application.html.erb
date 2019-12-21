@@ -9,6 +9,70 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
+
+  <header class="admin-header">
+    <% if admin_signed_in? %>
+        <%# <span class="logo-box"><%= image_tag "", size: '200x150', alt:"" %</span> %>
+    <nav>
+      <ul>
+        <li>
+          <%= link_to "店舗",edit_admin_admin_ptoducts_path %> 
+        </li>
+        <li>
+          <%= link_to "顧客",admin_admin_users_path %> 
+        </li>
+        <li>
+          <%= link_to "商品",admin_admin_products_path %> 
+        </li>
+        <li>
+          <%= link_to "入荷" ,admin_admin_arrivals_path %> 
+        </li>
+        <li>
+          <%= link_to "受注",admin_admin_orders_path %>
+        </li>
+        <li>
+          <%= link_to "お問合せ",admin_admin_orders_path %>         
+        </li>
+        <li>
+          <%= link_to "logout",destroy_admin_session_path, method: :delete %>
+          </li>
+        </ul>
+      </nav>
+      <% end %>
+
+      <% elseif public_signed_in? %>
+      <nav>
+        <ul>
+          <li>
+            <%= link_to "cart",public_public_cart_item_path(current_public.id) %>
+          </li>
+          <li>
+            <%= link_to "My page",public_public_user_path(current_public.id) %>
+          </li>
+          <li>
+            <%= link_to "Log out",destroy_public_session_path, method: :delete %>
+          </li>
+        </ul>
+      </nav>
+      
+      <% else %>
+      <nav>
+        <ul>
+          <li>
+            <%= link_to "TOP" ,new_public_registration_path %>
+          </li>
+          <li>
+            <%= link_to "sign up",new_public_registration_path %>
+          </li>
+          <li>
+            <%= link_to "Log in",new_public_session_path %>
+          </li>
+        </ul>
+      </nav>
+      <% end %>
+    </header>
+
+
   <body>
     <%= yield %>
   </body>
