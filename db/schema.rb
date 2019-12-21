@@ -97,14 +97,13 @@ ActiveRecord::Schema.define(version: 2019_12_20_073030) do
     t.integer "product_id"
     t.integer "order_id"
     t.integer "quantity"
-    t.integer "total_price"
+    t.integer "pre_tax_price"
     t.datetime "deleted_at"
     t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false 
+    t.datetime "updated_at", null: false
   end
 
   create_table "orders", force: :cascade do |t|
-    t.integer "product_id"
     t.integer "public_id"
     t.float "tax_rate"
     t.integer "delivery_charge"

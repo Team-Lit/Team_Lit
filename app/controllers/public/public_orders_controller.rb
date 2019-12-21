@@ -23,7 +23,7 @@ class Public::PublicOrdersController < ApplicationController
       @product = Product.find(cart.product_id)
       @total_price += @product.pre_tax_price * cart.quantity
     end
-    @payment = @total_price + @charge.charge
+    @payment = @total_price * @charge.tax_rate + @charge.charge 
   end
 
 
