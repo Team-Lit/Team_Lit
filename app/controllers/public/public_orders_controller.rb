@@ -1,21 +1,16 @@
 class Public::PublicOrdersController < ApplicationController
   
 
-  def confirm
-    @order = Order.new(payment_method: params[:payment_method])
-    @deliverie = Deliverie.find(params[:id])
-    @cart_items = CartItem.where(public_id: current_public.id)
-    @total_price = 0
-    @cart_items.each do |cart|
-      @product = Product.find(cart.product_id)
-      @total_price += @product.pre_tax_price * cart.quantity
-    end
-    @charge = Charge.find(1)
-    @payment = @total_price * @charge.tax_rate + @charge.charge
-  end
 
   def index
-    @deliverie = Deliverie.find(params[:id])
+    @deliveries = Deliverie.where(public_id: current_public.id)
+    @deliverie = Deliverie.new
+    @order = Order.new
+    if params[:id].present?
+       @deliverie = Deliverie.find(params[:id])
+    else
+      render template: "public/public_deliveries/show"
+    end
     @charge = Charge.find(1)
     @cart_items = CartItem.where(public_id: current_public.id)
     @total_price = 0
@@ -23,8 +18,29 @@ class Public::PublicOrdersController < ApplicationController
       @product = Product.find(cart.product_id)
       @total_price += @product.pre_tax_price * cart.quantity
     end
-    @payment = @total_price * @charge.tax_rate + @charge.charge 
+    @payment = (@total_price * @charge.tax_rate + @charge.charge).round(0)
   end
+
+
+
+
+  def confirm
+    @deliverie = Deliverie.find(params[:id])
+    @cart_items = CartItem.where(public_id: current_public.id)
+    @total_price = 0
+    @cart_items.each do |cart|
+      @product = Product.find(cart.product_id)
+      @total_price += @product.pre_tax_price * cart.quantity
+    end
+    @charge = Charge.find(1)
+    @payment = (@total_price * @charge.tax_rate + @charge.charge).round(0)
+    if params[:payment_method].present?
+      @order = Order.new(payment_method: params[:payment_method])
+    else
+      render :index
+    end
+  end
+
 
 
 
@@ -44,22 +60,15 @@ class Public::PublicOrdersController < ApplicationController
     @order.tax_rate = @charge.tax_rate
     @order.public_id = current_public.id
     @order.total_price = @total_price
-    if @order.save
-      @cart_items.each do |item|
-        @order_datail = OrderDetail.new
-        @order_datail.order_id = @order.id
-        @order_datail.product_id = item.product_id
-        @order_datail.quantity = item.quantity
-        @order_datail.pre_tax_price = item.product.pre_tax_price
-        if @order_datail.save
-          item.destroy
-        else
-          render :confirm
-        end
-      end
-
-    else
-      render :confirm
+    @order.save
+    @cart_items.each do |item|
+      @order_datail = OrderDetail.new
+      @order_datail.order_id = @order.id
+      @order_datail.product_id = item.product_id
+      @order_datail.quantity = item.quantity
+      @order_datail.pre_tax_price = item.product.pre_tax_price
+      @order_datail.save
+      item.destroy
     end
     redirect_to public_public_user_path(current_public)
   end
@@ -70,7 +79,6 @@ class Public::PublicOrdersController < ApplicationController
     @order = Order.find(params[:id])
     @order_detail = OrderDetail.where(order_id: params[:id])
     @all_price = @order.total_price * @order.tax_rate + @order.delivery_charge
-    binding.pry 
   end
 
 
