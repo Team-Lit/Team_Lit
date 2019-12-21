@@ -1,2 +1,91 @@
-<h1>Admin::AdminOrders#show</h1>
-<p>Find me in app/views/admin/admin_orders/show.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h1 class="text-center">受注履歴詳細</h1>
+    </div>
+  </div>
+  
+  <h1></h1>
+  <div class="row">
+    <div class="col-md-6">
+      <h4 class="text-center">
+        <mark class="bg-info">受注情報</mark>
+        <h1></h1>
+      </h4>
+      <h4 class="text-center">購入日：
+        <%= @order.created_at.strftime("%Y/%m/%d") %>
+      </h4>
+      <h4 class="text-center">配送先：
+        <%= @order.address_name%> 様<br>
+        <%= @order.zip %><br>
+        <%= @order.address %>
+      </h4>
+
+      <div class="line"></div>
+      <h1></h1>
+      <h4 class="text-center">
+        <mark class="bg-info">受注者情報</mark>
+        <h1></h1>
+      </h4>
+      <h4 class="text-center">名前：
+        <%= @order.public.end_user_last_name + " " + @order.public.end_user_first_name %>
+      </h4>
+      <h4 class="text-center">カナ：
+        <%= @order.public.end_user_last_kana + " " + @order.public.end_user_first_kana %>
+      </h4>
+      <h4 class="text-center">郵便番号：
+        <%= @order.public.zip %>
+      </h4>
+      <h4 class="text-center">住所：
+        <%= @order.public.address %>
+      </h4>
+      <h4 class="text-center">電話番号：
+        <%= @order.public.end_user_phone %>
+      </h4>
+      <h4 class="text-center">メールアドレス：
+        <%= @order.public.email %>
+      </h4>
+      <h4 class="text-center">配送ステータス選択
+        <%= form_for @order, url: admin_admin_order_path(@order.id) do |status| %>
+          <%= status.select :delivery_status, ["未配送", "配送済み"], :include_blank => "選択してください" %>
+          <%= status.submit "保存" %>
+        <% end %>
+      </h4>
+    </div>
+
+    <div class="col-md-6">
+      <h4 class="text-center">
+        <mark class="bg-info">受注履歴</mark>
+      </h4>
+      <table class="table table-striped"> 
+        <tr>
+          <th>商品名</th>
+          <th>個数</th>
+          <th>価格</th>
+        </tr>
+          
+          <% @order_detail.each do |detail| %>
+            <tr>
+              <td><%= detail.product.product_name %></td>
+              <td><%= detail.quantity %></td>
+              <td><%= detail.pre_tax_price.round(0) %></td>
+            </tr>
+          <% end %>
+      </table>
+        <h4 class="text-center">小計：
+          <%= @order.total_price %>
+        </h4>
+        <h4 class="text-center">送料：
+          <%= @order.delivery_charge %>
+        </h4>
+        <div class="line"></div>
+        <h4 class="text-center">総計：
+          <%= (@order.total_price * 1.1).round(0) + 500 %>
+        </h4>         
+    </div>
+  </div>
+  <h3 class="text-center">
+    <%= link_to "戻る", admin_admin_orders_path, class: "btn btn-lg btn-default" %>
+  </h3>
+
+</div>

@@ -1,2 +1,78 @@
-<h1>Admin::AdminUsers#show</h1>
-<p>Find me in app/views/admin/admin_users/show.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h1 class="text-center">顧客情報詳細</h1>
+      <div class="text-right">
+        <%= link_to "編集", edit_admin_admin_user_path(@user), class: "btn btn-lg btn-success" %>
+        <%= link_to "削除する", admin_admin_user_path(@user.id), method: :delete, class: "btn btn-lg btn-danger", "data-confirm" => "本当に削除しますか？" %>
+      <h1></h1>
+      <h4 class="text-center">
+        <mark class="bg-info">詳細情報</mark>
+      </h4>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <h3 class="text-center">名前(姓)：
+        <%= @user.end_user_last_name %>
+      </h3>
+      <h3 class="text-center">名前(セイ)：
+        <%= @user.end_user_last_kana %>
+      </h3>
+
+      <h3 class="text-center">郵便番号:
+        <%= @user.zip %>
+      </h3>
+      <h3 class="text-center">住所：
+        <%= @user.address %>
+      </h3>
+
+      <h3 class="text-center">電話番号：
+        <%= @user.end_user_phone %>
+      </h3>
+      <h3 class="text-center">メールアドレス：
+        <%= @user.email %>
+      </h3>
+    </div>
+
+    <div class="col-md-6">
+      <h3 class="text-center">名前(名)：
+        <%= @user.end_user_first_name %>
+      </h3>
+      <h3 class="text-center">名前(メイ)：
+        <%= @user.end_user_first_kana %>
+      </h3>
+    </div>
+  </div>
+  <div class="line"></div>
+
+  <div class="text-center">
+    <div class="row">
+      <div class="col-md-12">
+        <h4 class="text-center">
+          <mark class="bg-info">受注履歴</mark>
+        </h4>
+        <table class="table table-striped">
+          <tr>
+            <th>受注日時</th>
+            <th>総計</th>
+            <th>ステータス</th>
+            <th></th>
+          </tr>
+          
+          <% @orders.each do |order| %>
+            <tr>
+              <td><%= order.created_at.strftime("%Y/%m/%d %H:%M") %></td>
+              <td><%= order.total_price %></td>
+              <td><%= order.delivery_status %></td>
+              <td><%= link_to "詳細", admin_admin_order_path(order.id) %></td>
+            </tr>
+          <% end %>
+        </table>
+      </div>
+    </div>
+  </div>
+
+
+</div>
