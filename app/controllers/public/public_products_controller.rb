@@ -12,6 +12,7 @@ class Public::PublicProductsController < ApplicationController
     @cart_item = CartItem.new
     @product = Product.find(params[:id])
     @cart_item.product_id = @product.id
+    @stock = @product.arrivals.sum(:arrival_quantity) - @product.order_details.sum(:quantity)
   end
 
   def edit

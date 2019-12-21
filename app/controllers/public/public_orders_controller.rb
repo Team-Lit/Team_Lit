@@ -5,7 +5,6 @@ class Public::PublicOrdersController < ApplicationController
     @order = Order.new(payment_method: params[:payment_method])
     @deliverie = Deliverie.find(params[:id])
     @cart_items = CartItem.where(public_id: current_public.id)
-    binding.pry
     @total_price = 0
     @cart_items.each do |cart|
       @product = Product.find(cart.product_id)

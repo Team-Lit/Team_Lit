@@ -27,7 +27,7 @@
           <tr>
             <th>
               <%= link_to public_public_product_path(product) do %>
-                <%= attachment_image_tag product.jacket_image_id,:jacket_image,fallback:"no_image.jpg",size:"40x40" %>
+                <%= attachment_image_tag product, :jacket_image,fallback:"no_image.jpg",size:"40x40" %>
               <% end %>
             </th>
             <th><%= product.product_name %></th>

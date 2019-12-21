@@ -40,7 +40,7 @@
             <td><%= product.artist.artist_name %></td>
             <td><%= product.pre_tax_price %></td> 
             <%# 計算式は購入までの流れが完了後導入 %>
-            <td>
+            <td> 
               <%= (Arrival.where(product_id: product.id).sum(:arrival_quantity)) %>枚
               <%# - (OrderDetail.where(product_id: id).sum(:quantity)) %>
             </td>
