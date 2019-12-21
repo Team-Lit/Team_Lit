@@ -67,8 +67,8 @@
           <% @order_detail.each do |detail| %>
             <tr>
               <td><%= detail.product.product_name %></td>
-              <td><%= detail.quantity %></td>
-              <td><%= detail.pre_tax_price.round(0) %></td>
+              <td><%= detail.quantity %>個</td>
+              <td><%= detail.pre_tax_price.round(0) %>円</td>
             </tr>
           <% end %>
       </table>
