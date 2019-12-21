@@ -16,7 +16,7 @@
 		    <% @cart_item.each do |cart| %>
           <tr>
             <td>
-              <%= attachment_image_tag cart.product.jacket_image,:jacket_image,fallback:"no_image.jpg",size:"40x40" %>
+              <%= attachment_image_tag cart.product,:jacket_image,fallback:"no_image.jpg",size:"40x40" %>
             </td>
             <td><%= cart.product.product_name %></td>
             <td><%= cart.product.pre_tax_price %></td>

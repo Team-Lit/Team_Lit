@@ -31,7 +31,7 @@
           <%= link_to "受注",admin_admin_orders_path %>
         </li>
         <li>
-          <%= link_to "お問合せ",admin_admin_orders_path %>         
+          <%= link_to "お問合せ",admin_admin_orders_path %>
         </li>
         <li>
           <%= link_to "logout",destroy_admin_session_path, method: :delete %>
@@ -41,9 +41,16 @@
 
       <% elsif public_signed_in? %>
       <nav>
+        <h1>FrenDisk</h1>
         <ul>
+            <div class="item-search-box text-center">
+              <%= form_tag(public_public_products_path,method: :get) do %>
+                <%= text_field_tag :search, "", placeholder: "アーティストや商品名で検索" %>
+                <%= button_tag '<i class="btn btn-default"></i>'.html_safe, type: 'submit', :name => nil %>
+              <% end %>
+            </div>
           <li>
-            <%= link_to "cart",public_public_cart_item_path(current_public.id) %>
+            <%= link_to "cart",public_public_user_public_cart_items_path(current_public.id) %>
           </li>
           <li>
             <%= link_to "My page",public_public_user_path(current_public.id) %>
@@ -56,7 +63,16 @@
       
       <% else %>
       <nav>
+        <h1>FrenDisk</h1>
         <ul>
+          <li>
+            <div class="item-search-box text-center">
+              <%= form_tag(public_public_products_path,method: :get) do %>
+              <%= text_field_tag :search, "", placeholder: "アーティストや商品名で検索" %>
+              <%= button_tag '<i class="fa fa-search"></i>'.html_safe, type: 'submit', :name => nil %>
+              <% end %>
+            </div>
+          </li>
           <li>
             <%= link_to "TOP" ,new_public_registration_path %>
           </li>
