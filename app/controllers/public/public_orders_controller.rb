@@ -5,7 +5,6 @@ class Public::PublicOrdersController < ApplicationController
     @order = Order.new(payment_method: params[:payment_method])
     @deliverie = Deliverie.find(params[:id])
     @cart_items = CartItem.where(public_id: current_public.id)
-    binding.pry
     @total_price = 0
     @cart_items.each do |cart|
       @product = Product.find(cart.product_id)
@@ -24,7 +23,7 @@ class Public::PublicOrdersController < ApplicationController
       @product = Product.find(cart.product_id)
       @total_price += @product.pre_tax_price * cart.quantity
     end
-    @payment = @total_price + @charge.charge
+    @payment = @total_price * @charge.tax_rate + @charge.charge 
   end
 
 
