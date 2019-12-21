@@ -36,11 +36,10 @@
         <li>
           <%= link_to "logout",destroy_admin_session_path, method: :delete %>
           </li>
-        </ul>
-      </nav>
-      <% end %>
+      </ul>
+    </nav>
 
-      <% elseif public_signed_in? %>
+      <% elsif public_signed_in? %>
       <nav>
         <ul>
           <li>
