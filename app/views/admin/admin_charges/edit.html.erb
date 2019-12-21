@@ -1,2 +1,20 @@
 <h1>Admin::AdminCharges#edit</h1>
 <p>Find me in app/views/admin/admin_charges/edit.html.erb</p>
+
+<%= form_for(@charge,url: admin_admin_charges_path )do |f| %>
+	<% if @charge.errors.any? %>
+	  <div class="error_explanation">
+		<h2><%= @charge.errors.count %>件errorが発生しました。</h2>
+		<ul>
+		  <% @charge.errors.full_messages.each do |message| %>
+			<li><%= message %></li>
+		  <% end %>
+		</ul>
+	  </div>
+	<% end %>
+
+		<%= f.number_field :charge, class:"form-control",placeholder:"charge" %>
+		<%= f.number_field :tax_rate, class:"form-control",placeholder:"tax_rate" %>
+
+		<%= f.submit "金額設定を変える" %>
+<% end %>

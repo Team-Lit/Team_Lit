@@ -26,13 +26,41 @@
 <%= link_to "log out",destroy_public_session_path, method: :delete %>
 
 
-<%# <%= @user.order.each do |order| %> 
-  <%# <%= order.crreated_at %> 
-  <%# <%= order.address %> 
-  <%# <%= order.total_price %> 
-  <%# <%= order.delivery_status %> 
-  <%# <%= link_to public_orders_result_path(order) %> 
-<%# <% end %> 
+ 
+    
+   
+    
+   
+   
+
+<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>受注日</th>
+				<th>住所</th>
+				<th>合計金額</th>
+        <th>配送状態</th>
+        <th></th>
+			</tr>
+		</thead>
+		<tbody>
+		    <% @order.each do |order| %> 
+          <tr>
+            <td><%= order.created_at %></td>
+            <td><%= order.address %></td>
+            <td><%= order.total_price %></td>
+            <td><%= order.delivery_status %> </td>
+            <td>
+              <%= link_to "詳細", public_public_order_path(order) %> 
+            </td>
+          </tr>
+		    <% end %>
+		</tbody>
+	</table>
+
+
+
+
 
 
 

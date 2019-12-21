@@ -6,12 +6,12 @@ class Public::PublicProductsController < ApplicationController
     # @new_products = Product.where(created_at: )
     # @popular_products = Product.find(3)
     @products = Product.all
-   
   end
 
   def show
-    @product = Product.find(params[:id])
     @cart_item = CartItem.new
+    @product = Product.find(params[:id])
+    @cart_item.product_id = @product.id
   end
 
   def edit

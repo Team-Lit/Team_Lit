@@ -2,13 +2,12 @@ class Public::PublicUsersController < ApplicationController
   
 
   def confirm
-
     @public = Public.find(current_public.id)
   end
 
   def show
     @public = Public.find(params[:id])
-
+    @order = Order.where(public_id: current_public)
   end
 
   def edit
@@ -28,8 +27,6 @@ class Public::PublicUsersController < ApplicationController
       redirect_to public_public_user_path(@public)
     else
       render action: :edit
-
-
     end
   end
 
