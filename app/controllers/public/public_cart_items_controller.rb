@@ -1,5 +1,6 @@
 class Public::PublicCartItemsController < ApplicationController
-  
+  before_action :authenticate_public!
+
 #カート内一覧
   def show
     @cart_item = CartItem.where(public_id: current_public.id)

@@ -1,4 +1,5 @@
 class Public::PublicUsersController < ApplicationController
+  before_action :authenticate_public!
   
 
   def confirm

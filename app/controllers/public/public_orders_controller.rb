@@ -1,5 +1,5 @@
 class Public::PublicOrdersController < ApplicationController
-  
+  before_action :authenticate_public!
 
 
   def index
