@@ -69,7 +69,7 @@ class Publics::RegistrationsController < Devise::RegistrationsController
   end
 
   def after_sign_out_path_for(resource)
-    new_public_registration_path
+   public_public_products_path
   end
 
 end

@@ -1,4 +1,5 @@
 class Admin::AdminChargesController < ApplicationController
+  before_action :authenticate_admin!
   
 
   def edit

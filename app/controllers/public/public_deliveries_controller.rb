@@ -1,4 +1,5 @@
 class Public::PublicDeliveriesController < ApplicationController
+  before_action :authenticate_public!
   
 
   def show
