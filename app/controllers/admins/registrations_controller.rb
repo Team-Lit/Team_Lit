@@ -65,4 +65,7 @@ class Admins::RegistrationsController < Devise::RegistrationsController
     admin_admin_products_path
   end
 
+  def after_sign_in_path_for(resource)
+    new_admin_session_path
+
 end
