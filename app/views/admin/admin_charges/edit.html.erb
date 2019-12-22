@@ -13,8 +13,8 @@
 	  </div>
 	<% end %>
 
-		<%= f.number_field :charge, class:"form-control",placeholder:"charge" %>
-		<%= f.number_field :tax_rate, class:"form-control",placeholder:"tax_rate" %>
+		<%= f.number_field :charge, class:"form-control",placeholder: "送料" %>
+		<%= f.text_field :tax_rate, class:"form-control",placeholder: "消費税率" %>
 
 		<%= f.submit "金額設定を変える" %>
 <% end %>

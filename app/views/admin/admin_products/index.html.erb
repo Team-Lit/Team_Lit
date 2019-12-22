@@ -41,8 +41,7 @@
             <td><%= product.pre_tax_price %></td> 
             <%# 計算式は購入までの流れが完了後導入 %>
             <td> 
-              <%= (Arrival.where(product_id: product.id).sum(:arrival_quantity)) %>枚
-              <%# - (OrderDetail.where(product_id: id).sum(:quantity)) %>
+              <%= (Arrival.where(product_id: product.id).sum(:arrival_quantity)) - (OrderDetail.where(product_id: product.id).sum(:quantity)) %>枚
             </td>
             <%# ひとまずの販売ステータス表示 %>
             <td>
