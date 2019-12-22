@@ -1,8 +1,13 @@
 
+<% if flash[:notice] %>
+  <div class="flash">
+  	<%= flash[:notice] %>
+  </div>
+<% end %>
 
  <h2>注文内容</h2>
   <h3>商品の総計：</h3><%= @total_price %>
-  <h3>消費税：<h3><%= @charge.tax_rate %>
+  <h3>消費税：</h3><%= @charge.tax_rate %>
   <h3>送料：</h3><%= @charge.charge %>
   <h3>ご請求額：</h3><%= @payment %>
 

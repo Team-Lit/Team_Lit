@@ -10,24 +10,24 @@ class Public < ApplicationRecord
   has_many :orders, dependent: :destroy
 
 
-  # validates :end_user_last_name, presence: true
+  validates :end_user_last_name, presence: true
 
-  # validates :end_user_first_name, presence: true
-
-
-  # validates :end_user_last_kana, presence: true
+  validates :end_user_first_name, presence: true
 
 
-  # validates :end_user_first_kana, presence: true
+  validates :end_user_last_kana, presence: true
 
 
-  # validates :zip, presence: true
+  validates :end_user_first_kana, presence: true
 
 
-  # validates :address, presence: true
+  validates :zip, presence: true
 
 
-  # validates :end_user_phone, presence: true
+  validates :address, presence: true
+
+
+  validates :end_user_phone, presence: true
 
 
   # def leave
