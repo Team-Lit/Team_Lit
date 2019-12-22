@@ -1,22 +1,39 @@
-    <%= attachment_image_tag @product, :jacket_image,fallback:"no_image.jpg",size:"300x300" %>
 
-    <h2><%= @product.product_name %></h2>
-    <%= @product.artist.artist_name %>
-    <%= @product.label.label_name %>
-    <%= @product.genre.genre_name %>
-    <%= @product.pre_tax_price %>
-    <%= @stock %>
-    <%= @product.stock_status %>
-      <% @product.disks.each do |disk| %>
-        <%= disk.disk_numbre %>
-        <% disk.songs.each do |song| %>
-          <%= song.song_title %>
+  <div class="row">
+    <div class="col-md-6">
+      <%= attachment_image_tag @product, :jacket_image,fallback:"no_image.jpg",size:"300x300" %>
+    </div>
+    <div class="col-md-3">
+      <h1 class="text-center"><%= @product.product_name %></h1>
+      <P>アーティスト名：<%= @product.artist.artist_name %></p>
+      <p>レーベル名：<%= @product.label.label_name %></p>
+      <p>ジャンル：<%= @product.genre.genre_name %></p>
+      <p>発売日：<%= @product.release_date %></p>
+      <p>価格：<%= @product.pre_tax_price %>円</p>
+      <p>在庫数：<%= @stock %>枚</p>
+      <p><%= @product.stock_status %></p>
+    </div>
+    <div class="col-md-3">
+      <h3>曲名</h3>
+        <% @product.disks.each do |disk| %>
+          <div class="row">
+            <p><%= disk.disk_numbre %>枚目</p>
+            <% disk.songs.each do |song| %>
+              <p>・<%= song.song_title %></p>
+            <% end %>
+          </div>
         <% end %>
-      <% end %>
-  <%# カートに入れる %>
+    </div>
+  </div>
+
+
+<div class="col-md-6"">
   <%= form_for(@cart_item, url: public_public_product_public_cart_items_path(@product), html: {method: "post"}) do |f| %>
     <%= f.label :"個数" %>
     <%= f.number_field :quantity,min:1,placeholder: "個" %>
     <%= f.submit "カートに入れる", class: "btn btn-lg btn-primary" %>
-  <% end %> 
+  <% end %>
+</div>
+
   
+

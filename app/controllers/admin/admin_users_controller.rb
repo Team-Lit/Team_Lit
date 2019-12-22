@@ -21,7 +21,7 @@ class Admin::AdminUsersController < ApplicationController
 
   def show
     @user = Public.find(params[:id])
-    @address = Deliverie.all
+    @address = Delivery.all
     @orders = @user.orders.reverse_order
   end
 

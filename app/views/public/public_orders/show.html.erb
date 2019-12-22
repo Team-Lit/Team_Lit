@@ -1,11 +1,12 @@
 
-
-<h1>顧客購入情報</h1>
- <h3>購入日</h3><%= @order.created_at %> 
- <h3>宛先名</h3><%= @order.address_name %> 
- <h3>郵便番号</h3><%= @order.zip %> 
- <h3>お届け先住所</h3><%= @order.address %> 
- <h3>配送ステータス</h3><%= @order.delivery_status %> 
+<div class="text-center">
+  <h1>顧客購入情報</h1>
+  <h3>購入日:<%= @order.created_at %></h3>
+  <h3>宛先名:<%= @order.address_name %></h3>
+  <h3>郵便番号:<%= @order.zip %></h3>
+  <h3>お届け先住所:<%= @order.address %></h3>
+  <h3>配送ステータス:<%= @order.delivery_status %></h3>
+</div>
 
 
 <h2>購入商品</h2>
@@ -13,8 +14,11 @@
 		<thead>
 			<tr>
 				<th>商品画像</th>
+        <th></th>
 				<th>商品名</th>
+        <th></th>
 				<th>個数</th>
+        <th></th>
         <th>本体価格</th>
 			</tr>
 		</thead>
@@ -24,28 +28,32 @@
             <td>
              <%= attachment_image_tag detail.product,:jacket_image,fallback:"no_image.jpg",size:"40x40" %>
             </td>
+            <td></td>
             <td><%= detail.product.product_name %></td>
+            <td></td>
             <td><%= detail.quantity %></td>
+            <td></td>
             <td><%= detail.product.pre_tax_price %></td>
           </tr>
 		    <% end %>
+          <div class="line"></div>
           <tr>
-            <td><h3>商品合計</h3></td>
+            <td><h4>商品合計</h4></td>
             <td></td>
-            <td><h3>消費税</h3></td>
+            <td><h4>消費税額</h4></td>
             <td></td>
-            <td><h3>配送料</h3></td>
+            <td><h4>配送料</h4></td>
             <td></td>
-            <td><h3>総計</h3></td>
+            <td><h4>総計</h4></td>
           </tr>
           <tr>
             <td><%= @order.total_price %></td>
             <td>*</td>
-            <td><%= @order.tax_rate %></td>
+            <td><%= @payment - @order.total_price - @order.delivery_charge %></td>
             <td>+</td>
             <td><%= @order.delivery_charge %></td>
             <td>=</td>
-            <td><%= @all_price %></td>
+            <td><%= @payment %></td>
           </tr>
 		</tbody>
 	</table>

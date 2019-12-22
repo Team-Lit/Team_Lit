@@ -53,7 +53,7 @@
               <div class="item-search-box text-center">
                 <%= form_tag(public_public_products_path,method: :get) do %>
                   <%= text_field_tag :search, "", placeholder: "アーティストや商品名で検索" %>
-                  <%= button_tag '<i class="btn btn-default"></i>'.html_safe, type: 'submit', :name => nil %>
+                  <%= button_tag '<i class="fa fa-search"></i>'.html_safe, type: 'submit', :name => nil %>
                 <% end %>
               </div>
               <li>

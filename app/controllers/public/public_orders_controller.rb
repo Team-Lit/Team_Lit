@@ -3,11 +3,11 @@ class Public::PublicOrdersController < ApplicationController
 
 
   def index
-    @deliveries = Deliverie.where(public_id: current_public.id)
-    @deliverie = Deliverie.new
+    @deliveries = Delivery.where(public_id: current_public.id)
+    @delivery = Delivery.new
     @order = Order.new
     if params[:id].present?
-       @deliverie = Deliverie.find(params[:id])
+       @delivery = Delivery.find(params[:id])
     else
       flash[:notice] = "配送先を選択してください"
       render template: "public/public_deliveries/show"
@@ -26,7 +26,7 @@ class Public::PublicOrdersController < ApplicationController
 
 
   def confirm
-    @deliverie = Deliverie.find(params[:id])
+    @delivery = Delivery.find(params[:id])
     @cart_items = CartItem.where(public_id: current_public.id)
     @total_price = 0
     @cart_items.each do |cart|
@@ -54,10 +54,10 @@ class Public::PublicOrdersController < ApplicationController
       @product = Product.find(cart.product_id)
       @total_price = @product.pre_tax_price * cart.quantity
     end
-    @deliverie = Deliverie.find(params[:id])
-    @order.address = @deliverie.address
-    @order.address_name = @deliverie.address_name
-    @order.zip = @deliverie.zip
+    @delivery = Delivery.find(params[:id])
+    @order.address = @delivery.address
+    @order.address_name = @delivery.address_name
+    @order.zip = @delivery.zip
     @order.delivery_charge = @charge.charge
     @order.tax_rate = @charge.tax_rate
     @order.public_id = current_public.id
@@ -68,7 +68,6 @@ class Public::PublicOrdersController < ApplicationController
       @order_datail.order_id = @order.id
       @order_datail.product_id = item.product_id
       @order_datail.quantity = item.quantity
-      binding.pry
       @order_datail.pre_tax_price = item.product.pre_tax_price
       @order_datail.save
       item.destroy
@@ -81,7 +80,7 @@ class Public::PublicOrdersController < ApplicationController
   def show
     @order = Order.find(params[:id])
     @order_detail = OrderDetail.where(order_id: params[:id])
-    @all_price = (@order.total_price * @order.tax_rate + @order.delivery_charge).round(0)
+    @payment = (@order.total_price * @order.tax_rate + @order.delivery_charge).round(0)
   end
 
 
@@ -90,8 +89,8 @@ class Public::PublicOrdersController < ApplicationController
     params.require(:cart_item).permit(:product_id,:public_id,:quantity)
   end
 
-  def deliverie_params
-    params.require(:deliverie).permit(:id,:address,:address_name,:zip)
+  def delivery_params
+    params.require(:delivery).permit(:id,:address,:address_name,:zip)
   end
 
   def order_params
