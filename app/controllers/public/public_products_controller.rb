@@ -1,21 +1,29 @@
 class Public::PublicProductsController < ApplicationController
   
+  PER = 10
 
   def index
-
+    unless params[:search].blank?
+      artist = Product.joins(:artist).where("artist_name LIKE ?", "%#{params[:search]}%")
+      song =  Product.joins(disks: :songs).where("song_title LIKE ?", "%#{params[:search]}%")
+      product_name = Product.where("product_name LIKE ?", "%#{params[:search]}%")
+      merged_result = artist | product_name
+      @products = (merged_result | song)
+      @products = Kaminari.paginate_array(@products).page(params[:page]).per(PER)
+    else
+      @products = Product.page(params[:page]).per(PER).reverse_order
     # @new_products = Product.where(created_at: )
     # @popular_products = Product.find(3)
-    @products = Product.all
-   
+    end
   end
 
   def show
-    @product = Product.find(params[:id])
     @cart_item = CartItem.new
+    @product = Product.find(params[:id])
+    @cart_item.product_id = @product.id
+    @stock = @product.arrivals.sum(:arrival_quantity) - @product.order_details.sum(:quantity)
   end
 
-  def edit
-  end
   
   private
 

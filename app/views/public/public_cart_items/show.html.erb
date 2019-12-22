@@ -1,5 +1,4 @@
-<h1>Public::PublicCartItems#index</h1>
-<p>Find me in app/views/public/public_cart_items/index.html.erb</p>
+
 
 <h1>カート内容</h1>
 
@@ -17,12 +16,16 @@
 		    <% @cart_item.each do |cart| %>
           <tr>
             <td>
-              <%= attachment_image_tag cart.product.jacket_image,:jacket_image,fallback:"no_image.jpg",size:"40x40" %>
+              <%= attachment_image_tag cart.product,:jacket_image,fallback:"no_image.jpg",size:"40x40" %>
             </td>
             <td><%= cart.product.product_name %></td>
             <td><%= cart.product.pre_tax_price %></td>
             <td><%= cart.quantity %></td>
-            <td><%= link_to public_public_cart_item_path(cart.product),method: :delete %></td>
+            <td>
+              <%= link_to public_public_cart_item_path(cart),method: :delete do %>
+                <button type="button" class="btn btn-success">削除</button>
+              <% end %>
+            </td>
           </tr>
 		    <% end %>
 		</tbody>

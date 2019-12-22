@@ -1,18 +1,46 @@
-<h1>Public::PublicDeliveries#show</h1>
-<p>Find me in app/views/public/public_deliveries/index.html.erb</p>
 
-
-<%= form_for(@deliverie, url: new_public_public_order_path) do |f| %>
-  <% @deliveries.each do |deliverie| %>
-    <%= f.radio_button :public_id, deliverie.id %>
-      <%= deliverie.address_name %>
-      <%= deliverie.zip %>
-      <%= deliverie.address %>
-      <%= link_to public_public_delivery_path(deliverie) %>
-      <%= link_to public_public_delivery_path(deliverie), method: :delete %>
-      <%= f.submit "この住所に届ける",class:"btn btn-primary" %>
-  <% end %>
+<% if flash[:notice] %>
+  <div class="flash">
+  	<%= flash[:notice] %>
+  </div>
 <% end %>
+
+<%= form_tag( public_public_user_public_orders_path(current_public),method: :get) do %>
+  <table class="table table-striped">
+      <thead>
+        <tr>
+          <th></th>
+          <th>宛先</th>
+          <th>郵便番号</th>
+          <th>住所</th>
+          <th></th>
+        </tr>
+      <tbody>
+          <% @deliveries.each do |deliverie| %>
+            <tr>
+              <td>
+                <%= radio_button_tag :id, deliverie.id %>
+              </td>
+              <td><%= deliverie.address_name %></td>
+              <td><%= deliverie.zip %></td>
+              <td><%= deliverie.address %></td>
+              <td>
+                <%= link_to edit_public_public_delivery_path(deliverie) do%>
+                  <button type="button" class="btn btn-default" >編集
+                <% end %>
+              </td>
+              <td>
+                <%= link_to public_public_delivery_path(deliverie), method: :delete do %>
+                  <button type="button" class="btn btn-default" >削除
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+      </tbody>
+  </table>
+  <%= submit_tag "この住所に届ける",class:"btn btn-primary" %>
+<% end %>
+
 
 <%= form_for(@deliverie, url:public_public_user_public_deliveries_path(public_id: current_public.id),html: {method: "post"}) do |f| %>
       <%= f.label :address_name %>

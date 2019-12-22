@@ -45,8 +45,7 @@
           <div>
             <h3 class="text-center">
               <%= f.label :発売日 %>
-              <%= f.date_field :release_date, value: Time.now.strftime("%Y-%m-%d") %>
-              <%# <%= f.text_field :release_date, placeholder: "年/月/日" %>
+              <%= f.date_field :release_date, value: Time.now.strftime("%Y/%m/%d") %>
             </h3>
           </div>
 
@@ -80,25 +79,6 @@
               </div>
             </h3>
           </div>
-
-          <%# 在庫数 %>
-          <%# <div>
-            <h3 class="text-center">
-              <%= f.label :在庫数 %>
-              <%# <%= f.number_field :stock_quantity, min:1 枚
-            </h3>
-          </div>
-
-          <%# 在庫ステータス %>
-          <%# <div class="radio-box">
-            <h3 class="text-center">
-              <%= f.label :"販売ステータス", class: "label-1" %
-              <%= f.label :"販売中" %
-              <%= f.radio_button :stock_status, "販売中" %>
-              <%# <%= f.label :"売切" %
-              <%= f.radio_button :stock_status, "在庫切れ" %
-            </h3>
-          </div>  %>
 
           <div class=text-center>
             <%= f.submit "登録", class: "btn btn-lg btn-primary" %>

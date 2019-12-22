@@ -7,7 +7,91 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" />
   </head>
+
+
+  <header class="admin-header">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12" style="background-color: pink;">
+          <% if admin_signed_in? %>
+          <nav>
+            <ul>
+              <h1 class="logo">
+                <i class="fas fa-compact-disc"></i>
+              </h1>
+              <li>
+                <%= link_to "店舗",edit_admin_admin_charges_path %>
+              </li>
+              <li>
+                <%= link_to "顧客",admin_admin_users_path %> 
+              </li>
+              <li>
+                <%= link_to "商品",admin_admin_products_path %> 
+              </li>
+              <li>
+                <%= link_to "入荷" ,admin_admin_arrivals_path %> 
+              </li>
+              <li>
+                <%= link_to "受注",admin_admin_orders_path %>
+              </li>
+              <li>
+                <%= link_to "お問合せ",admin_admin_orders_path %>
+              </li>
+              <li>
+                <%= link_to "logout",destroy_admin_session_path, method: :delete %>
+              </li>
+            </ul>
+          </nav>
+
+          <% elsif public_signed_in? %>
+          <nav>
+            <ul>
+              <div class="item-search-box text-center">
+                <%= form_tag(public_public_products_path,method: :get) do %>
+                  <%= text_field_tag :search, "", placeholder: "アーティストや商品名で検索" %>
+                  <%= button_tag '<i class="btn btn-default"></i>'.html_safe, type: 'submit', :name => nil %>
+                <% end %>
+              </div>
+              <li>
+                <%= link_to "cart",public_public_user_public_cart_items_path(current_public.id) %>
+              </li>
+              <li>
+                <%= link_to "My page",public_public_user_path(current_public.id) %>
+              </li>
+              <li>
+                <%= link_to "Log out",destroy_public_session_path, method: :delete %>
+              </li>
+            </ul>
+          </nav>
+      
+          <% else %>
+          <nav>
+            <ul>
+              <div class="item-search-box text-center">
+                <%= form_tag(public_public_products_path,method: :get) do %>
+                  <%= text_field_tag :search, "", placeholder: "アーティストや商品名で検索" %>
+                  <%= button_tag '<i class="fa fa-search"></i>'.html_safe, type: 'submit', :name => nil %>
+                <% end %>
+              </div>
+              <li>
+                <%= link_to "TOP" ,new_public_registration_path %>
+              </li>
+              <li>
+                <%= link_to "sign up",new_public_registration_path %>
+              </li>
+              <li>
+                <%= link_to "Log in",new_public_session_path %>
+              </li>
+            </ul>
+          </nav>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </header>
+
 
   <body>
     <%= yield %>

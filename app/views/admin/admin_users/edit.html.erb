@@ -2,7 +2,57 @@
   <div class="row">
     <div class="col-md-12">
       <h1 class="text-center">顧客情報編集</h1>
-
     </div>
   </div>
+
+  <%= form_for(@user, url: admin_admin_user_path) do |f| %>
+    <div class="row">
+      <div class="col-md-6">
+        <h3 class="text-center">
+          <%= f.label :"名前(姓)" %>
+          <%= f.text_field :end_user_last_name, autocomplete: "name" %>
+        </h3>
+        <h3 class="text-center">
+          <%= f.label :"名前(セイ)" %>
+          <%= f.text_field :end_user_last_kana, autocomplete: "name" %>
+        </h3>
+      </div>
+
+      <div class="col-md-6">
+        <h3 class="text-center">
+          <%= f.label :"名前(名)" %>
+          <%= f.text_field :end_user_first_name, autocomplete: "name" %>
+        </h3>
+        <h3 class="text-center">
+          <%= f.label :"名前(メイ)" %>
+          <%= f.text_field :end_user_first_kana, autocomplete: "name" %>
+        </h3>
+      </div>
+    </div>
+
+    <div class ="row">
+      <div class="col-md-12">
+        <h3 class="text-center">
+          <%= f.label :郵便番号 %>
+          <%= f.text_field :zip, autofocus: true, autocomplete: "zip", placeholder: "〒", size: "40x10" %>
+        </h3>
+        <h3 class="text-center">
+          <%= f.label :住所 %>
+          <%= f.text_field :address, autofocus: true, autocomplete: "address", size: "40x10" %>
+        </h3>
+        <h3 class="text-center">
+          <%= f.label :電話番号 %>
+          <%= f.text_field :end_user_phone, autofocus: true, autocomplete: "end_user_phone", size: "40x10" %>
+        </h3>
+        <h3 class="text-center">
+          <%= f.label :メールアドレス %>
+          <%= f.text_field :email, autofocus: true, autocomplete: "email", size: "40x10" %>
+        </h3>
+
+        <h3 class="text-center">
+          <%= f.submit "更新する", class: "btn btn-lg btn-success" %>
+        </h3>
+      </div>
+    </div>
+  <% end %>
 </div>

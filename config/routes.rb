@@ -17,17 +17,19 @@ Rails.application.routes.draw do
 
   namespace :public do
     get 'public_orders/confirm'
-    get 'public_orders/result'
     get 'public_users/confirm'
     resources :public_users, only:[:show, :edit, :update, :destroy,:confirm] do
       resource :public_cart_items, only:[:show]
       resource :public_deliveries, only:[:show,:create]
+      resources :public_orders, only:[:confirm,:index, :create]
     end
     
-    resources :public_products, only:[:index, :show]
-    resources :public_cart_items, only:[:show, :create, :update, :destroy]
-    resources :public_deliveries, only:[:edit, :update, :destroy,:create]
-    resources :public_orders, only:[:confirm, :result, :new, :create, :update]
+    resources :public_products, only:[:index, :show] do
+      resource :public_cart_items, only:[:create]
+    end
+    resources :public_cart_items, only:[ :update, :destroy]
+    resources :public_deliveries, only:[:edit, :update, :destroy]
+    resources :public_orders, only:[:show]
   end
 
   namespace :admin do
@@ -36,14 +38,12 @@ Rails.application.routes.draw do
     resources :admin_genres, only:[:new, :create, :destroy]
     resources :admin_labels, only:[:new, :create, :destroy]
 
-    resources :admin_products do
-      post 'admin/admin_products/:id' => 'admin/admin_products#show'
-      resources :admin_arrivals, only:[:new, :create]
-    end
+    resources :admin_products
+    resources :admin_arrivals
 
     resources :admin_arrivals, only:[:index]
     resources :admin_orders, only:[:index, :show, :update]
-    resources :admin_charges, only:[:edit, :update]
+    resource :admin_charges, only:[:edit, :update]
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

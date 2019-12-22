@@ -3,13 +3,13 @@
 
 <h1>配送先住所編集</h1>
 
-<% form_for(@deliverie url:public_public_delivery_path) do |f|%>
-    <%= f.label :address_name %>
-  <%= f.text_field :address_name %>
-    <%= f.label :zip %>
-  <%= f.text_field :zip %>
-    <%= f.label :address %>
-  <%= f.text_area :address %>
+<%= form_for(@deliverie, url:public_public_delivery_path) do |f| %>
+  <%= f.label :address_name %>
+    <%= f.text_field :address_name %>
+  <%= f.label :zip %>
+    <%= f.text_field :zip %>
+  <%= f.label :address %>
+    <%= f.text_area :address %>
 
   <%= f.submit "更新",class:"btn btn-primary" %>
 <% end %>

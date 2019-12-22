@@ -18,12 +18,11 @@
       <p>発売日：<%= @product.release_date %></p>
       <p>価格：<%= @product.pre_tax_price %>円</p>
       <p>在庫数：<%= @stock %>枚</p>
-      <!-- (Arrival.where(product_id: @product.id).sum(:arrival_quantity)) -->
       <p>ステータス：
-        <% if (Arrival.where(product_id: @product.id).sum(:arrival_quantity)) > 0 %>
-          <p>販売中</p>
+        <% if @stock > 0 %>
+          販売中
         <% else %>
-          <p>在庫切れ</p>
+          在庫切れ
         <% end %>
       </p>
     </div>
@@ -33,7 +32,7 @@
     <div class="col-md-6">
       <div class="submit-button">
         <%= link_to "編集", edit_admin_admin_product_path(@product.id), class: "btn btn-lg btn-success" %>
-        <%= link_to "追加", new_admin_admin_product_admin_arrival_path(@product.id), class: "btn btn-lg btn-primary" %>
+        <%# <%= link_to "追加", new_admin_admin_product_admin_arrival_path(@product.id), class: "btn btn-lg btn-primary" %>
         <%= link_to "削除", admin_admin_product_path(@product.id), method: :delete, class: "btn btn-lg btn-danger", "data-confirm" => "本当に削除しますか？" %>
         <%= link_to "戻る", admin_admin_products_path, class: "btn btn-lg btn-default" %>
       </div>

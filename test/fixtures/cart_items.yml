@@ -2,10 +2,10 @@
 
 one:
   product_id: 1
-  end_user_id: 1
+  public_id: 1
   quantity: 1
 
 two:
   product_id: 1
-  end_user_id: 1
+  public_id: 1
   quantity: 1
