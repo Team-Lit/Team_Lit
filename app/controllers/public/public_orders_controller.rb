@@ -9,6 +9,7 @@ class Public::PublicOrdersController < ApplicationController
     if params[:id].present?
        @deliverie = Deliverie.find(params[:id])
     else
+      flash[:notice] = "配送先を選択してください"
       render template: "public/public_deliveries/show"
     end
     @charge = Charge.find(1)
@@ -37,6 +38,7 @@ class Public::PublicOrdersController < ApplicationController
     if params[:payment_method].present?
       @order = Order.new(payment_method: params[:payment_method])
     else
+      flash[:notice] = "支払い方法を選択してください"
       render :index
     end
   end
@@ -66,6 +68,7 @@ class Public::PublicOrdersController < ApplicationController
       @order_datail.order_id = @order.id
       @order_datail.product_id = item.product_id
       @order_datail.quantity = item.quantity
+      binding.pry
       @order_datail.pre_tax_price = item.product.pre_tax_price
       @order_datail.save
       item.destroy
@@ -78,7 +81,7 @@ class Public::PublicOrdersController < ApplicationController
   def show
     @order = Order.find(params[:id])
     @order_detail = OrderDetail.where(order_id: params[:id])
-    @all_price = @order.total_price * @order.tax_rate + @order.delivery_charge
+    @all_price = (@order.total_price * @order.tax_rate + @order.delivery_charge).round(0)
   end
 
 
