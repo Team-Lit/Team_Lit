@@ -18,11 +18,11 @@ class Public::PublicUsersController < ApplicationController
 
     @public = Public.find(params[:id])
     if @public.update(public_params)
-      @deliverie = Deliverie.where(public_id: @public.id).first
-      @deliverie.zip = @public.zip
-      @deliverie.address = @public.address
-      @deliverie.address_name = @public.end_user_last_name + @public.end_user_first_name
-      @deliverie.save
+      @delivery = Delivery.where(public_id: @public.id).first
+      @delivery.zip = @public.zip
+      @delivery.address = @public.address
+      @delivery.address_name = @public.end_user_last_name + @public.end_user_first_name
+      @delivery.save
       flash[:notice] = "Book was successfully updated."
       redirect_to public_public_user_path(@public)
     else
@@ -33,8 +33,8 @@ class Public::PublicUsersController < ApplicationController
 
 
   def destroy
-    public = Public.find(params[:id])
-    public.destroy
+    @public = Public.find(params[:id])
+    @public.destroy
     redirect_to new_public_registration_path
   end
 

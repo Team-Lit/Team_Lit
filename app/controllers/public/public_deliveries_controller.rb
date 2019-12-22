@@ -2,18 +2,18 @@ class Public::PublicDeliveriesController < ApplicationController
   
 
   def show
-    @deliveries = Deliverie.where(public_id: current_public.id)
-    @deliverie = Deliverie.new
+    @deliveries = Delivery.where(public_id: current_public.id)
+    @delivery = Delivery.new
     @order = Order.new
   end
 
   def edit
-    @deliverie = Deliverie.find(params[:id])
+    @delivery = Delivery.find(params[:id])
   end
 
   def update
-    @deliverie = Deliverie.find(params[:id])
-    if @deliverie.update(deliverie_params)
+    @delivery = Delivery.find(params[:id])
+    if @delivery.update(delivery_params)
       redirect_to public_public_user_public_deliveries_path(current_public)
       flash[:notice] = "Book was successfully updated."
     else
@@ -22,10 +22,10 @@ class Public::PublicDeliveriesController < ApplicationController
   end
 
   def create
-  	@deliveries = Deliverie.where(public_id: current_public.id)
-    @deliverie = Deliverie.new(deliverie_params)
-  	@deliverie.public_id = current_public.id
-  	if @deliverie.save
+  	@deliveries = Delivery.where(public_id: current_public.id)
+    @delivery = Delivery.new(delivery_params)
+  	@delivery.public_id = current_public.id
+  	if @delivery.save
       redirect_to public_public_user_public_deliveries_path(current_public)
       flash[:notice] = "Book was successfully Create."
   	else
@@ -34,15 +34,15 @@ class Public::PublicDeliveriesController < ApplicationController
   end
 
   def destroy
-    @deliverie = Deliverie.find(params[:id])
-  	@deliverie.destroy
+    @delivery = Delivery.find(params[:id])
+  	@delivery.destroy
   	redirect_to public_public_user_public_deliveries_path(current_public)
   end
 
   private
     
-    def deliverie_params
-      params.require(:deliverie).permit(:address,:address_name,:zip)
+    def delivery_params
+      params.require(:delivery).permit(:address,:address_name,:zip)
     end
 
 end

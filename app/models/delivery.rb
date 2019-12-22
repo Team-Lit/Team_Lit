@@ -1,4 +1,4 @@
-class Deliverie < ApplicationRecord
+class Delivery < ApplicationRecord
   belongs_to :public, optional: true
 
   # validates :zip, length: { is: 8 }

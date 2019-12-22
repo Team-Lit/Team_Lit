@@ -16,21 +16,21 @@
           <th></th>
         </tr>
       <tbody>
-          <% @deliveries.each do |deliverie| %>
+          <% @deliveries.each do |delivery| %>
             <tr>
               <td>
-                <%= radio_button_tag :id, deliverie.id %>
+                <%= radio_button_tag :id, delivery.id %>
               </td>
-              <td><%= deliverie.address_name %></td>
-              <td><%= deliverie.zip %></td>
-              <td><%= deliverie.address %></td>
+              <td><%= delivery.address_name %></td>
+              <td><%= delivery.zip %></td>
+              <td><%= delivery.address %></td>
               <td>
-                <%= link_to edit_public_public_delivery_path(deliverie) do%>
+                <%= link_to edit_public_public_delivery_path(delivery) do%>
                   <button type="button" class="btn btn-default" >編集
                 <% end %>
               </td>
               <td>
-                <%= link_to public_public_delivery_path(deliverie), method: :delete do %>
+                <%= link_to public_public_delivery_path(delivery), method: :delete do %>
                   <button type="button" class="btn btn-default" >削除
                 <% end %>
               </td>
@@ -42,7 +42,7 @@
 <% end %>
 
 
-<%= form_for(@deliverie, url:public_public_user_public_deliveries_path(public_id: current_public.id),html: {method: "post"}) do |f| %>
+<%= form_for(@delivery, url:public_public_user_public_deliveries_path(public_id: current_public.id),html: {method: "post"}) do |f| %>
       <%= f.label :address_name %>
     <%= f.text_field :address_name %>
       <%= f.label :zip %>
