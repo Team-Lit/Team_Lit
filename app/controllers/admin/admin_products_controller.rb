@@ -9,7 +9,7 @@ class Admin::AdminProductsController < ApplicationController
       artist = Product.joins(:artist).where("artist_name LIKE ?", "%#{params[:search]}%")
       song =  Product.joins(disks: :songs).where("song_title LIKE ?", "%#{params[:search]}%")
       product_name = Product.where("product_name LIKE ?", "%#{params[:search]}%")
-      merged_result = artist | product_name
+      merged_result = (artist | product_name)
       @products = (merged_result | song)
       @products = Kaminari.paginate_array(@products).page(params[:page]).per(PER)
     else
@@ -35,14 +35,22 @@ class Admin::AdminProductsController < ApplicationController
  
   def create
     @product = Product.new(product_params)
-    @product.save
-    redirect_to admin_admin_products_path
+    if @product.save
+      redirect_to admin_admin_products_path
+    else
+      flash.now[:product] = "商品の登録に失敗しました。全ての項目を入力してください。"
+      render "new"
+    end
   end
 
   def update
     @product = Product.find(params[:id])
-    @product.update(product_params)
-    redirect_to admin_admin_product_path(@product.id)
+    if @product.update(product_params)
+      redirect_to admin_admin_product_path(@product.id)
+    else
+      flash.now[:product] = "商品情報の更新に失敗しました。全ての項目を入力してください。"
+      render "edit"
+    end
   end
 
   def destroy

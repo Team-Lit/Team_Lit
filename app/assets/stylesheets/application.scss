@@ -55,11 +55,17 @@ ul {
 }
 
 a {
-  color:rgb(13, 233, 86);
+  color:rgb(13, 233, 130);
   text-decoration: none;
 }
 a:hover {
   color:rgb(201, 235, 8);
   text-decoration:none;
+}
+
+.flash-message {
+  color: red;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
