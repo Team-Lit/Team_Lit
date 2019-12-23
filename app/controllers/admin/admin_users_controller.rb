@@ -1,5 +1,5 @@
 class Admin::AdminUsersController < ApplicationController
-  before_action :authenticate_admin!
+  before_action :authenticate_admin! 
 
   PER = 10
   
