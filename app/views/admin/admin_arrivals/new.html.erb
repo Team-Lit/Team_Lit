@@ -3,6 +3,7 @@
     <div class="col-md-12">
       <div class="form-box">
         <h1 class="text-center">販売商品追加</h1>
+        <h4 class="flash-message text-center"><%= flash.now[:arrival] %></h4>
           <div class="line"></div>
           
           <%= form_for(@arrival, url: admin_admin_arrivals_path) do |f| %>

@@ -1,4 +1,5 @@
 <h1 class="text-center">アーティスト新規登録</h1>
+<h4 class="alert alert-danger text-center"><%= flash.now[:artist] %></h4>
 
 <%= form_for(@artist, url: admin_admin_artists_path) do |f| %>
 
@@ -7,8 +8,7 @@
   <%= f.text_field :artist_name %>
 </h2>
 <h2 class="text-center">
-  <%= f.submit "登録" %>
+  <%= f.submit "登録", class: "btn btn-lg btn-success" %>
   <%= link_to "戻る", new_admin_admin_product_path %>
 </h2>
-
 <% end %>

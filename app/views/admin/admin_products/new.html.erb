@@ -8,6 +8,12 @@
             <h1 class="text-center">新規入荷登録</h1>
           </div>
 
+          <% if flash[:notice] %>
+            <h4 class="alert alert-success text-center"><%= flash[:notice] %></h4>        
+          <% end %>
+          
+          <h4 class="flash-message text-center"><%= flash.now[:product] %></h4>
+
           <%# アーティスト選択 %>
           <div>
             <h3 class="text-center">
