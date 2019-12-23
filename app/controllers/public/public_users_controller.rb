@@ -16,7 +16,6 @@ class Public::PublicUsersController < ApplicationController
   end
 
   def update
-
     @public = Public.find(params[:id])
     if @public.update(public_params)
       @delivery = Delivery.where(public_id: @public.id).first

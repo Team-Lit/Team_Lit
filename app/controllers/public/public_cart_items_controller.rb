@@ -10,10 +10,28 @@ class Public::PublicCartItemsController < ApplicationController
   def create
     @cart_item = CartItem.new(cart_item_params)
     @product = Product.find(params[:public_product_id])
-    @cart_item.product_id = @product.id
-    @cart_item.public_id = current_public.id
-    @cart_item.save
-    redirect_to public_public_user_public_cart_items_path(current_public)
+    if @cart_item.quantity.nil?
+      @cart_item.product_id = @product.id
+      @stock = @product.arrivals.sum(:arrival_quantity) - @product.order_details.sum(:quantity)
+      flash[:notice] = "枚数を選択してください"
+      render template: "public/public_products/show"
+    else
+      @cart = CartItem.find_by(public_id: current_public.id,product_id: @product.id)
+      if @cart.nil?
+        @cart_item.product_id = @product.id
+        @cart_item.public_id = current_public.id
+        @cart_item.save
+        redirect_to public_public_user_public_cart_items_path(current_public)
+      else
+        @cart.quantity = @cart.quantity + @cart_item.quantity 
+        @cart.update(quantity: @cart.quantity )
+        redirect_to public_public_user_public_cart_items_path(current_public)
+      end
+      
+    end
+  end
+
+  def update
   end
 
 #カートアイテムを削除する
