@@ -48,7 +48,7 @@
       <h4 class="text-center">配送ステータス選択
         <%= form_for @order, url: admin_admin_order_path(@order.id) do |status| %>
           <%= status.select :delivery_status, ["未配送", "配送済み"], :include_blank => "選択してください" %>
-          <%= status.submit "保存" %>
+          <%= status.submit "保存", class: "btn btn-md btn-primary" %>
         <% end %>
       </h4>
     </div>
@@ -72,20 +72,22 @@
             </tr>
           <% end %>
       </table>
-        <h4 class="text-center">小計：
-          <%= @order.total_price %>
-        </h4>
-        <h4 class="text-center">送料：
-          <%= @order.delivery_charge %>
-        </h4>
-        <div class="line"></div>
-        <h4 class="text-center">総計：
-          <%= (@order.total_price * 1.1).round(0) + 500 %>
-        </h4>         
-    </div>
-  </div>
-  <h3 class="text-center">
-    <%= link_to "戻る", admin_admin_orders_path, class: "btn btn-lg btn-default" %>
-  </h3>
 
+            <h4 class="text-center">小計：
+              <%= @order.total_price %> 
+            </h4>
+            <h4 class="text-center">送料：
+              <%= @order.delivery_charge %>
+            </h4>
+            <div class="line"></div>
+              <h4 class="text-center">総計：
+                <%= (@order.total_price * 1.1).round(0) + 500 %>
+              </h4>         
+            </div>
+            
+    </div>
+    <h3 class="text-center">
+      <%= link_to "戻る", admin_admin_orders_path, class: "btn btn-lg btn-default" %>
+    </h3>
+  </div>
 </div>

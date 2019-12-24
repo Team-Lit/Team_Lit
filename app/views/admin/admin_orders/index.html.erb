@@ -25,8 +25,8 @@
           <tr>
             <td><%= order.public.end_user_last_name + " " + order.public.end_user_first_name %></td>
             <td><%= order.address_name %></td>
-            <td><%= order.created_at.strftime("%Y/%m/%d/") %></td>
-            <td><%= order.total_price.round(0) %>円</td>
+            <td><%= order.created_at.strftime("%Y/%m/%d") %></td>
+            <td><%= order.total_price.round(0) %>円</td> 
             <td><%= order.delivery_status %></td>
             <td><%= link_to "詳細", admin_admin_order_path(order.id), class: "btn btn-default" %></td>
           </tr>
