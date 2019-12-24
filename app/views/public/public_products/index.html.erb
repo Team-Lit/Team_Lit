@@ -1,36 +1,56 @@
 
-<%# <h2>新規商品</h2> %>
-  <%# <% @new_products.each do |new|%> 
-    <%# <%= new.jacket_image_id %>  
-    <%# <%= new.product_name %>  
-  <%# <% end %>  
+<div class="text-center">
+  <h1>新規商品</h1>
+    <div class="new-product">
+      <% @new_products.each do |new|%>
+          <div class="col-lg-2">
+            <div class="text-center">
+              <%= link_to public_public_product_path(new) do %>
+                <%= attachment_image_tag new, :jacket_image,fallback:"no_image.jpg",size:"150x150" %>
+              <% end %><br>
+              <%= new.artist.artist_name %><br>
+              <%= new.product_name %><br>
+              リリース:<%= simple_time(new.created_at) %>
+            </div>
+          </div>
+      <% end %>
+    </div>
+</div>
+
+ <%# <h2>人気TOP3</h2> 
+   <% @popular_products.each do |popular|%>
+     <%# <%= link_to public_public_product_path(popular) do %>
+        <%# <%= attachment_image_tag popular, :jacket_image,fallback:"no_image.jpg",size:"40x40" %>
+     <%# <% end %> 
+     <%# <%= popular.product_name %>
+     <%# <%= popular.artist.artist_name%>
+     <%# <%= popular.pre_tax_price %>
+   <%# <% end %>   
 
 
-<%# <h2>人気TOP3</h2> %>
-  <%# <% @popular_products.each do |popular|%>
-    <%# <%= popular.jacket_image_id %>
-    <%# <%= popular.product_name %> 
-    <%# <%= popular.artist_name%> 
-    <%# <%= popular.pre_tax_price %>  
-  <%# <% end %>  
-
-
-
-<table class="table table-striped">
-  <thead>
-    <tbody>
-        <% @products.each do |product| %>
-          <tr>
-            <th>
-              <%= link_to public_public_product_path(product) do %>
-                <%= attachment_image_tag product, :jacket_image,fallback:"no_image.jpg",size:"40x40" %>
-              <% end %>
-            </th>
-            <th><%= product.product_name %></th>
-            <th><%= product.artist.artist_name %></th>
-            <th><%= product.pre_tax_price %></th>
-          </tr>
-         <% end %>
-    </tbody>
-  </thead>
-</table>
+<div class="col-lg-12">
+  <table class="table table-striped">
+    <thead>
+        <tr>
+          <th>ジャケット画像</th>
+          <th>名前</th>
+          <th>アーティスト名</th>
+          <th>値段</th>
+        </tr>
+    <thead>
+      <tbody>
+          <% @products.each do |product| %>
+            <tr>
+              <th>
+                <%= link_to public_public_product_path(product) do %>
+                  <%= attachment_image_tag product, :jacket_image,fallback:"no_image.jpg",size:"40x40" %>
+                <% end %>
+              </th>
+              <th><%= product.product_name %></th>
+              <th><%= product.artist.artist_name %></th>
+              <th>￥ <%= product.pre_tax_price %></th>
+            </tr>
+          <% end %>
+      </tbody>
+  </table>
+</div>

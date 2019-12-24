@@ -7,39 +7,41 @@
 
   <div class="row">
     <div class="col-md-6">
-      <%= attachment_image_tag @product, :jacket_image,fallback:"no_image.jpg",size:"300x300" %>
+      <%= attachment_image_tag @product, :jacket_image,fallback:"no_image.jpg",size:"700x700" %>
     </div>
-    <div class="col-md-3">
+    <div class="col-md-4">
       <h1 class="text-center"><%= @product.product_name %></h1>
-      <P>アーティスト名：<%= @product.artist.artist_name %></p>
-      <p>レーベル名：<%= @product.label.label_name %></p>
-      <p>ジャンル：<%= @product.genre.genre_name %></p>
-      <p>発売日：<%= @product.release_date %></p>
-      <p>価格：<%= @product.pre_tax_price %>円</p>
-      <p>在庫数：<%= @stock %>枚</p>
-      <p><%= @product.stock_status %></p>
+      <h2>アーティスト名：<%= @product.artist.artist_name %></h2>
+      <h2>レーベル名：<%= @product.label.label_name %></h2>
+      <h2>ジャンル：<%= @product.genre.genre_name %></h2>
+      <h2>発売日：<%= @product.release_date %></h2>
+      <h2>価格：<%= @product.pre_tax_price %>円</h2>
+      <h2>在庫数：<%= @stock %>枚</h2>
+      <h3>ステータス：
+        <% if @stock > 0 %>
+          販売中
+        <% else %>
+          在庫切れ
+        <% end %>
+      </h3>
+      <%= form_for(@cart_item, url: public_public_product_public_cart_items_path(@product), html: {method: "post"}) do |f| %>
+        <%= f.label :"個数" %>
+        <%= f.number_field :quantity,min:1,placeholder: "個" %>
+        <%= f.submit "カートに入れる", class: "btn btn-lg btn-primary" %>
+      <% end %>
     </div>
-    <div class="col-md-3">
+    <div class="col-md-2">
       <h3>曲名</h3>
         <% @product.disks.each do |disk| %>
           <div class="row">
-            <p><%= disk.disk_numbre %>枚目</p>
+            <h3><%= disk.disk_numbre %>枚目</h3>
             <% disk.songs.each do |song| %>
-              <p>・<%= song.song_title %></p>
+              <h4>・<%= song.song_title %></h4>
             <% end %>
           </div>
         <% end %>
     </div>
   </div>
-
-
-<div class="col-md-6"">
-  <%= form_for(@cart_item, url: public_public_product_public_cart_items_path(@product), html: {method: "post"}) do |f| %>
-    <%= f.label :"個数" %>
-    <%= f.number_field :quantity,min:1,placeholder: "個" %>
-    <%= f.submit "カートに入れる", class: "btn btn-lg btn-primary" %>
-  <% end %>
-</div>
 
   
 

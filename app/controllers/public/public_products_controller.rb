@@ -10,10 +10,11 @@ class Public::PublicProductsController < ApplicationController
       merged_result = artist | product_name
       @products = (merged_result | song)
       @products = Kaminari.paginate_array(@products).page(params[:page]).per(PER)
+      @new_products = Product.all.order(created_at: "DESC").limit(10)
     else
       @products = Product.page(params[:page]).per(PER).reverse_order
-    # @new_products = Product.where(created_at: )
-    # @popular_products = Product.find(3)
+      @new_products = Product.all.order(created_at: "DESC").limit(10)
+      # @popular_products = Product.where(id: OrderDetail.all.order(quantity: "DESC").limit(3))
     end
   end
 
@@ -24,7 +25,6 @@ class Public::PublicProductsController < ApplicationController
     @stock = @product.arrivals.sum(:arrival_quantity) - @product.order_details.sum(:quantity)
   end
 
-  
   private
 
   def product_params
