@@ -15,5 +15,10 @@ class Order < ApplicationRecord
 
   acts_as_paranoid
 
+  array = []
+  Order.all.each do |order|
+    array << order.total_price
+  end
+  array.sum
   
 end

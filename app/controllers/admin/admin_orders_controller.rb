@@ -2,7 +2,7 @@ class Admin::AdminOrdersController < ApplicationController
   before_action :authenticate_admin!
 
 
-  PER = 10
+  PER = 10 
   
 
   def index
@@ -24,6 +24,7 @@ class Admin::AdminOrdersController < ApplicationController
     # 削除されたレコードの情報も見れる
     @order = Order.with_deleted.find(params[:id])
     @order_detail = OrderDetail.where(order_id: params[:id])
+    # @sub_total = OrderDetail.where(order_id: params[:id]).sum(:pre_tax_price)
   end
 
   def update
