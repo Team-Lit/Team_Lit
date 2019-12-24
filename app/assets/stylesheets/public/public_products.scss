@@ -2,12 +2,13 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.col-lg-2{
+.new{
   margin: 10px;
   padding: 10px;
-  height: 220px;
+  height: 240px;
   width: 120px;
   background-color: rgb(255, 181, 61);
+  border:2px solid rgb(0, 0, 0);
 }
 
 .new-product{

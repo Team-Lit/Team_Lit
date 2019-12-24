@@ -59,7 +59,7 @@
 		<tbody>
 		    <% @order.each do |order| %> 
           <tr>
-            <td><%= order.created_at %></td>
+            <td><%= simple_time(order.created_at) %></td>
             <td><%= order.address %></td>
             <td><%= order.total_price %></td>
             <td><%= order.delivery_status %> </td>

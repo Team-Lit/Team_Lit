@@ -6,7 +6,7 @@ class Admin::AdminOrdersController < ApplicationController
   
 
   def index
-    @orders = Order.page(params[:page]).per(PER)
+    @orders = Order.with_deleted.page(params[:page]).per(PER)
     unless params[:search].blank?
       u_first = Order.joins(:public).where("end_user_first_name LIKE ?", "%#{params[:search]}%")
       u_last = Order.joins(:public).where("end_user_last_name LIKE ?", "%#{params[:search]}%")
