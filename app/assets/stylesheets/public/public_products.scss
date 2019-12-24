@@ -1,3 +1,17 @@
 // Place all the styles related to the public/PublicProducts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.col-lg-2{
+  margin: 10px;
+  padding: 10px;
+  height: 220px;
+  width: 120px;
+  background-color: rgb(255, 181, 61);
+}
+
+.new-product{
+  padding-left: 100px;
+  padding-right: 100px;
+  background-position: center;
+}
