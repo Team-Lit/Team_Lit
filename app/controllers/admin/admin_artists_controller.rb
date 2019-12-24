@@ -2,7 +2,7 @@ class Admin::AdminArtistsController < ApplicationController
   
 
   def new
-    @artist = Artist.new
+    @artist = Artist.new 
     @artists = Artist.all
   end
 

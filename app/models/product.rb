@@ -26,9 +26,4 @@ class Product < ApplicationRecord
 
   acts_as_paranoid
 
-  # def arrival
-  #   (Arrival.where(product_id: id).sum(:arrival_quantity)) - (OrderDetail.where(product_id: id).sum(:quantity))
-  # end
-
-
 end

@@ -13,12 +13,12 @@
               <%=  f.collection_select :product_id, Product.all, :id, :product_name, {prompt: "商品を選択"}, class: "mySelect2 form-control" %>
             </h3>
 
-          <%# 入荷日 %>
+            <%# 入荷日 %>
             <h3 class="text-center">入荷予定日
               <%= f.date_field :arrival_date, value: Time.now.strftime("%Y/%m/%d") %>
             </h3>
 
-          <%# 入荷数 %>
+            <%# 入荷数 %>
             <h3 class="text-center">入荷数
               <%= f.number_field :arrival_quantity, min: "1", value: "1" %>
             </h3>
