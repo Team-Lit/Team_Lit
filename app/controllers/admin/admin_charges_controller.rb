@@ -9,10 +9,10 @@ class Admin::AdminChargesController < ApplicationController
   def update
     @charge = Charge.find(1)
     if @charge.update(charge_params)
-      redirect_to admin_admin_products_path
-      flash[:notice] = "updated."
+      redirect_to admin_admin_products_path, notice: "店舗設定を変更しました。"
     else
-      render action: :edit
+      flash.now[:charge] = "店舗設定の更新に失敗しました。全ての項目を入力してください。"
+      render "edit"
     end
   end
 

@@ -1,7 +1,7 @@
 class Admin::AdminProductsController < ApplicationController
   before_action :authenticate_admin!
 
-  PER = 10
+  PER = 10 
 
 
   def index
@@ -36,7 +36,7 @@ class Admin::AdminProductsController < ApplicationController
   def create
     @product = Product.new(product_params)
     if @product.save
-      redirect_to admin_admin_products_path
+      redirect_to admin_admin_products_path, notice: '商品の登録に成功しました。'
     else
       flash.now[:product] = "商品の登録に失敗しました。全ての項目を入力してください。"
       render "new"
@@ -45,8 +45,8 @@ class Admin::AdminProductsController < ApplicationController
 
   def update
     @product = Product.find(params[:id])
-    if @product.update(product_params)
-      redirect_to admin_admin_product_path(@product.id)
+    if @product.update(product_params) 
+      redirect_to admin_admin_product_path(@product.id), notice: "商品情報を更新しました。"
     else
       flash.now[:product] = "商品情報の更新に失敗しました。全ての項目を入力してください。"
       render "edit"
@@ -56,7 +56,7 @@ class Admin::AdminProductsController < ApplicationController
   def destroy
     product = Product.find(params[:id])
     product.destroy
-    redirect_to admin_admin_products_path
+    redirect_to admin_admin_products_path, notice: "商品を削除しました。"
   end
 
   private

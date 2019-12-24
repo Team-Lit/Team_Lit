@@ -7,7 +7,6 @@ class Product < ApplicationRecord
 
   has_many :arrivals
   has_many :order_details, dependent: :destroy
-  has_many :orders, dependent: :destroy
   has_many :cart_items, dependent: :destroy
 
   belongs_to :artist
@@ -26,10 +25,5 @@ class Product < ApplicationRecord
   attachment :jacket_image
 
   acts_as_paranoid
-
-  # def arrival
-  #   (Arrival.where(product_id: id).sum(:arrival_quantity)) - (OrderDetail.where(product_id: id).sum(:quantity))
-  # end
-
 
 end
