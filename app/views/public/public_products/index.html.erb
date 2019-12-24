@@ -3,7 +3,7 @@
   <h1>新規商品</h1>
     <div class="new-product">
       <% @new_products.each do |new|%>
-          <div class="col-lg-2">
+          <div class="new">
             <div class="text-center">
               <%= link_to public_public_product_path(new) do %>
                 <%= attachment_image_tag new, :jacket_image,fallback:"no_image.jpg",size:"150x150" %>

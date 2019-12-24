@@ -20,7 +20,7 @@
           <th>配送ステータス</th>
           <th></th>
         </tr>
-
+<% binding.pry %>
         <% @orders.each do |order| %>
           <tr>
             <td><%= order.public.end_user_last_name + " " + order.public.end_user_first_name %></td>

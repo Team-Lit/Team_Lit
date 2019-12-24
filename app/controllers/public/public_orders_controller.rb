@@ -17,7 +17,8 @@ class Public::PublicOrdersController < ApplicationController
     @total_price = 0
     @cart_items.each do |cart|
       @product = Product.find(cart.product_id)
-      @total_price += @product.pre_tax_price * cart.quantity
+      @price = @product.pre_tax_price * cart.quantity
+      @total_price += @price
     end
     @payment = (@total_price * @charge.tax_rate + @charge.charge).round(0)
   end
@@ -50,9 +51,11 @@ class Public::PublicOrdersController < ApplicationController
     @order = Order.new(order_params)
     @cart_items = CartItem.where(public_id: current_public.id)
     @charge = Charge.find(1)
+    @total_price = 0
     @cart_items.each do |cart|
       @product = Product.find(cart.product_id)
-      @total_price = @product.pre_tax_price * cart.quantity
+      @price = @product.pre_tax_price * cart.quantity
+      @total_price = @total_price + @price
     end
     @delivery = Delivery.find(params[:id])
     @order.address = @delivery.address
