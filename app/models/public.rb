@@ -6,8 +6,9 @@ class Public < ApplicationRecord
          
   has_many :deliveries
   has_many :cart_items, dependent: :destroy
-
+  has_many :favorites, dependent: :destroy
   has_many :orders, dependent: :destroy
+
 
 
   validates :end_user_last_name, presence: true

@@ -2,6 +2,10 @@ class Public::PublicProductsController < ApplicationController
   
   PER = 10
 
+  def top
+    # @favorite = Favorite.all.where()
+  end
+
   def index
     @new_products = Product.all.order(created_at: "DESC").limit(5) 
     unless params[:search].blank?
@@ -13,8 +17,10 @@ class Public::PublicProductsController < ApplicationController
       @products = Kaminari.paginate_array(@products).page(params[:page]).per(PER)
     else
       @products = Product.page(params[:page]).per(PER).reverse_order
-      # @new_products = Product.all.order(created_at: "DESC").limit(10) 
-      # @popular_products = Product.where(id: OrderDetail.all.order(quantity: "DESC").limit(3))
+      @new_products = Product.all.order(created_at: "DESC").limit(10)
+
+      
+
     end
   end
 
