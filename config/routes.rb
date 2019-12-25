@@ -25,6 +25,7 @@ Rails.application.routes.draw do
     end
     
     resources :public_products, only:[:index, :show] do
+      resource :public_favorites, only: [:create, :destroy]
       resource :public_cart_items, only:[:create]
     end
     resources :public_cart_items, only:[ :update, :destroy]

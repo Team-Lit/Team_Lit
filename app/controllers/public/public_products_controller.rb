@@ -2,6 +2,10 @@ class Public::PublicProductsController < ApplicationController
   
   PER = 10
 
+  def top
+    # @favorite = Favorite.all.where()
+  end
+
   def index
     unless params[:search].blank?
       artist = Product.joins(:artist).where("artist_name LIKE ?", "%#{params[:search]}%")
@@ -14,7 +18,6 @@ class Public::PublicProductsController < ApplicationController
     else
       @products = Product.page(params[:page]).per(PER).reverse_order
       @new_products = Product.all.order(created_at: "DESC").limit(10)
-      # @popular_products = Product.where(id: OrderDetail.all.order(quantity: "DESC").limit(3))
     end
   end
 
