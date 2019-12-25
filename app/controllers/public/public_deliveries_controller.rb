@@ -20,10 +20,10 @@ class Public::PublicDeliveriesController < ApplicationController
   def update
     @delivery = Delivery.find(params[:id])
     if @delivery.update(delivery_params)
-      redirect_to public_public_user_public_deliveries_path(current_public)
-      flash[:notice] = "Book was successfully updated."
+      redirect_to public_public_user_public_deliveries_path(current_public), notice: "宛先を更新しました。"
     else
-      render action: :edit
+      flash.now[:delivery] = "宛先の更新に失敗しました。全ての項目を入力してください。"
+      render "edit"
     end
   end
 
@@ -32,17 +32,17 @@ class Public::PublicDeliveriesController < ApplicationController
     @delivery = Delivery.new(delivery_params)
   	@delivery.public_id = current_public.id
   	if @delivery.save
-      redirect_to public_public_user_public_deliveries_path(current_public)
-      flash[:notice] = "Book was successfully Create."
-  	else
-  	  render action: :show
+      redirect_to public_public_user_public_deliveries_path(current_public), notice: "宛先を追加しました。"
+    else
+      flash.now[:delivery] = "宛先の追加に失敗しました。全ての項目を入力してください。"
+  	  render "show"
   	end 
   end
 
   def destroy
     @delivery = Delivery.find(params[:id])
   	@delivery.destroy
-  	redirect_to public_public_user_public_deliveries_path(current_public)
+  	redirect_to public_public_user_public_deliveries_path(current_public), notice: "宛先を削除しました。"
   end
 
   private

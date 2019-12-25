@@ -1,70 +1,97 @@
-<div class="text-center">
-  <h2>この御注文で確定しますか？<br>一度、決定しますと注文が取り消せないです。</h2>
-
- <div class="line"></div>
-
-  <%= hidden_field_tag :id, @delivery.id %>
-    <h3>宛先：<%= @delivery.address_name %></h3>
-    <h3>住所：<%= @delivery.address %></h3>
-    <h3>郵便番号：<%= @delivery.zip %></h3>
-
-
+<div class="contaiener">
+  <div class="row">
+    <div class="col-md-12">
+      <h2 class="comm text-center">
+        この御注文で確定しますか？<br>
+        一度、決定しますと注文が取り消せないです。</h2>
+      </h2>
+    </div>
+  </div>
 
   <div class="line"></div>
 
-  <h2>お支払い方法：
-      <% if @order.payment_method == 0 %>
-        <%= "代引き" %>
-      <% elsif @order.payment_method == 1 %>
-        <%= "銀行振込" %>
-      <% else %>
-        <%= "クレジットカード" %>
-      <% end %>
-  </h2>
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <%= hidden_field_tag :id, @delivery.id %>
+      <h3>宛名：<%= @delivery.address_name %></h3>
+      <h3>住所：<%= @delivery.address %></h3>
+      <h3>郵便番号： 〒<%= @delivery.zip %></h3>
+    </div>
+  </div>
+
+  <div class="line"></div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <h2 class="text-center"><mark class="bg-info">お支払い方法</mark></h2>
+    </div>
+
+    <div class="col-md-6">
+      <h2 class="text-left">
+        <% if @order.payment_method == 0 %>
+          <%= "代引き" %>
+        <% elsif @order.payment_method == 1 %>
+          <%= "銀行振込" %>
+        <% else %>
+          <%= "クレジットカード" %>
+        <% end %>
+      </h2>
+    </div>
+  </div>
+
   <div class="line"></div>
   
-  <h2>注文内容</h2>
-</div>
+  <div class="row">
+    <div class="col-md-6">
+      <h2 class="text-center"><mark class="bg-info">注文内容</mark></h2>
+    </div>
+
+    <div class="col-md-6"></div>
+  </div>
+
+  <div class="line"></div>
 
 
   <table class="table table-striped">
-      <thead>
+    <thead>
+      <tr>
+        <th></th>
+        <th>商品名</th>
+        <th>単価</th>
+        <th>個数</th>
+         <th>価格</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @cart_items.each do |cart| %>
         <tr>
-          <th>ジャケット画像</th>
-          <th>商品名</th>
-          <th>本体価格</th>
-          <th>個数</th>
-          <th>金額</th>
+          <td><%= attachment_image_tag cart.product,:jacket_image,fallback:"no_image.jpg",size:"40x40" %></td>
+          <td><%= cart.product.product_name %></td>
+          <td>¥ <%= cart.product.pre_tax_price %></td>
+          <td><%= cart.quantity %>個</td>
+          <td>¥ <%= cart.product.pre_tax_price * cart.quantity %></td>
         </tr>
-      </thead>
-      <tbody>
-          <% @cart_items.each do |cart| %>
-            <tr>
-              <td><%= attachment_image_tag cart.product,:jacket_image,fallback:"no_image.jpg",size:"40x40" %></td>
-              <td><%= cart.product.product_name %></td>
-              <td><%= cart.product.pre_tax_price %></td>
-              <td><%= cart.quantity %></td>
-              <td><%= cart.product.pre_tax_price * cart.quantity %></td>
-            </tr>
-          <% end %>
-      </tbody>
+      <% end %>
+    </tbody>
   </table>
 
   <div class="line"></div>
 
-<div class="text-center">
-  <h2>料金</h2>
-  <h3>商品の小計：<%= @total_price %></h3>
-  <h3>消費税額：<%= @payment - @total_price - @charge.charge %></h3>
-  <h3>送料：<%= @charge.charge %></h3>
-  <h3>ご請求額：<%= @payment %></h3>
+  <div class="text-center">
+    <h2><mark class="bg-info">料金</mark></h2>
+    <h3>商品の小計： ¥ <%= @total_price %></h3>
+    <h3>消費税額： ¥ <%= @payment - @total_price - @charge.charge %></h3>
+    <h3>送料： ¥ <%= @charge.charge %></h3>
+    <h3>ご請求額： ¥ <%= @payment %></h3>
+  </div>
 
 
-
+  
   <%= form_for(@order, url:public_public_user_public_orders_path(current_public), method: :post ) do |f| %>
+  <div class="text-center">
     <%= f.hidden_field :payment_method, :value => @order.payment_method %>
-    <%= hidden_field_tag :id, @delivery.id %>
-    
-      <%= f.submit "購入",class:"btn btn-primary" %>
+    <%= hidden_field_tag :id, @delivery.id %>    
+    <%= f.submit "購入",class:"btn btn-lg btn-primary" %>
+  </div>
   <% end %>
 </div>
