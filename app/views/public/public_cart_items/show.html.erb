@@ -23,7 +23,7 @@
             <td><%= cart.quantity %></td>
             <td>
               <%= link_to public_public_cart_item_path(cart),method: :delete do %>
-                <button type="button" class="btn btn-success">削除</button>
+                <button type="button" class="btn btn-danger">削除</button>
               <% end %>
             </td>
           </tr>
@@ -31,7 +31,12 @@
 		</tbody>
 </table>
 
-
+<div class="row">
+<div class="col-md-12">
+<div class="text-center">
 <%= link_to public_public_user_public_deliveries_path(current_public) do %>
   <button type="button" class="btn btn-success">購入</button>
+  </div>
+  </div>
+  </div>
 <% end %>

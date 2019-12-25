@@ -1,25 +1,43 @@
 <div class="row">
   <div class="col-md-12">
-    <h1 class=text-center>退会手続き</h1>
+    <h1 class="text-center">退会手続き</h1><br>
+    <h4 class="text-center">本当に退会してもよろしいでしょうか？<br>(アカウントが削除されます)</h4><br>
 
 
     <%= form_for( @public, url: public_registration_path, method: :delete) do |f| %>
-    <div class="field">
-      <div class="text-center">
-        <%= f.label :email %><br />
-        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <div class="row">
+      <div class="col-md-5">
+        <div class="field">
+          <div class="text-right">
+            <%= f.label :メールアドレス %>
+          </div>
+        </div><br><br>
+
+        <div class="field">
+          <div class="text-right">
+            <%= f.label :パスワード %>
+          </div>
+        </div>
       </div>
-    </div>
 
-    <div class="field">
-     <div class="text-center">
-      <%= f.label :password %><br />
-      <%= f.password_field :password, autocomplete: "current-password" %>
-    </div></div>
+      <div class="col-md-7">
+        <div class="field">
+          <div class="text-left">
+           <%= f.email_field :email, autofocus: true, autocomplete: "email",size:"45x1" %>
+         </div>
+       </div><br><br>
 
-    <div class="text-center">
-      <div class="actions">
-        <%= f.submit "退会確定" %>
+       <div class="field">
+         <div class="text-left">
+          <%= f.password_field :password, autocomplete: "current-password",size:"45x1" %>
+        </div>
+      </div><br><br>
+      </div>
+
+      <div class="text-center">
+        <div class="actions">
+          <%= f.submit "退会確定", class: "btn btn-lg btn-danger" %>
+        </div>
       </div>
     </div>
   </div>
