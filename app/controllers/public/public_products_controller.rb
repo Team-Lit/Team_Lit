@@ -1,9 +1,11 @@
 class Public::PublicProductsController < ApplicationController
-  
+
   PER = 10
 
   def top
-    # @favorite = Favorite.all.where()
+    product_favorite_count = Product.joins(:favorites).group(:product_id).count
+    product_favorited_ids = Hash[product_favorite_count.sort_by{ |_, v| -v }].keys
+    @product_ranking = Product.where(id: product_favorited_ids).limit(5)
   end
 
   def index
@@ -18,9 +20,6 @@ class Public::PublicProductsController < ApplicationController
     else
       @products = Product.page(params[:page]).per(PER).reverse_order
       @new_products = Product.all.order(created_at: "DESC").limit(10)
-
-      
-
     end
   end
 
