@@ -21,7 +21,7 @@ class Public::PublicCartItemsController < ApplicationController
         @cart_item.product_id = @product.id
         @cart_item.public_id = current_public.id
         @cart_item.save
-        redirect_to public_public_user_public_cart_items_path(current_public)
+        redirect_to public_public_user_public_cart_items_path(current_public), notice: "商品を追加しました。"
       else
         @cart.quantity = @cart.quantity + @cart_item.quantity 
         @cart.update(quantity: @cart.quantity )
@@ -38,7 +38,7 @@ class Public::PublicCartItemsController < ApplicationController
   def destroy
     @cart_item = CartItem.find(params[:id])
     @cart_item.destroy
-    redirect_to  public_public_user_public_cart_items_path(current_public)
+    redirect_to  public_public_user_public_cart_items_path(current_public), notice: "商品を削除しました。"
   end
   
   private

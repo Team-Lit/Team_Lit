@@ -26,9 +26,9 @@
 }
 
 
-.body{
-    margin: 50px auto;
-}
+// .body{
+//     margin: 50px auto;
+// }
 
 //clearfix
 .clearfix::after {
@@ -60,12 +60,12 @@ ul {
 }
 
 a {
-  color:rgb(13, 233, 130);
+  color:rgb(11, 12, 12);
   text-decoration: none;
 }
 a:hover {
-  color:rgb(201, 235, 8);
-  text-decoration:none;
+  color:rgba(233, 160, 24, 0.829);
+  text-decoration: none;
 }
 
 .flash-message {

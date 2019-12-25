@@ -5,7 +5,7 @@ class Public::PublicUsersController < ApplicationController
   def confirm
     @public = Public.find(current_public.id)
   end
-
+ 
   def show
     @public = Public.find(params[:id])
     @order = Order.where(public_id: current_public)
@@ -23,9 +23,9 @@ class Public::PublicUsersController < ApplicationController
       @delivery.address = @public.address
       @delivery.address_name = @public.end_user_last_name + @public.end_user_first_name
       @delivery.save
-      flash[:notice] = "Book was successfully updated."
-      redirect_to public_public_user_path(@public)
+      redirect_to public_public_user_path(@public), notice: "プロフィールを更新しました。"
     else
+      flash.now[:public] = "ユーザー情報の更新に失敗しました。全ての項目を埋めてください。"
       render action: :edit
     end
   end
@@ -35,7 +35,7 @@ class Public::PublicUsersController < ApplicationController
   def destroy
     @public = Public.find(params[:id])
     @public.destroy
-    redirect_to new_public_registration_path
+    redirect_to new_public_registration_path, notice: "退会しました。ご利用ありがとうございました。"
   end
 
   private

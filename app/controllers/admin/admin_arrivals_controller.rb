@@ -15,7 +15,7 @@ class Admin::AdminArrivalsController < ApplicationController
   end
 
   def new
-    @arrival = Arrival.new
+    @arrival = Arrival.new 
   end
 
   def create
