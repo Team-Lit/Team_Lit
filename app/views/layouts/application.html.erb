@@ -52,8 +52,8 @@
             <ul class="nav navbar-nav navbar-right">
               <li class="item-search-box text-left">
                 <%= form_tag(public_public_products_path,method: :get) do %>
-                  <%= text_field_tag :search, "", placeholder: "アーティストや商品名で検索" %>
-                  <%= button_tag '<i class="fa fa-search"></i>'.html_safe, type: 'submit', :name => nil %>
+                  <%= text_field_tag :search, "", size: "70x10", placeholder: "アーティストや商品名で検索" %>
+                  <%= button_tag '<i class="fa fa-search"></i>'.html_safe, size: "20x20", type: 'submit', :name => nil %>
                 <% end %>
               </li>
               <li>

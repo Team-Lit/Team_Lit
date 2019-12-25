@@ -6,96 +6,126 @@
   </div>
 
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-    <%= render "devise/shared/error_messages", resource: resource %>
-    <div class ="field">
-   
-  <div class="row">
-    <div class="col-md-6">
-      <div class ="field">
-        <h3 class="text-left">
-          <%= f.label :"名前(姓)" %>
-          <%= f.text_field :end_user_last_name, autofocus: true %>
-        </h3>
-      </div>
+  <%= render "devise/shared/error_messages", resource: resource %>
+  <div class ="field">
 
-      <div class ="field">
-        <h3 class="text-left">
-          <%= f.label :"名前(セイ)" %>
-          <%= f.text_field :end_user_last_kana, autofocus: true %>
-        </h3>
-      </div>
-    </div> 
+    <div class="row">
+    <div class="col-md-1"></div>
+      <div class="col-md-5">
+        <div class ="field">
+          <h3 class="text-left">
+            <%= f.label :"名前(姓)" %>　
+            <%= f.text_field :end_user_last_name, autofocus: true %>
+          </h3>
+        </div>
 
-    <div class="col-md-6">
-      <div class ="field">
-        <h3 class="text-center">
-          <%= f.label :"名前(名)" %>
-          <%= f.text_field :end_user_first_name, autofocus: true %>
-        </h3>
-      </div>
+        <div class ="field">
+          <h3 class="text-left">
+            <%= f.label :"名前(セイ)" %>
+            <%= f.text_field :end_user_last_kana, autofocus: true %>
+          </h3>
+        </div>
+      </div> 
 
-      <div class ="field">
-        <h3 class="text-center">
-          <%= f.label :"名前(カナ)" %>
-          <%= f.text_field :end_user_first_kana, autofocus: true %>
-        </h3>
+      <div class="col-md-6">
+        <div class ="field">
+          <h3 class="text-left">
+            <%= f.label :"(名)" %>　
+            <%= f.text_field :end_user_first_name, autofocus: true %>
+          </h3>
+        </div>
+
+        <div class ="field">
+          <h3 class="text-left">
+            <%= f.label :"(カナ)" %>
+            <%= f.text_field :end_user_first_kana, autofocus: true %>
+          </h3>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="row">
-    <div class="col-md-12">
-      <div class ="field">
-        <h3 class="text-left">
-          <%= f.label :"郵便番号" %>
-          <%= f.text_field :zip, autofocus: true %>
-        </h3>
+    <div class="row">
+    <div class="col-md-1"></div>
+      <div class="col-md-3">
+        <div class="field">
+        　<h3 class=text-left>
+            <%= f.label :"郵便番号" %>
+          </h3>
+        </div>
+        <br>
+        <div class="field">
+          <h3 class=text-left>
+            <%= f.label :"住所" %>
+          </h3>
+        </div>
+        <br><br><br>
+        <div class="field">
+          <h3 class=text-left>
+            <%= f.label :"電話番号" %>
+          </h3>
+        </div><br>
+        <div class="field">
+          <h3 class=text-left>
+            <%= f.label :"メールアドレス" %>
+          </h3>
+        </div>
+        <div class="field">
+        　<h3 class=text-left>
+           <%= f.label :"パスワード" %>
+           <% if @minimum_password_length %>
+           <em>(<%= @minimum_password_length %>文字以上)</em>
+           <% end %>
+          </h3>
+        </div>
+        <div class="field">
+ 　      　<h3 class=text-left>
+            <%= f.label :"パスワード(確認)" %>
+          </h3>
+        </div>
       </div>
 
-      <div class ="field">
-        <h3 class="text-left">
-          <%= f.label :"住所" %>
-          <%= f.text_area :address, autofocus: true %>
-        </h3>
-      </div>
-
-      <div class ="field">
-        <h3 class="text-left">
-          <%= f.label :"電話番号" %>
-          <%= f.text_field :end_user_phone, autofocus: true %>
-        </h3>
-      </div>
-
+    <div class="col-md-6">
+    <br>
       <div class="field">
         <h3 class="text-left">
-          <%= f.label :"メールアドレス" %>
-          <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+          <%= f.text_field :zip, autofocus: true, size:"40x1" %>
         </h3>
-      </div>
-
+      </div><br>
+      <div class ="field">
+        <h3 class="text-left">
+          <%= f.text_area :address, autofocus: true, size:"40x3" %>
+        </h3>
+      </div><br>
+      <div class ="field">
+        <h3 class="text-left">
+          <%= f.text_field :end_user_phone, autofocus: true, size:"40x1" %>
+        </h3>
+      </div><br>
       <div class="field">
         <h3 class="text-left">
-          <%= f.label :"パスワード" %>
-          <% if @minimum_password_length %>
-          <em>(<%= @minimum_password_length %>文字以上)</em>
-          <% end %>
-          <%= f.password_field :password, autocomplete: "new-password" %>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", size:"40x1" %>
         </h3>
-      </div>
-
+      </div><br>
       <div class="field">
         <h3 class="text-left">
-          <%= f.label :"パスワード(確認)" %>
-          <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+          <%= f.password_field :password, autocomplete: "new-password", size:"40x1" %>
         </h3>
+      </div><br>
+      <div class="field">
+        <h3 class="text-left">
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", size:"40x1" %>
+        </h3>
+      </div><br>
       </div>
+      </div>
+      <div class="col-md-2"></div>
 
       <div class="actions">
         <h3 class="text-center">
           <%= f.submit "登録", class: "btn btn-lg btn-primary" %>
         </h3>
+        </div>
       </div>
-    </div>
-  <% end %>
+    <% end %>
   </div>
 </div>
