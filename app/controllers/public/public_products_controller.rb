@@ -3,6 +3,7 @@ class Public::PublicProductsController < ApplicationController
   PER = 10
 
   def index
+    @new_products = Product.all.order(created_at: "DESC").limit(5) 
     unless params[:search].blank?
       artist = Product.joins(:artist).where("artist_name LIKE ?", "%#{params[:search]}%")
       song =  Product.joins(disks: :songs).where("song_title LIKE ?", "%#{params[:search]}%")
@@ -10,10 +11,9 @@ class Public::PublicProductsController < ApplicationController
       merged_result = artist | product_name
       @products = (merged_result | song)
       @products = Kaminari.paginate_array(@products).page(params[:page]).per(PER)
-      @new_products = Product.all.order(created_at: "DESC").limit(10)
     else
       @products = Product.page(params[:page]).per(PER).reverse_order
-      @new_products = Product.all.order(created_at: "DESC").limit(10)
+      # @new_products = Product.all.order(created_at: "DESC").limit(10) 
       # @popular_products = Product.where(id: OrderDetail.all.order(quantity: "DESC").limit(3))
     end
   end
