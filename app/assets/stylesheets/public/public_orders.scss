@@ -1,6 +1,28 @@
 // Place all the styles related to the public/PublicOrders controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
 .ch {
     margin-bottom: 50px;
+}
+
+.history {
+  margin-bottom: 50px;
+}
+
+.ord {
+  color: black;
+  background-color: lightsalmon;
+  border: solid black;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  margin-bottom: 30px;
+}
+
+.charge {
+  margin-top: 20px;
+}
+
+.comm {
+  margin-bottom: 30px;
 }

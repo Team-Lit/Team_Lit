@@ -11,9 +11,29 @@
   width: 180px;
   float: left;
   background-color: rgb(255, 181, 61);
-  border:2px solid rgb(0, 0, 0);
+  border:1px solid rgb(0, 0, 0);
 }
 
 .col-md-2 {
   margin-top: 40px;
+}
+
+li {
+  list-style: none;
+}
+
+.detail {
+  padding-top: 10px;
+}
+.pro {
+  color: black;
+  background-color: lightsalmon;
+  border: solid black;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  margin-bottom: 30px;
+}
+
+a {
+  color: black;
 }

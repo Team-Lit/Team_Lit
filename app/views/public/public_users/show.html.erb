@@ -1,13 +1,16 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h1 class="text-center">プロフィール</h1>
+      <% if flash[:notice] %>
+        <h4 class="alert alert-success text-center"><%= flash[:notice] %></h4>        
+      <% end %>
+    </div>
+  </div>
 
- <div class="col-md-12">
-    <h1 class="text-center">プロフィール</h1>
-      
-</div>
-
-
-<div class="row">
+  <div class="row">
     <div class="col-md-8">
-      <h4 class="text-center">
+      <h4 class="mark text-center">
         <mark class="bg-info">詳細情報</mark>
       </h4>
       <h3 class="text-center">名前：
@@ -17,7 +20,7 @@
         <%= @public.end_user_last_kana + " " + @public.end_user_first_kana %>
       </h3>
       <h3 class="text-center">郵便番号:
-        <%= @public.zip %>
+        〒 <%= @public.zip %>
       </h3>
       <h3 class="text-center">住所：
         <%= @public.address %>
@@ -30,14 +33,14 @@
       </h3>
     </div>
     <div class="col-md-4">
-      <h3 class="text-center">
+      <h3 class="user-button text-center">
         <%= link_to "退会",public_public_users_confirm_path, class: "btn btn-lg btn-danger" %>
       </h3>
-      <h3 class="text-center">
+      <h3 class="user-button2 text-center">
         <%= link_to "編集", edit_public_public_user_path(@public), class: "btn btn-lg btn-success" %>
       </h3>
       <h1></h1>
-     </div>
+    </div>
 
   </div>
   <div class="line"></div>
@@ -47,28 +50,23 @@
 
 
 <table class="table table-striped">
-		<thead>
-			<tr>
-				<th>受注日</th>
-				<th>住所</th>
-				<th>合計金額</th>
-        <th>配送状態</th>
-        <th></th>
-			</tr>
-		</thead>
-		<tbody>
-		    <% @order.each do |order| %> 
-          <tr>
-            <td><%= simple_time(order.created_at) %></td>
-            <td><%= order.address %></td>
-            <td><%= order.total_price %></td>
-            <td><%= order.delivery_status %> </td>
-            <td>
-              <%= link_to "詳細", public_public_order_path(order) %> 
-            </td>
-          </tr>
-		    <% end %>
-		</tbody>
+	<tr>
+		<th>受注日</th>
+		<th>住所</th>
+		<th>合計金額</th>
+    <th>配送状態</th>
+    <th></th>
+	</tr>
+
+	<% @order.each do |order| %> 
+    <tr>
+      <td><%= simple_time(order.created_at) %></td>
+      <td><%= order.address %></td>
+      <td>¥ <%= (order.total_price * order.tax_rate + order.delivery_charge).round(0) %></td>
+      <td><%= order.delivery_status %> </td>
+      <td><%= link_to "詳細", public_public_order_path(order), class: "btn btn-sm btn-default" %> </td>
+    </tr>
+	<% end %>
 </table>
 
 

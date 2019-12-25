@@ -2,13 +2,14 @@
   <div class="row">
     <div class="col-md-12">
     <h1 class="text-center">編集画面</h1>
-      <% if @public.errors.any? %>
+    <h4 class="flash-message text-center"><%= flash.now[:public] %></h4>
+      <%# <% if @public.errors.any? %
         <div class="error_explanation">
-          <h2><%= @public.errors.count %>件エラーが発生しました</h2>
+          <h2><%= @public.errors.count %件エラーが発生しました</h2>
             <ul>
-              <% @public.errors.full_messages.each do |message| %>
-              <li><%= message %></li>
-              <% end %>
+              <% @public.errors.full_messages.each do |message| %
+              <li><%= message %</li>
+              <% end %
             </ul>
         </div>
       <% end %>

@@ -26,9 +26,9 @@
 }
 
 
-.body{
-    margin: 50px auto;
-}
+// .body{
+//     margin: 50px auto;
+// }
 
 //clearfix
 .clearfix::after {
@@ -55,17 +55,18 @@ ul {
   padding-top: 10px;
 }
 
-  li {
+li {
   list-style: none;
   margin: auto;
   color: red;
 }
 
 a {
-  color:rgb(13, 233, 130);
+  color:rgb(11, 12, 12);
   text-decoration: none;
 }
 a:hover {
+
   color:rgb(193, 223, 24);
   text-decoration:none;
 }
