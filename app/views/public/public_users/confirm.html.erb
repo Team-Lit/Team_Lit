@@ -1,18 +1,27 @@
+<div class="row">
+  <div class="col-md-12">
+    <h1 class=text-center>退会手続き</h1>
 
-<h1>Public::PublicUsers#confirm</h1>
-<p>Find me in app/views/public/public_users/confirm.html.erb</p>
-<%= form_for( @public, url: public_registration_path, method: :delete) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
+    <%= form_for( @public, url: public_registration_path, method: :delete) do |f| %>
+    <div class="field">
+      <div class="text-center">
+        <%= f.label :email %><br />
+        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+      </div>
+    </div>
 
-  <div class="actions">
-    <%= f.submit "退会確定" %>
+    <div class="field">
+     <div class="text-center">
+      <%= f.label :password %><br />
+      <%= f.password_field :password, autocomplete: "current-password" %>
+    </div></div>
+
+    <div class="text-center">
+      <div class="actions">
+        <%= f.submit "退会確定" %>
+      </div>
+    </div>
   </div>
+</div>
 <% end %>
