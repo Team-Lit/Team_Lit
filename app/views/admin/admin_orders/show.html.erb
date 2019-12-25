@@ -60,6 +60,7 @@
       <table class="table table-striped"> 
         <tr>
           <th>商品名</th>
+          <th>単価</th>
           <th>個数</th>
           <th>価格</th>
         </tr>
@@ -67,20 +68,23 @@
           <% @order_detail.each do |detail| %>
             <tr>
               <td><%= detail.product.product_name %></td>
+              <td>¥ <%= detail.product.pre_tax_price %></td>
               <td><%= detail.quantity %>個</td>
-              <td><%= detail.pre_tax_price.round(0) %>円</td>
+              <td>¥ <%= (detail.pre_tax_price * detail.quantity).round(0) %></td>
             </tr>
           <% end %>
       </table>
 
-            <h4 class="text-center">小計：
+            <h4 class="text-center">小計：¥ 
               <%= @order.total_price %> 
             </h4>
-            <h4 class="text-center">送料：
+            <h4 class="text-center">消費税：¥ 
+              <%= (@order.total_price / 10).round(0) %>
+            <h4 class="text-center">送料：¥ 
               <%= @order.delivery_charge %>
             </h4>
             <div class="line"></div>
-              <h4 class="text-center">総計：
+              <h4 class="text-center">総計：¥ 
                 <%= (@order.total_price * 1.1).round(0) + 500 %>
               </h4>         
             </div>

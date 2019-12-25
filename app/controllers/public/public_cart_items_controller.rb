@@ -13,7 +13,7 @@ class Public::PublicCartItemsController < ApplicationController
     if @cart_item.quantity.nil?
       @cart_item.product_id = @product.id
       @stock = @product.arrivals.sum(:arrival_quantity) - @product.order_details.sum(:quantity)
-      flash[:notice] = "枚数を選択してください"
+      flash.now[:product] = "枚数を選択してください。"
       render template: "public/public_products/show"
     else
       @cart = CartItem.find_by(public_id: current_public.id,product_id: @product.id)
