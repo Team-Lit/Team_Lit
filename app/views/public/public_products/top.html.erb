@@ -1,0 +1,16 @@
+
+
+
+<% @product_ranking.each.with_index(1) do |rank,i| %>
+  <%= link_to public_public_product_path(rank) do %>
+    <%= attachment_image_tag rank, :jacket_image,fallback:"no_image.jpg",size:"200x200" %>
+  <% end %>
+  <h1>第<%= i %>位</h1>
+  <h1><%= rank.product_name %></h1>
+  <h4><%= rank.artist.artist_name %></h4>
+  <h4><%= rank.pre_tax_price %>円</h4>
+  <h4><%= rank.favorites.count %>いいね</h4>
+<% end %>
+<div class="text-center">
+  <%= link_to "商品一覧へ",public_public_products_path , class:"btn btn-lg btn-success" %>
+</div>

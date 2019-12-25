@@ -3,9 +3,14 @@ class Public::PublicDeliveriesController < ApplicationController
   
 
   def show
-    @deliveries = Delivery.where(public_id: current_public.id)
-    @delivery = Delivery.new
-    @order = Order.new
+    @cart_item = CartItem.where(public_id: current_public.id)
+    if @cart_item.empty?
+      render template: "public/public_cart_items/show"
+    else
+      @deliveries = Delivery.where(public_id: current_public.id)
+      @delivery = Delivery.new
+      @order = Order.new
+    end
   end
 
   def edit
