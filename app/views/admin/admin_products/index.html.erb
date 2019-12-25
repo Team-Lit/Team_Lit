@@ -55,7 +55,7 @@
                 <p>在庫切れ</p>
               <% end %> 
             </td> 
-            <td><%= link_to "詳細", admin_admin_product_path(product.id) %></td>
+            <td><%= link_to "詳細", admin_admin_product_path(product.id), class: "btn btn-default" %></td>
           </tr>
           <% end %>
         </table>

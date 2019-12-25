@@ -3,16 +3,17 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .new{
-  margin: 10px;
-  padding: 10px;
+  margin: 0 auto;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  padding: 10px 20px 0 15px;
   height: 240px;
-  width: 120px;
+  width: 180px;
+  float: left;
   background-color: rgb(255, 181, 61);
   border:2px solid rgb(0, 0, 0);
 }
 
-.new-product{
-  padding-left: 100px;
-  padding-right: 100px;
-  background-position: center;
+.col-md-2 {
+  margin-top: 40px;
 }

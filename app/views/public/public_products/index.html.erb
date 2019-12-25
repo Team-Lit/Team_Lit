@@ -1,21 +1,19 @@
-
-<div class="text-center">
-  <h1>新規商品</h1>
-    <div class="new-product">
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h3 class="text-center">新規商品</h3>
       <% @new_products.each do |new|%>
-          <div class="new">
-            <div class="text-center">
-              <%= link_to public_public_product_path(new) do %>
-                <%= attachment_image_tag new, :jacket_image,fallback:"no_image.jpg",size:"150x150" %>
-              <% end %><br>
-              <%= new.artist.artist_name %><br>
-              <%= new.product_name %><br>
-              リリース:<%= simple_time(new.created_at) %>
-            </div>
-          </div>
+      <div class="new">
+        <%= link_to public_public_product_path(new) do %>
+          <%= attachment_image_tag new, :jacket_image,fallback:"no_image.jpg",size:"150x150" %>
+        <% end %><br>
+        <%= new.artist.artist_name %><br>
+        <%= new.product_name %><br>
+          リリース:<%= simple_time(new.created_at) %>
+      </div>
       <% end %>
     </div>
-</div>
+  </div>
 
  <%# <h2>人気TOP3</h2> 
    <% @popular_products.each do |popular|%>
@@ -27,19 +25,21 @@
      <%# <%= popular.pre_tax_price %>
    <%# <% end %>   
 
+  <div class="row">
+    <div class="col-lg-12">
+      <h2 class="text-center">販売商品</h2>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th></th>
+            <th>名前</th>
+            <th>アーティスト名</th>
+            <th>価格</th>
+          </tr>
+        <thead>
 
-<div class="col-lg-12">
-  <table class="table table-striped">
-    <thead>
-        <tr>
-          <th>ジャケット画像</th>
-          <th>名前</th>
-          <th>アーティスト名</th>
-          <th>値段</th>
-        </tr>
-    <thead>
-      <tbody>
-          <% @products.each do |product| %>
+        <% @products.each do |product| %>
+          <tbody>
             <tr>
               <th>
                 <%= link_to public_public_product_path(product) do %>
@@ -50,7 +50,13 @@
               <th><%= product.artist.artist_name %></th>
               <th>￥ <%= product.pre_tax_price %></th>
             </tr>
-          <% end %>
-      </tbody>
-  </table>
+          </tbody>
+        <% end %>
+      </table>
+    </div>
+  </div>
 </div>
+
+<h3 class="text-center">
+  <%= paginate @products %>
+</h3>
