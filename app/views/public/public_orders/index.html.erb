@@ -1,4 +1,4 @@
-<h1 class="ch text-center">お支払い方法選</h1>
+<h1 class="ch text-center">お支払い方法選択</h1>
 <% if flash[:notice] %>
 <div class="flash">
  <%= flash[:notice] %>
@@ -29,17 +29,18 @@
       <p>------------------------------------------------------</p>
       <h3>ご請求額：￥ <%= @payment %></h3>
     </div>
-
   </div>
-
   <div class="col-md-3">
   </div>
 </div>
+
 <div class="row">
-<div class="col-md-8">
-</div>
-<div class="col-md-4">
+  <div class="col-md-8">
+  </div>
+  <div class="col-md-4">
     <div class="ch text-left">
       <%= submit_tag "支払い確認",class:"btn btn-primary" %>
       <% end %>
     </div>
+  </div>
+</div>
