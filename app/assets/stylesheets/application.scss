@@ -42,7 +42,8 @@ header {
 }
 
 .navbar-inverse {
-  background-color: rgb(113, 77, 172);
+  background-color: rgb(255, 123, 0);
+  color: blue;
 }
 .navbar-custom .navbar-text {
   color: gold;
@@ -52,11 +53,12 @@ header {
 ul {
   display: flex;
   padding-top: 10px;
+}
 
-  li {
+li {
   list-style: none;
   margin: auto;
-  }
+  color: red;
 }
 
 a {
@@ -64,13 +66,18 @@ a {
   text-decoration: none;
 }
 a:hover {
-  color:rgba(233, 160, 24, 0.829);
-  text-decoration: none;
+
+  color:rgb(193, 223, 24);
+  text-decoration:none;
 }
 
 .flash-message {
   color: red;
   margin-top: 10px;
   margin-bottom: 10px;
+}
+
+.fd {
+float: left;
 }
 
