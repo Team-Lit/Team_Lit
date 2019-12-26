@@ -2,8 +2,17 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.line {
+  width: 100%;
+  border-bottom: solid 1px black;
+}
+
 .ch {
-    margin-bottom: 50px;
+  margin-bottom: 50px;
+}
+
+.hi {
+  margin-bottom: 20px;
 }
 
 .history {
@@ -25,4 +34,8 @@
 
 .comm {
   margin-bottom: 30px;
+}
+
+.buto {
+  margin-top: 20px;
 }
