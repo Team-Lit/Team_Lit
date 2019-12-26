@@ -1,10 +1,10 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <h1 class="text-center">受注履歴一覧</h1>
+      <h1 class="tr text-center">受注履歴一覧</h1>
       <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" />
 
-      <div class="order-search-box text-center">
+      <div class="tr order-search-box text-center">
 				<%= form_tag(admin_admin_orders_path, method: :get) do %>
 					<%= text_field_tag :search, "", size:"80", placeholder: "顧客名、宛名で検索" %>
 					<%= button_tag '<i class="fa fa-search"></i>'.html_safe, type: 'submit', :name => nil %>

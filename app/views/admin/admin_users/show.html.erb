@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <h1 class="text-center">顧客情報詳細</h1>
+      <h1 class="tr text-center">顧客情報詳細</h1>
       <% if flash[:notice] %>
         <h4 class="alert alert-success text-center"><%= flash[:notice] %></h4>        
       <% end %>
@@ -9,7 +9,8 @@
         <%= link_to "編集", edit_admin_admin_user_path(@user), class: "btn btn-lg btn-success" %>
         <%= link_to "削除する", admin_admin_user_path(@user.id), method: :delete, class: "btn btn-lg btn-danger", "data-confirm" => "本当に削除しますか？" %>
       <h1></h1>
-      <h4 class="text-center">
+      <div class="line"></div>
+      <h4 class="tr text-center">
         <mark class="bg-info">詳細情報</mark>
       </h4>
     </div>
@@ -52,7 +53,7 @@
 
   <div class="row">
     <div class="col-md-12">        
-      <h4 class="text-center">
+      <h4 class="tr text-center">
         <mark class="bg-info">受注履歴</mark>
       </h4>
     </div>

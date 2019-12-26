@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" />
+
 <div class="contaiener">
   <div class="row">
     <div class="col-md-12">
@@ -5,10 +7,9 @@
         この御注文で確定しますか？<br>
         一度、決定しますと注文が取り消せないです。</h2>
       </h2>
+      <div class="line"></div>
     </div>
   </div>
-
-  <div class="line"></div>
 
   <div class="row">
     <div class="col-md-12 text-center">
@@ -27,7 +28,7 @@
     </div>
 
     <div class="col-md-6">
-      <h2 class="text-left">
+      <h3 class="text-left">
         <% if @order.payment_method == 0 %>
           <%= "代引き" %>
         <% elsif @order.payment_method == 1 %>
@@ -35,21 +36,17 @@
         <% else %>
           <%= "クレジットカード" %>
         <% end %>
-      </h2>
+      </h3>
     </div>
   </div>
 
   <div class="line"></div>
   
   <div class="row">
-    <div class="col-md-6">
-      <h2 class="text-center"><mark class="bg-info">注文内容</mark></h2>
+    <div class="col-md-12">
+      <h2 class="hi text-center"><mark class="bg-info">注文内容</mark></h2>
     </div>
-
-    <div class="col-md-6"></div>
   </div>
-
-  <div class="line"></div>
 
 
   <table class="table table-striped">
@@ -77,18 +74,16 @@
 
   <div class="line"></div>
 
-  <div class="text-center">
-    <h2><mark class="bg-info">料金</mark></h2>
+  <div class="line text-center">
+    <h2 class="hi"><mark class="bg-info">料金</mark></h2>
     <h3>商品の小計： ¥ <%= @total_price %></h3>
     <h3>消費税額： ¥ <%= @payment - @total_price - @charge.charge %></h3>
     <h3>送料： ¥ <%= @charge.charge %></h3>
     <h3>ご請求額： ¥ <%= @payment %></h3>
   </div>
-
-
   
   <%= form_for(@order, url:public_public_user_public_orders_path(current_public), method: :post ) do |f| %>
-  <div class="text-center">
+  <div class="buto text-center">
     <%= f.hidden_field :payment_method, :value => @order.payment_method %>
     <%= hidden_field_tag :id, @delivery.id %>    
     <%= f.submit "購入",class:"btn btn-lg btn-primary" %>

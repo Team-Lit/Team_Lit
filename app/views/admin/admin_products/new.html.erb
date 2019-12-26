@@ -1,7 +1,7 @@
 <div class="container item-new-box">
   <div class="row">
     <div class="col-md-12">
-      <h1 class="text-center">新規入荷登録</h1>
+      <h1 class="br text-center">新規商品登録</h1>
       <% if flash[:notice] %>
         <h4 class="alert alert-success text-center"><%= flash[:notice] %></h4>        
       <% end %>
@@ -11,47 +11,47 @@
 
   <%= form_for(@product, url:admin_admin_products_path) do |f| %>
   <div class="row">
-    <div class="col-md-2"></div>
-    <div class="col-md-4">
+    <div class="col-md-3"></div>
+    <div class="col-md-3">
       <%# ラベル部分 %>
       <div>
-        <h3 class="text-left">
+        <h3 class="sr text-left">
           <%= f.label :"アーティスト名" %>
         </h3>
       </div> 
       
       <div>
-        <h3 class="text-left">
+        <h3 class="sr text-left">
           <%= f.label :"シングル/アルバム名" %>
         </h3>
       </div>
       
       <div>
-        <h3 class="text-left">
+        <h3 class="sr text-left">
           <%= f.label :"ジャケット画像" %>
         </h3>
       </div>
 
       <div>
-        <h3 class="text-left">
+        <h3 class="sr text-left">
           <%= f.label :"価格(税抜)" %>
         </h3>
       </div>
 
       <div>
-        <h3 class="text-left">
+        <h3 class="sr text-left">
           <%= f.label :"発売日" %>
         </h3>
       </div>
 
       <div>
-        <h3 class="text-left">
+        <h3 class="sr text-left">
           <%= f.label :"レーベル名" %>
         </h3>
       </div>
 
       <div>
-        <h3 class="text-left">
+        <h3 class="sr text-left">
           <%= f.label :"ジャンル" %>
         </h3>
       </div>
@@ -69,35 +69,35 @@
           
       <%# シングル/アルバム名 %>
       <div>
-        <h3 class="text-left">
+        <h3 class="sr text-left">
           <%= f.text_field :product_name %>
         </h3>
       </div>
 
       <%# ジャケット画像追加 %>
       <div>
-        <h3 class="text-left">
+        <h3 class="sr text-left">
            <%= f.attachment_field :jacket_image, format: 'jpeg', size: "50x50", fallback: "no_image.jpg" %>
         </h3>
       </div>
 
       <%# 価格 %>
       <div>
-        <h3 class="text-left">
+        <h3 class="sr text-left">
           <%= f.number_field :pre_tax_price, min:1, placeholder: "¥" %>
         </h3>
       </div>
 
       <%# 発売日 %>
       <div>
-        <h3 class="text-left">
+        <h3 class="sr text-left">
           <%= f.date_field :release_date, value: Time.now.strftime("%Y/%m/%d") %>
         </h3>
       </div>
 
       <%# レーベル名選択 %>
       <div>
-        <h3 class="text-left">
+        <h3 class="sr text-left">
           <%= f.collection_select :label_id, Label.all, :id, :label_name, :prompt => "選択してください" %>
           <%= link_to "レーベル追加", new_admin_admin_label_path, class: "btn btn-sm btn-default" %>
         </h3>
@@ -105,7 +105,7 @@
 
       <%# ジャンル選択 %>
       <div>
-        <h3 class="text-left">
+        <h3 class="sr text-left">
           <%= f.collection_select :genre_id, Genre.all, :id, :genre_name, :prompt => "選択してください" %>
           <%= link_to "ジャンル追加", new_admin_admin_genre_path, class: "btn btn-sm btn-default" %>
         </h3>
@@ -118,7 +118,9 @@
       <%# ディスク/曲名 %>
       <div>
         <h3 class="text-center">
-          <%= f.label :"ディスク/曲名" %>
+          <div class="tr">
+            <%= f.label :"ディスク/曲名" %>
+          </div>
           <%= f.fields_for :disks  do |t| %>
             <%= render 'disk_fields', f: t %>
           <% end %>
@@ -128,7 +130,7 @@
         </h3>
       </div>
 
-      <div class=text-center>
+      <div class="buto text-center">
         <%= f.submit "登録", class: "btn btn-lg btn-primary" %>
       </div>
       <% end %>

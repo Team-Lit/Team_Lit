@@ -1,13 +1,13 @@
 <div class="container">
   <div class="row">
     <div class="col-md-10">
-      <h1 class="text-center">入荷履歴一覧</h1>
+      <h1 class="tr text-center">入荷履歴一覧</h1>
       <% if flash[:notice] %>
         <h4 class="alert alert-success text-center"><%= flash[:notice] %></h4>        
       <% end %>
       <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" />
       
-      <div class="text-right">
+      <div class="tr text-right">
         <%= link_to "新規商品登録", new_admin_admin_product_path, class: "btn btn-lg btn-default" %>
         <%= link_to "販売商品追加", new_admin_admin_arrival_path, class: "btn btn-lg btn-default" %>
       </div>
