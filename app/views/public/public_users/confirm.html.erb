@@ -12,9 +12,10 @@
     </div>
   </div>
 
-  <%= form_for( @public, url: public_registration_path, method: :delete) do |f| %>
+  <%= form_for( @public, url: public_public_user_path(@public), method: :delete) do |f| %>
   <div class="row">
     <%# ラベル部分 %>
+    <h4 class="flash-message text-center"><%= flash.now[:public] %></h4>
     <div class="col-md-6">
       <div>
         <h3 class="text-right">
