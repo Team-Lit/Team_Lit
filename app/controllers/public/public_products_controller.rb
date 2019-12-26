@@ -5,7 +5,7 @@ class Public::PublicProductsController < ApplicationController
   def top
     product_favorite_count = Product.joins(:favorites).group(:product_id).count
     product_favorited_ids = Hash[product_favorite_count.sort_by{ |_, v| -v }].keys
-    @product_ranking = Product.where(id: product_favorited_ids).limit(5)
+    @product_ranking = Product.where(id: product_favorited_ids).order(id: "DESC").limit(5)
   end
 
   def index

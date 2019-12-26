@@ -75,6 +75,7 @@ class Public::PublicOrdersController < ApplicationController
       @order_datail.save
       item.destroy
     end
+    flash[:notice] = "お買い上げありがとうございます！"
     redirect_to public_public_user_path(current_public)
   end
 
