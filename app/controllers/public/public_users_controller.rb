@@ -33,9 +33,15 @@ class Public::PublicUsersController < ApplicationController
 
 
   def destroy
-    @public = Public.find(params[:id])
-    @public.destroy
-    redirect_to new_public_registration_path, notice: "退会しました。ご利用ありがとうございました。"
+    @public = Public.find_by_email(params[:public][:email])
+    if @public.valid_password?(params[:public][:password])
+      @public.destroy
+      redirect_to new_public_registration_path, notice: "退会しました。ご利用ありがとうございました。"
+    else
+      @public = Public.find(current_public.id)
+      flash.now[:public] = "入力情報が一致しませんでした。"
+      render action: :confirm
+    end
   end
 
   private
