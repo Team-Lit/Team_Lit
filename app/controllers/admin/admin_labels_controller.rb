@@ -8,15 +8,16 @@ class Admin::AdminLabelsController < ApplicationController
   def create
     @label = Label.new(label_params)
     if @label.save
-      flash[:notice] = "登録成功"
-      redirect_to new_admin_admin_product_path
+      redirect_to new_admin_admin_product_path, notice: 'レーベル名の登録に成功しました。'
     else
-      flash[:notice] = "登録失敗"
+      flash.now[:label] = "レーベル名の登録に失敗しました。"
       render :new
     end
   end
 
   def destroy
+    @label = Label.find(params[:id])
+    @label.destroy
   end
 
   private

@@ -1,53 +1,81 @@
-
-<% if flash[:notice] %>
-  <div class="flash">
-  	<%= flash[:notice] %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h1 class="dely text-center">配送先選択</h1>
+      <% if flash[:notice] %>
+        <h4 class="alert alert-success text-center"><%= flash[:notice] %></h4>        
+      <% end %>
+      <h4 class="flash-message text-center"><%= flash.now[:delivery] %></h4>
+    </div>
   </div>
-<% end %>
 
-<%= form_tag( public_public_user_public_orders_path(current_public),method: :get) do %>
+  <%= form_tag( public_public_user_public_orders_path(current_public),method: :get) do %>
   <table class="table table-striped">
-      <thead>
+    <thead>
+      <tr>
+        <th></th>
+        <th>宛先</th>
+        <th>郵便番号</th>
+        <th>住所</th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @deliveries.each do |delivery| %>
         <tr>
-          <th></th>
-          <th>宛先</th>
-          <th>郵便番号</th>
-          <th>住所</th>
-          <th></th>
+          <td><%= radio_button_tag :id, delivery.id %></td>
+          <td><%= delivery.address_name %></td>
+          <td>〒 <%= delivery.zip %></td>
+          <td><%= delivery.address %></td>
+          <td>
+            <%= link_to edit_public_public_delivery_path(delivery) do%>
+              <button type="button" class="btn btn-default btn-success" >編集
+            <% end %>
+          </td>
+          <td>
+            <%= link_to public_public_delivery_path(delivery), "data-confirm" => "本当に削除しますか？", method: :delete do %>
+              <button type="button" class="btn btn-default btn-danger">削除
+            <% end %>
+          </td>
         </tr>
-      <tbody>
-          <% @deliveries.each do |deliverie| %>
-            <tr>
-              <td>
-                <%= radio_button_tag :id, deliverie.id %>
-              </td>
-              <td><%= deliverie.address_name %></td>
-              <td><%= deliverie.zip %></td>
-              <td><%= deliverie.address %></td>
-              <td>
-                <%= link_to edit_public_public_delivery_path(deliverie) do%>
-                  <button type="button" class="btn btn-default" >編集
-                <% end %>
-              </td>
-              <td>
-                <%= link_to public_public_delivery_path(deliverie), method: :delete do %>
-                  <button type="button" class="btn btn-default" >削除
-                <% end %>
-              </td>
-            </tr>
-          <% end %>
-      </tbody>
+      <% end %>
+    </tbody>
   </table>
-  <%= submit_tag "この住所に届ける",class:"btn btn-primary" %>
-<% end %>
+  <h3 class="text-center">
+    <%= submit_tag "この住所に届ける",class:"btn btn-lg btn-primary" %>
+  </h3>
+  <% end %>
 
+  <div class="row">
+    <div class="del col-md-6">
+    <%= form_for(@delivery, url:public_public_user_public_deliveries_path(public_id: current_public.id),html: {method: "post"}) do |f| %>
+      <div>
+        <h4>
+          <%= f.label :"宛名" %>
+          <%= f.text_field :address_name, size:"21x10" %>
+        </h4>
+      </div>
+      <div>
+        <h4>
+          <%= f.label :"郵便番号" %>
+          <%= f.text_field :zip, size: "17x10"%>
+        </h4>
+      </div>
+      <div>
+        <h4>
+          <%= f.label :"住所" %>
+          <%= f.text_area :address %>
+        </h4>
+      </div>
+      <div class="delibtn">
+        <h4>
+          <%= f.submit "宛先を追加する",class:"btn btn-success" %> 
+        </h4>
+      </div>
+    </div>
+    <% end %>
 
-<%= form_for(@deliverie, url:public_public_user_public_deliveries_path(public_id: current_public.id),html: {method: "post"}) do |f| %>
-      <%= f.label :address_name %>
-    <%= f.text_field :address_name %>
-      <%= f.label :zip %>
-    <%= f.text_field :zip %>
-      <%= f.label :address %>
-    <%= f.text_area :address %>
-    <%= f.submit "新しい住所を登録する",class:"btn btn-primary" %> 
-<% end %>
+    <div class="col-md-6"></div>
+  </div>
+</div>

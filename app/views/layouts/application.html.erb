@@ -11,54 +11,59 @@
   </head>
 
 
-  <header class="admin-header">
+  <header class="navbar navbar-custom">
     <div class="container">
-      <div class="row">
-        <div class="col-md-12" style="background-color: pink;">
-          <% if admin_signed_in? %>
-          <nav>
-            <ul>
-              <h1 class="logo">
+      <div class="collapse navbar-collapse" id="navbarEexample6">
+        <div class="navbar-left">
+        </div>
+      </div>
+        <% if admin_signed_in? %>
+        <nav>
+          <%= link_to image_tag'fd.jpg', size:"120x80" %>
+            <ul class="nav navbar-nav navbar-right">
+              <h3 class="logo">
                 <i class="fas fa-compact-disc"></i>
-              </h1>
-              <li>
-                <%= link_to "店舗",edit_admin_admin_charges_path %>
+              </h3>
+              <li class="adh">
+                <%= link_to "店舗",edit_admin_admin_charges_path, class:"btn btn-lg btn-primary" %>
+              </li>
+              <li class="adh">
+                <%= link_to "顧客",admin_admin_users_path, class:"btn btn-lg btn-primary" %> 
+              </li>
+              <li class="adh">
+                <%= link_to "商品",admin_admin_products_path, class:"btn btn-lg btn-primary" %> 
+              </li>
+              <li class="adh">
+                <%= link_to "入荷" ,admin_admin_arrivals_path, class:"btn btn-lg btn-primary" %> 
+              </li>
+              <li class="adh">
+                <%= link_to "受注",admin_admin_orders_path, class:"btn btn-lg btn-primary" %>
               </li>
               <li>
-                <%= link_to "顧客",admin_admin_users_path %> 
-              </li>
-              <li>
-                <%= link_to "商品",admin_admin_products_path %> 
-              </li>
-              <li>
-                <%= link_to "入荷" ,admin_admin_arrivals_path %> 
-              </li>
-              <li>
-                <%= link_to "受注",admin_admin_orders_path %>
-              </li>
-              <li>
-                <%= link_to "お問合せ",admin_admin_orders_path %>
-              </li>
-              <li>
-                <%= link_to "logout",destroy_admin_session_path, method: :delete %>
+                <%= link_to "logout",destroy_admin_session_path, method: :delete, class:"btn btn-lg btn-danger" %>
               </li>
             </ul>
           </nav>
 
           <% elsif public_signed_in? %>
-          <nav>
-            <ul>
-              <div class="item-search-box text-center">
-                <%= form_tag(public_public_products_path,method: :get) do %>
-                  <%= text_field_tag :search, "", placeholder: "アーティストや商品名で検索" %>
-                  <%= button_tag '<i class="btn btn-default"></i>'.html_safe, type: 'submit', :name => nil %>
-                <% end %>
-              </div>
+          <nav> 
+            <%= link_to image_tag('fd.jpg', size:"120x80"), public_public_products_top_path %>
+              <ul class="nav navbar-nav navbar-right">
+
+                <li class="item-search-box text-left">
+                  <%= form_tag(public_public_products_path,method: :get) do %>
+                    <%= text_field_tag :search, "", size: "80", placeholder: "アーティストや商品名で検索" %>
+                    <%= button_tag '<i class="fa fa-search"></i>'.html_safe, type: 'submit', :name => nil %>
+                  <% end %>
+                </li>
               <li>
-                <%= link_to "cart",public_public_user_public_cart_items_path(current_public.id) %>
+                <%= link_to image_tag("cart.png", size:"40x40"), public_public_user_public_cart_items_path(current_public.id) %>
               </li>
               <li>
-                <%= link_to "My page",public_public_user_path(current_public.id) %>
+                <%= link_to "商品一覧", public_public_products_path %>
+              </li>
+              <li>
+                <%= link_to current_public.end_user_last_name + " " + current_public.end_user_first_name, public_public_user_path(current_public.id)%>
               </li>
               <li>
                 <%= link_to "Log out",destroy_public_session_path, method: :delete %>
@@ -68,15 +73,16 @@
       
           <% else %>
           <nav>
-            <ul>
-              <div class="item-search-box text-center">
+            <%= link_to image_tag('fd.jpg', size:"120x80"), public_public_products_top_path %>
+              <ul class="nav navbar-nav navbar-right">
+                <li class="item-search-box text-left">
                 <%= form_tag(public_public_products_path,method: :get) do %>
-                  <%= text_field_tag :search, "", placeholder: "アーティストや商品名で検索" %>
+                  <%= text_field_tag :search, "", size:"80", placeholder: "アーティストや商品名で検索" %>
                   <%= button_tag '<i class="fa fa-search"></i>'.html_safe, type: 'submit', :name => nil %>
                 <% end %>
-              </div>
+              </li>
               <li>
-                <%= link_to "TOP" ,new_public_registration_path %>
+                <%= link_to "TOP" ,public_public_products_top_path %>
               </li>
               <li>
                 <%= link_to "sign up",new_public_registration_path %>

@@ -1,22 +1,50 @@
+<h1 class="ch text-center">お支払い方法選択</h1>
 
 <% if flash[:notice] %>
-  <div class="flash">
-  	<%= flash[:notice] %>
+<div class="flash">
+ <%= flash[:notice] %>
+</div>
+<% end %>
+
+
+<div class="row">
+  <div class="col-md-3">
   </div>
-<% end %>
 
- <h2>注文内容</h2>
-  <h3>商品の総計：</h3><%= @total_price %>
-  <h3>消費税：</h3><%= @charge.tax_rate %>
-  <h3>送料：</h3><%= @charge.charge %>
-  <h3>ご請求額：</h3><%= @payment %>
+  <div class="col-md-6">
+    <div class="text-left">
+      <%= form_tag(public_public_orders_confirm_path ,method: :get) do %>
+      <%= hidden_field_tag :id, @delivery.id %>
 
-<%= form_tag(public_public_orders_confirm_path ,method: :get) do %>
-   <%= hidden_field_tag :id, @deliverie.id %>
-  <h2>お支払い方法</h2>
-    <%= label_tag :payment_method %>
-  <%= radio_button_tag :payment_method, 0 %>代引き
-  <%= radio_button_tag :payment_method, 1 %>銀行振込
-  <%= radio_button_tag :payment_method, 2 %>クレジットカード
-  <%= submit_tag "支払い確認",class:"btn btn-primary" %>
-<% end %>
+      <h2>お支払い方法</h2>
+      <h3>
+        <%= radio_button_tag :payment_method, 0 %>    代引き <br><br>
+        <%= radio_button_tag :payment_method, 1 %>    銀行振込<br><br>
+        <%= radio_button_tag :payment_method, 2 %>    クレジットカード<br><br>
+      </h3><br><br>
+
+      <h2>注文内容</h2>
+
+      <h3>商品の総計：￥ <%= @total_price %></h3>
+      <h3>消費税額：￥ <%= @payment - @total_price - @charge.charge %></h3>
+      <h3>送料：￥ <%= @charge.charge %></h3>
+      <p>------------------------------------------------------</p>
+      <h3>ご請求額：￥ <%= @payment %></h3>
+    </div>
+  </div>
+
+  <div class="col-md-3">
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-8">
+  </div>
+  <div class="col-md-4">
+    <div class="ch text-left">
+      <%= submit_tag "支払い確認",class:"btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+
+</div>

@@ -1,4 +1,5 @@
 class Admin::AdminArrivalsController < ApplicationController
+  before_action :authenticate_admin!
   
 
   PER = 10
@@ -14,13 +15,17 @@ class Admin::AdminArrivalsController < ApplicationController
   end
 
   def new
-    @arrival = Arrival.new
+    @arrival = Arrival.new 
   end
 
   def create
     @arrival = Arrival.new(arrival_params)
-    @arrival.save
-    redirect_to admin_admin_arrivals_path
+    if @arrival.save
+      redirect_to admin_admin_arrivals_path, notice: "商品を追加しました。"
+    else
+      flash.now[:arrival] = "商品の追加に失敗しました。商品名を選択してください。"
+      render "new"
+    end
   end
 
   private

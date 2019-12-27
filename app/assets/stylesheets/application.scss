@@ -25,6 +25,11 @@
   box-sizing: border-box;
 }
 
+
+// .body{
+//     margin: 50px auto;
+// }
+
 //clearfix
 .clearfix::after {
   content: "";
@@ -32,28 +37,58 @@
   clear: both;
 }
 
-
 header {
-  width: 100%;
-  background-color: pink;;
-  top: 0;
+  margin-bottom:30px;
+}
+
+.navbar {
+  background-color: rgb(255, 123, 0);
+  color: blue;
+}
+.navbar-custom .navbar-text {
+  color: gold;
+  font-size: 30px;
 }
 
 ul {
   display: flex;
-  padding-top: 15px;
+  padding-top: 10px;
+}
 
-  li {
+li {
   list-style: none;
   margin: auto;
-  }
+  color: black;
+}
+
+li > a {
+  color: black;
 }
 
 a {
-  color:rgb(30, 20, 5);
+  color:rgb(0, 38, 255);
   text-decoration: none;
 }
 a:hover {
-  color:rgb(150, 150, 130);
-  text-decoration:none;
+  color: orange;
+  text-decoration: none;
+}
+.nav > li > a:hover {
+  background-color: rgb(255, 123, 0);
+  color: white;
+  text-decoration: none;
+}
+
+.flash-message {
+  color: red;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.fd {
+float: left;
+}
+
+.adh {
+  margin-right: 20px;
 }

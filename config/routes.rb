@@ -16,6 +16,7 @@ Rails.application.routes.draw do
 
 
   namespace :public do
+    get 'public_products/top'
     get 'public_orders/confirm'
     get 'public_users/confirm'
     resources :public_users, only:[:show, :edit, :update, :destroy,:confirm] do
@@ -24,7 +25,8 @@ Rails.application.routes.draw do
       resources :public_orders, only:[:confirm,:index, :create]
     end
     
-    resources :public_products, only:[:index, :show] do
+    resources :public_products, only:[:index, :show, :top] do
+      resource :public_favorites, only: [:create, :destroy]
       resource :public_cart_items, only:[:create]
     end
     resources :public_cart_items, only:[ :update, :destroy]

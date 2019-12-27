@@ -1,4 +1,5 @@
 class Admin::AdminUsersController < ApplicationController
+  before_action :authenticate_admin! 
 
   PER = 10
   
@@ -20,7 +21,7 @@ class Admin::AdminUsersController < ApplicationController
 
   def show
     @user = Public.find(params[:id])
-    @address = Deliverie.all
+    @address = Delivery.all
     @orders = @user.orders.reverse_order
   end
 
@@ -31,14 +32,17 @@ class Admin::AdminUsersController < ApplicationController
   def update
     @user = Public.find(params[:id])
     if @user.update(user_params)
-      redirect_to admin_admin_user_path(@user.id)
+      redirect_to admin_admin_user_path(@user.id), notice: "顧客情報を更新しました。"
+    else
+      flash.now[:public] = "顧客情報の更新に失敗しました。全ての項目を入力してください。"
+      render "edit"
     end
   end
 
   def destroy
     @user = Public.find(params[:id])
     @user.delete
-    redirect_to admin_admin_users_path
+    redirect_to admin_admin_users_path, notice: "顧客データを削除しました。"
   end
 
   private

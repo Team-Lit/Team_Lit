@@ -7,12 +7,16 @@ class Product < ApplicationRecord
 
   has_many :arrivals
   has_many :order_details, dependent: :destroy
-  has_many :orders, dependent: :destroy
   has_many :cart_items, dependent: :destroy
+  has_many :favorites, dependent: :destroy
 
   belongs_to :artist
   belongs_to :label
   belongs_to :genre
+
+  def favorited_by?(public)
+    favorites.where(public_id: public).exists?
+  end
 
   enum stock_status: {"販売中": 0, "在庫切れ": 1, "売切れ": 2}
 
@@ -26,10 +30,5 @@ class Product < ApplicationRecord
   attachment :jacket_image
 
   acts_as_paranoid
-
-  # def arrival
-  #   (Arrival.where(product_id: id).sum(:arrival_quantity)) - (OrderDetail.where(product_id: id).sum(:quantity))
-  # end
-
 
 end

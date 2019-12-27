@@ -1,11 +1,12 @@
 class Admin::AdminOrdersController < ApplicationController
+  before_action :authenticate_admin!
 
 
-  PER = 10
+  PER = 10 
   
 
   def index
-    @orders = Order.page(params[:page]).per(PER)
+    @orders = Order.with_deleted.page(params[:page]).per(PER)
     unless params[:search].blank?
       u_first = Order.joins(:public).where("end_user_first_name LIKE ?", "%#{params[:search]}%")
       u_last = Order.joins(:public).where("end_user_last_name LIKE ?", "%#{params[:search]}%")
@@ -23,6 +24,7 @@ class Admin::AdminOrdersController < ApplicationController
     # 削除されたレコードの情報も見れる
     @order = Order.with_deleted.find(params[:id])
     @order_detail = OrderDetail.where(order_id: params[:id])
+    # @sub_total = OrderDetail.where(order_id: params[:id]).sum(:pre_tax_price)
   end
 
   def update

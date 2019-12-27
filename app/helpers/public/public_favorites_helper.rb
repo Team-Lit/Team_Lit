@@ -1,0 +1,2 @@
+module Public::PublicFavoritesHelper
+end

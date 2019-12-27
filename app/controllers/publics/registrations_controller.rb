@@ -59,17 +59,17 @@ class Publics::RegistrationsController < Devise::RegistrationsController
   protected
 
   def after_sign_up_path_for(resource)
-    @deliverie = Deliverie.new
-    @deliverie.public_id = resource.id
-    @deliverie.zip = @public.zip
-    @deliverie.address = @public.address
-    @deliverie.address_name = resource.end_user_last_name + resource.end_user_first_name
-    @deliverie.save
+    @delivery = Delivery.new
+    @delivery.public_id = resource.id
+    @delivery.zip = @public.zip
+    @delivery.address = @public.address
+    @delivery.address_name = resource.end_user_last_name + resource.end_user_first_name
+    @delivery.save
     public_public_user_path(current_public.id)
   end
 
   def after_sign_out_path_for(resource)
-    new_public_registration_path
+    public_public_products_path
   end
 
 end

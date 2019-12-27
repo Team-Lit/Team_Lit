@@ -1,15 +1,51 @@
-<h1>Public::PublicDeliveries#edit</h1>
-<p>Find me in app/views/public/public_deliveries/edit.html.erb</p>
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="text-center">
+				<h1 class="deli">配送先住所編集</h1>
+				<h4 class="flash-message text-center"><%= flash.now[:delivery] %></h4>
+			</div>
+		</div>
+	</div>
 
-<h1>配送先住所編集</h1>
+	<%= form_for(@delivery, url:public_public_delivery_path) do |f| %>
+	
+	<div class="row">
+		<div class="col-md-5">
 
-<%= form_for(@deliverie, url:public_public_delivery_path) do |f| %>
-  <%= f.label :address_name %>
-    <%= f.text_field :address_name %>
-  <%= f.label :zip %>
-    <%= f.text_field :zip %>
-  <%= f.label :address %>
-    <%= f.text_area :address %>
+			<div class="text-right">
+				<h4><%= f.label :宛名 %></h4>
+			</div><br>
 
-  <%= f.submit "更新",class:"btn btn-primary" %>
+			<div class="text-right">
+				<h4><%= f.label :郵便番号 %></h4>
+			</div><br>
+
+			<div class="text-right">
+				<h4><%= f.label :住所 %> </h4> 
+			</div><br>
+		</div>
+		<div class="col-md-7">
+			<div class="text-left">
+				<%= f.text_field :address_name %>
+			</div><br><br>
+
+			<div class="text-left">
+				<%= f.text_field :zip %>
+			</div><br><br>
+
+			<div class="text-left">
+				<%= f.text_area :address, size:"50x5" %>
+			</div>
+		</div>
+	</div><br><br>
+
+	<div class="row">
+		<div class="col-md-12">
+			<div class="text-center">
+				<%= f.submit "更新",class:"btn btn-lg btn-primary" %>
+			</div>
+		</div>
+	</div>
+</div>
 <% end %>

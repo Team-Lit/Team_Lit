@@ -1,20 +1,29 @@
-<h1>Admin::AdminCharges#edit</h1>
-<p>Find me in app/views/admin/admin_charges/edit.html.erb</p>
+<h1 class="br text-center">店舗管理</h1>
 
 <%= form_for(@charge,url: admin_admin_charges_path )do |f| %>
-	<% if @charge.errors.any? %>
-	  <div class="error_explanation">
-		<h2><%= @charge.errors.count %>件errorが発生しました。</h2>
-		<ul>
-		  <% @charge.errors.full_messages.each do |message| %>
-			<li><%= message %></li>
-		  <% end %>
-		</ul>
-	  </div>
-	<% end %>
+	<h4 class="flash-message text-center"><%= flash.now[:charge] %></h4>
+	<h1></h1>
 
-		<%= f.number_field :charge, class:"form-control",placeholder: "送料" %>
-		<%= f.text_field :tax_rate, class:"form-control",placeholder: "消費税率" %>
+  <%# 送料 %>
+  <div>
+	  <h3 class="text-center">
+		  <%= f.label :"送料" %>
+		  <%= f.number_field :charge, min:1 ,placeholder: "配送料" %>
+		</h3>
+	</div>
 
-		<%= f.submit "金額設定を変える" %>
+	<%# 消費税率 %>
+	<div>
+	  <h3 class="text-center">
+		  <%= f.label :"消費税率" %>
+		  <%= f.text_field :tax_rate, placeholder: "消費税率" %>
+		</h3>
+	</div>
+
+	<div>
+	  <h3 class="buto text-center">
+      <%= f.submit "更新する", class: "btn btn-lg btn-primary" %>
+		</h3>
+	</div>
+
 <% end %>

@@ -1,3 +1,20 @@
 // Place all the styles related to the public/PublicUsers controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+textarea {
+    vertical-align:top;
+}
+
+.col-md-8 {
+  border: solid 1px black;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.user-button {
+  margin-top: 130px;
+}
+
+.alert {
+  margin-top: 50px;
+}

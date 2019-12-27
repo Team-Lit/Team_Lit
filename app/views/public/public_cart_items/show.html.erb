@@ -1,37 +1,48 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h1 class="car text-center">カート内容</h1>
+      <% if flash[:notice] %>
+        <h4 class="alert alert-success text-center"><%= flash[:notice] %></h4>        
+      <% end %>
+    </div>
+  </div>
 
-
-<h1>カート内容</h1>
-
-<table>
+  <table class="table table-striped">
 		<thead>
 			<tr>
-				<th>ジャケット画像</th>
-				<th>シングル/アルバム名</th>
-				<th>価格</th>
+				<th></th>
+				<th>商品名</th>
+				<th>単価</th>
         <th>数量</th>
+        <th>価格</th>
         <th></th>
 			</tr>
 		</thead>
-		<tbody>
-		    <% @cart_item.each do |cart| %>
-          <tr>
-            <td>
-              <%= attachment_image_tag cart.product,:jacket_image,fallback:"no_image.jpg",size:"40x40" %>
-            </td>
-            <td><%= cart.product.product_name %></td>
-            <td><%= cart.product.pre_tax_price %></td>
-            <td><%= cart.quantity %></td>
-            <td>
-              <%= link_to public_public_cart_item_path(cart),method: :delete do %>
-                <button type="button" class="btn btn-success">削除</button>
-              <% end %>
-            </td>
-          </tr>
-		    <% end %>
-		</tbody>
-</table>
 
 
-<%= link_to public_public_user_public_deliveries_path(current_public) do %>
-  <button type="button" class="btn btn-success">購入</button>
-<% end %>
+    <% @cart_item.each do |cart| %>
+		  <tbody>
+        <tr>
+          <td><%= attachment_image_tag cart.product,:jacket_image,fallback:"no_image.jpg",size:"40x40" %></td>
+          <td><%= cart.product.product_name %></td>
+          <td>¥ <%= cart.product.pre_tax_price %></td>
+          <td><%= cart.quantity %>個</td>
+          <td>¥ <%= (cart.product.pre_tax_price * cart.quantity).round(0) %></td>
+          <td>
+            <%= link_to public_public_cart_item_path(cart), "data-confirm" => "本当に削除しますか？", method: :delete do %>
+              <button type="button" class="btn btn-danger">削除</button>
+            <% end %>
+          </td>
+        </tr>
+      </tbody>
+		<% end %>
+  </table>
+
+  <h3 class="buy text-center">
+    <%= link_to public_public_user_public_deliveries_path(current_public) do %>
+      <button type="button" class="btn btn-lg btn-success">購入</button>
+    <% end %>
+  </h3>
+</div>
+

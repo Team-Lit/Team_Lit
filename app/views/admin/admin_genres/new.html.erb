@@ -1,4 +1,5 @@
 <h1 class="text-center">ジャンル新規登録<h1>
+<h4 class="alert alert-danger text-center"><%= flash.now[:genre] %></h4>
 
 <%= form_for(@genre, url: admin_admin_genres_path) do |f| %>
 
@@ -7,7 +8,7 @@
   <%= f.text_field :genre_name %>
 </h2>
 <h2 class="text-center">
-  <%= f.submit "登録" %>
+  <%= f.submit "登録", class: "btn btn-lg btn-success" %>
   <%= link_to "戻る", new_admin_admin_product_path %>
 </h2>
 

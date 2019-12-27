@@ -1,12 +1,12 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <h1 class="text-center">受注履歴一覧</h1>
+      <h1 class="tr text-center">受注履歴一覧</h1>
       <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" />
 
-      <div class="order-search-box text-center">
+      <div class="tr order-search-box text-center">
 				<%= form_tag(admin_admin_orders_path, method: :get) do %>
-					<%= text_field_tag :search, "", placeholder: "顧客名、宛名で検索" %>
+					<%= text_field_tag :search, "", size:"80", placeholder: "顧客名、宛名で検索" %>
 					<%= button_tag '<i class="fa fa-search"></i>'.html_safe, type: 'submit', :name => nil %>
 				<% end %>		
       </div>
@@ -25,13 +25,13 @@
           <tr>
             <td><%= order.public.end_user_last_name + " " + order.public.end_user_first_name %></td>
             <td><%= order.address_name %></td>
-            <td><%= order.created_at.strftime("%Y/%m/%d/") %></td>
-            <td><%= order.total_price.round(0) %>円</td>
+            <td><%= order.created_at.strftime("%Y/%m/%d") %></td>
+            <td>¥ <%= (order.total_price * 1.1 + 500).round(0) %></td> 
             <td><%= order.delivery_status %></td>
             <td><%= link_to "詳細", admin_admin_order_path(order.id), class: "btn btn-default" %></td>
           </tr>
         <% end %>
-      </table>
+      </table>　
 
     </div>
   </div>

@@ -8,15 +8,16 @@ class Admin::AdminGenresController < ApplicationController
   def create
     @genre = Genre.new(genre_params)
     if @genre.save
-      flash[:notice] = "登録成功"
-      redirect_to new_admin_admin_product_path
+      redirect_to new_admin_admin_product_path, notice: 'ジャンル名の登録に成功しました。'
     else
-      flash[:notice] = "登録失敗"
+      flash.now[:genre] = "ジャンル名の登録に失敗しました。"
       render :new
     end
   end
 
   def destroy
+    @genre = Genre.find(params[:id])
+    @genre.destroy
   end
 
   private
