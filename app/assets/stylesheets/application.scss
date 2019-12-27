@@ -54,9 +54,6 @@ ul {
   display: flex;
   padding-top: 10px;
 }
-li > a {
-  color: white;
-}
 
 li {
   list-style: none;
@@ -64,14 +61,22 @@ li {
   color: black;
 }
 
+li > a {
+  color: black;
+}
+
 a {
   color:rgb(0, 38, 255);
   text-decoration: none;
 }
+a:hover {
+  color: orange;
+  text-decoration: none;
+}
 .nav > li > a:hover {
   background-color: rgb(255, 123, 0);
-  color:rgb(0, 68, 253);
-  text-decoration:none;
+  color: white;
+  text-decoration: none;
 }
 
 .flash-message {
